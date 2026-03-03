@@ -182,6 +182,8 @@ object InqalaabServers {
     private suspend fun createUserAddress(rh: Long?, prefs: android.content.SharedPreferences) {
         // Check if address already exists
         if (chatModel.userAddress.value != null) {
+            // Ensure auto-accept is enabled on existing address
+            enableAutoAccept(rh)
             println("Inqalaab: User address already exists")
             prefs.edit().putBoolean(KEY_ADDRESS_CREATED, true).apply()
             return
@@ -190,19 +192,45 @@ object InqalaabServers {
         println("Inqalaab: Creating user address...")
         val connLink = chatController.apiCreateUserAddress(rh)
         if (connLink != null) {
+            val autoAcceptSettings = AddressSettings(
+                businessAddress = false,
+                autoAccept = AutoAccept(acceptIncognito = false),
+                autoReply = null
+            )
             val slDataSet = connLink.connShortLink != null
             withContext(Dispatchers.Main) {
                 chatModel.userAddress.value = UserContactLinkRec(
                     connLink,
                     shortLinkDataSet = slDataSet,
                     shortLinkLargeDataSet = slDataSet,
-                    addressSettings = AddressSettings(businessAddress = false, autoAccept = null, autoReply = null)
+                    addressSettings = autoAcceptSettings
                 )
             }
-            println("Inqalaab: User address created successfully")
+            // Enable auto-accept on the newly created address
+            enableAutoAccept(rh)
+            println("Inqalaab: User address created with auto-accept enabled")
             prefs.edit().putBoolean(KEY_ADDRESS_CREATED, true).apply()
         } else {
             println("Inqalaab: Failed to create user address")
+        }
+    }
+
+    private suspend fun enableAutoAccept(rh: Long?) {
+        val currentAddress = chatModel.userAddress.value ?: return
+        val currentSettings = currentAddress.addressSettings
+        if (currentSettings.autoAccept != null) {
+            println("Inqalaab: Auto-accept already enabled")
+            return
+        }
+        val newSettings = currentSettings.copy(autoAccept = AutoAccept(acceptIncognito = false))
+        val updated = chatController.apiSetUserAddressSettings(rh, newSettings)
+        if (updated != null) {
+            withContext(Dispatchers.Main) {
+                chatModel.userAddress.value = updated
+            }
+            println("Inqalaab: Auto-accept enabled successfully")
+        } else {
+            println("Inqalaab: Failed to enable auto-accept")
         }
     }
 }
