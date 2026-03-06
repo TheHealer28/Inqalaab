@@ -36,7 +36,7 @@ Inqalaab is built for activists, organizers, and communities who need secure com
 - **Respect others.** Treat fellow users with dignity regardless of background, identity, or beliefs.
 - **Protect privacy.** Do not share private conversations, screenshots, or personal information of others without their consent.
 - **Use responsibly.** The security features in Inqalaab exist to protect people facing real threats. Do not misuse them.
-- **Report abuse.** If you encounter abusive behavior, use the in-app reporting feature to flag messages or block users.
+- **Report abuse.** If you encounter abusive behavior in a group, use the in-app reporting feature to flag messages to group administrators.
 
 ## 6. User-Generated Content
 
@@ -44,10 +44,12 @@ Inqalaab enables users to send messages, share files, and communicate in groups.
 
 Because Inqalaab uses end-to-end encryption, we cannot access, read, moderate, or monitor message content. Content moderation relies on user-driven tools:
 
-- **Blocking:** You can block any user to prevent them from contacting you.
-- **Reporting:** You can report abusive messages within the App. Reports are handled at the group or contact level.
-- **Group moderation:** Group creators and administrators can remove members and manage group settings.
-- **Leaving:** You can leave any conversation or group at any time.
+- **Group message reporting:** You can report abusive messages within groups. Reports are sent to group administrators for review.
+- **Group member blocking:** Group administrators can block members from posting, preventing further messages from that member in the group.
+- **Group member removal:** Group administrators can remove members from groups.
+- **Delete contact:** You can delete any 1:1 contact, which removes the conversation and prevents further messages.
+- **Leaving:** You can leave any group at any time.
+- **Clear chat:** You can clear the message history of any conversation.
 
 ## 7. Intellectual Property
 

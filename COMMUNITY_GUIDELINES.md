@@ -66,30 +66,37 @@ Inqalaab uses end-to-end encryption. This means:
 
 ### Tools Available to Users
 
-| Tool | What it does |
-|------|-------------|
-| **Block user** | Prevents a user from contacting you. Immediate and permanent until you unblock. |
-| **Report message** | Flags a specific message for review by group administrators. |
-| **Leave group** | Removes you from any group instantly. |
-| **Group admin controls** | Group creators can remove members, set permissions, and manage content. |
-| **Delete conversation** | Permanently removes a conversation from your device. |
+| Tool | Scope | What it does |
+|------|-------|-------------|
+| **Report message** | Groups | Flags a specific message for review by group administrators. |
+| **Block member** | Groups | Group administrators can block a member from posting in the group. |
+| **Remove member** | Groups | Group administrators can remove a member from the group entirely. |
+| **Leave group** | Groups | Removes you from any group instantly. |
+| **Group permissions** | Groups | Administrators can control who can send messages, add members, or share content. |
+| **Delete contact** | 1:1 chats | Removes a contact and the conversation, preventing further messages. |
+| **Clear chat** | Any chat | Permanently removes message history from your device. |
 
 ### What Happens When You Report
 
 - Reports are visible to **group administrators only** (not to Inqalaab developers or server operators).
-- Group administrators can take action including removing the reported user from the group.
+- Group administrators can take action including blocking or removing the reported member from the group.
 - Inqalaab does not receive, store, or process report data on any server.
-- For safety, consider blocking the user immediately if you feel threatened.
+- Reporting is currently available in group conversations. For unwanted 1:1 contacts, use the delete contact feature.
 
 ---
 
 ## If You Experience Abuse
 
-1. **Block the user** immediately to stop further contact.
-2. **Report the message** using the in-app reporting feature.
-3. **Leave the group** if the environment feels unsafe.
-4. **Document evidence** — take screenshots before deleting if you may need them for authorities.
-5. **Contact local authorities** if you face credible threats of violence or illegal activity.
+### In a group
+1. **Report the message** using the in-app reporting feature (long-press the message).
+2. **Leave the group** if the environment feels unsafe.
+3. **Document evidence** — take screenshots before deleting if you may need them for authorities.
+4. **Contact local authorities** if you face credible threats of violence or illegal activity.
+
+### In a 1:1 conversation
+1. **Delete the contact** to stop further messages from that person.
+2. **Document evidence** — take screenshots before deleting if you may need them for authorities.
+3. **Contact local authorities** if you face credible threats of violence or illegal activity.
 
 If you are in immediate danger, contact your local emergency services.
 

@@ -89,7 +89,8 @@
 
         <data android:scheme="simplex" />
       </intent-filter>
-      <intent-filter android:autoVerify="true">
+      <!-- Deep links for SimpleX protocol compatibility (domains not owned, no autoVerify) -->
+      <intent-filter>
         <action android:name="android.intent.action.VIEW" />
 
         <category android:name="android.intent.category.DEFAULT" />
@@ -101,7 +102,6 @@
         <data android:host="smp4.simplex.im" />
         <data android:host="smp5.simplex.im" />
         <data android:host="smp6.simplex.im" />
-        <data android:host="smp7.simplex.im" /> <!-- TODO remove -->
         <data android:host="smp8.simplex.im" />
         <data android:host="smp9.simplex.im" />
         <data android:host="smp10.simplex.im" />
@@ -126,6 +126,23 @@
         <data android:pathPrefix="/g" />
         <data android:pathPrefix="/i" />
       </intent-filter>
+
+      <!-- App Links for owned domain (autoVerify only for domains you control) -->
+      <!-- To enable: host /.well-known/assetlinks.json on inqalaab.chat -->
+      <!--
+      <intent-filter android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="https" android:host="inqalaab.chat" />
+        <data android:pathPrefix="/invitation" />
+        <data android:pathPrefix="/contact" />
+        <data android:pathPrefix="/a" />
+        <data android:pathPrefix="/c" />
+        <data android:pathPrefix="/g" />
+        <data android:pathPrefix="/i" />
+      </intent-filter>
+      -->
       <!-- Receive files from other apps -->
       <intent-filter>
         <action android:name="android.intent.action.SEND" />

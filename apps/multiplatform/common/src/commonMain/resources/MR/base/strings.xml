@@ -2889,6 +2889,8 @@
   <string name="inq_appearance">APPEARANCE</string>
   <string name="inq_about_section">ABOUT INQALAAB</string>
   <string name="inq_about_title">About Inqalaab</string>
+  <string name="inq_terms_of_use">Terms of Use</string>
+  <string name="inq_community_guidelines">Community Guidelines</string>
 
   <!-- Inqalaab Onboarding -->
   <string name="inq_why_exists">Why Inqalaab Exists</string>
