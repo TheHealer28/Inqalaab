@@ -2,6 +2,7 @@ package chat.simplex.common.views.onboarding
 
 import SectionBottomSpacer
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -13,6 +14,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import chat.simplex.common.model.ChatController.appPrefs
@@ -102,6 +105,9 @@ fun InqalaabMissionScreen() {
 // Screen 2: Security Pledge / Threat Model
 @Composable
 fun InqalaabSecurityPledgeScreen() {
+    var termsAccepted by remember { mutableStateOf(false) }
+    val uriHandler = LocalUriHandler.current
+
     ColumnWithScrollBarNoAppBar(
         Modifier.fillMaxSize().padding(horizontal = DEFAULT_PADDING)
     ) {
@@ -150,12 +156,60 @@ fun InqalaabSecurityPledgeScreen() {
 
         PledgeItem(5, generalGetString(MR.strings.inq_open_source_pledge), generalGetString(MR.strings.inq_open_source_pledge_desc))
 
+        Spacer(Modifier.height(20.dp))
+
+        // Terms of Use acceptance
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(12.dp))
+                .background(MaterialTheme.colors.onBackground.copy(alpha = 0.05f))
+                .clickable { termsAccepted = !termsAccepted }
+                .padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Checkbox(
+                checked = termsAccepted,
+                onCheckedChange = { termsAccepted = it },
+                colors = CheckboxDefaults.colors(checkedColor = SimplexGreen)
+            )
+            Spacer(Modifier.width(4.dp))
+            Column {
+                Text(
+                    generalGetString(MR.strings.inq_accept_terms),
+                    style = MaterialTheme.typography.body2,
+                    color = MaterialTheme.colors.onBackground
+                )
+                Row(
+                    Modifier.padding(top = 6.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        generalGetString(MR.strings.inq_terms_of_use),
+                        style = MaterialTheme.typography.body2.copy(textDecoration = TextDecoration.Underline),
+                        color = MaterialTheme.colors.primary,
+                        fontSize = 13.sp,
+                        modifier = Modifier.clickable { uriHandler.openUriCatching("https://github.com/TheHealer28/Inqalaab/blob/main/TERMS_OF_USE.md") }
+                    )
+                    Text("•", color = MaterialTheme.colors.secondary, fontSize = 13.sp)
+                    Text(
+                        generalGetString(MR.strings.inq_community_guidelines),
+                        style = MaterialTheme.typography.body2.copy(textDecoration = TextDecoration.Underline),
+                        color = MaterialTheme.colors.primary,
+                        fontSize = 13.sp,
+                        modifier = Modifier.clickable { uriHandler.openUriCatching("https://github.com/TheHealer28/Inqalaab/blob/main/COMMUNITY_GUIDELINES.md") }
+                    )
+                }
+            }
+        }
+
         Spacer(Modifier.weight(1f))
 
         OnboardingActionButton(
             modifier = Modifier.padding(bottom = 8.dp).fillMaxWidth(),
             labelId = MR.strings.setup_protection_continue,
             onboarding = OnboardingStage.Step0_2_EnableSafety,
+            enabled = termsAccepted,
             onclick = null
         )
 

@@ -2659,6 +2659,8 @@
     <string name="inq_when_internet_down">جب انٹرنیٹ بند ہو جائے</string>
     <string name="inq_when_internet_desc">بندش کے دوران قریبی ٹیب پر جائیں۔ آپ کے ارد گرد انقلاب والے سب ابھی بھی بات چیت کر سکتے ہیں۔</string>
     <string name="inq_create_profile">میرا پروفائل بنائیں</string>
+    <string name="inq_accept_terms">میں استعمال کی شرائط اور کمیونٹی رہنما اصول سے اتفاق کرتا/کرتی ہوں</string>
+    <string name="inq_read_terms">پڑھیں:</string>
 
     <!-- انقلاب کے بارے میں -->
     <string name="inq_server_infrastructure">سرور انفراسٹرکچر</string>

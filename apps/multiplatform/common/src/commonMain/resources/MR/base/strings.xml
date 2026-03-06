@@ -2936,6 +2936,8 @@
   <string name="inq_when_internet_down">When the Internet Goes Down</string>
   <string name="inq_when_internet_desc">During shutdowns, switch to the Nearby tab. Everyone around you with Inqalaab can still communicate.</string>
   <string name="inq_create_profile">Create My Profile</string>
+  <string name="inq_accept_terms">I agree to the Terms of Use and Community Guidelines</string>
+  <string name="inq_read_terms">Read:</string>
 
   <!-- About Inqalaab -->
   <string name="inq_server_infrastructure">SERVER INFRASTRUCTURE</string>
