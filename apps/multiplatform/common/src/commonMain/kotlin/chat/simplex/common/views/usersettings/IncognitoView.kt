@@ -31,7 +31,7 @@ fun IncognitoLayout() {
       Text(generalGetString(MR.strings.incognito_info_protects))
       Text(generalGetString(MR.strings.incognito_info_allows))
       Text(generalGetString(MR.strings.incognito_info_share))
-      ReadableTextWithLink(MR.strings.read_more_in_user_guide_with_link, "https://simplex.chat/docs/guide/chat-profiles.html#incognito-mode")
+      ReadableTextWithLink(MR.strings.read_more_in_user_guide_with_link, "https://github.com/TheHealer28/Inqalaab")
       SectionBottomSpacer()
     }
   }

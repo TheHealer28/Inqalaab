@@ -6,10 +6,12 @@ import SectionItemView
 import SectionTextFooter
 import SectionView
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,14 +27,12 @@ import chat.simplex.common.platform.*
 import chat.simplex.common.ui.theme.*
 import chat.simplex.common.views.chatlist.LocalTabBarHeight
 import chat.simplex.common.views.database.DatabaseView
+import chat.simplex.common.views.database.restartChatOrApp
 import chat.simplex.common.views.helpers.*
-import chat.simplex.common.views.newchat.SimpleXCreatedLinkQRCode
 import chat.simplex.common.views.usersettings.*
 import chat.simplex.res.MR
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.ui.platform.LocalClipboardManager
-import androidx.compose.ui.text.AnnotatedString
 import dev.icerock.moko.resources.compose.painterResource
+import kotlinx.coroutines.delay
 
 private data class SecurityCheck(
     val title: String,
@@ -66,44 +66,44 @@ fun SafetyHubView(chatModel: ChatModel, setPerformLA: (Boolean) -> Unit) {
 
     val securityChecks = listOf(
         SecurityCheck(
-            title = "App Lock",
-            description = "Require authentication to open app",
+            title = generalGetString(MR.strings.inq_app_lock),
+            description = generalGetString(MR.strings.inq_app_lock_desc),
             isEnabled = appLockEnabled,
             onClick = showSettingsModal { SimplexLockView(ChatModel, currentLAMode, setPerformLA) }
         ),
         SecurityCheck(
-            title = "Self-Destruct Code",
-            description = "Duress PIN triggers emergency wipe",
+            title = generalGetString(MR.strings.inq_self_destruct_code),
+            description = generalGetString(MR.strings.inq_self_destruct_desc),
             isEnabled = selfDestructEnabled,
             onClick = showSettingsModal { SimplexLockView(ChatModel, currentLAMode, setPerformLA) }
         ),
         SecurityCheck(
-            title = "Screen Protection",
-            description = "Block screenshots and screen recording",
+            title = generalGetString(MR.strings.inq_screen_protection),
+            description = generalGetString(MR.strings.inq_screen_protection_desc),
             isEnabled = screenProtectionEnabled,
             onClick = showSettingsModal { PrivacySettingsView(it, showSettingsModal, setPerformLA) }
         ),
         SecurityCheck(
-            title = "Database Encrypted",
-            description = "Chat database is encrypted at rest",
+            title = generalGetString(MR.strings.inq_db_encrypted),
+            description = generalGetString(MR.strings.inq_db_encrypted_desc),
             isEnabled = dbEncrypted,
             onClick = { ModalManager.start.showModal(true) { DatabaseView() } }
         ),
         SecurityCheck(
-            title = "Local Files Encrypted",
-            description = "Downloaded files are encrypted on device",
+            title = generalGetString(MR.strings.inq_local_files_encrypted),
+            description = generalGetString(MR.strings.inq_local_files_desc),
             isEnabled = localFilesEncrypted,
             onClick = showSettingsModal { PrivacySettingsView(it, showSettingsModal, setPerformLA) }
         ),
         SecurityCheck(
-            title = "IP Address Protection",
-            description = "Ask before using unknown relay servers",
+            title = generalGetString(MR.strings.inq_ip_protection),
+            description = generalGetString(MR.strings.inq_ip_protection_desc),
             isEnabled = ipProtectionEnabled,
             onClick = showSettingsModal { PrivacySettingsView(it, showSettingsModal, setPerformLA) }
         ),
         SecurityCheck(
-            title = "Link Sanitization",
-            description = "Remove tracking parameters from links",
+            title = generalGetString(MR.strings.inq_link_sanitization),
+            description = generalGetString(MR.strings.inq_link_sanitization_desc),
             isEnabled = linkSanitizationEnabled,
             onClick = showSettingsModal { PrivacySettingsView(it, showSettingsModal, setPerformLA) }
         )
@@ -116,10 +116,10 @@ fun SafetyHubView(chatModel: ChatModel, setPerformLA: (Boolean) -> Unit) {
             .fillMaxSize()
             .padding(bottom = tabBarHeight)
     ) {
-        AppBarTitle("Safety Hub")
+        AppBarTitle(generalGetString(MR.strings.inq_safety_hub_title))
 
-        // Your QR Code — share your address
-        YourAddressCard()
+        // Language toggle
+        LanguageToggle()
         SectionDividerSpaced()
 
         // Get Started card when no features are enabled
@@ -155,102 +155,52 @@ fun SafetyHubView(chatModel: ChatModel, setPerformLA: (Boolean) -> Unit) {
 }
 
 @Composable
-private fun YourAddressCard() {
-    val userAddress = remember { chatModel.userAddress }.value
-    if (userAddress != null) {
-        Column(
+private fun LanguageToggle() {
+    val languagePref = ChatModel.controller.appPrefs.appLanguage
+    val state = rememberSaveable { mutableStateOf(languagePref.get() ?: "en") }
+    val languages = listOf("en" to "English", "ur" to "اردو")
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = DEFAULT_PADDING, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            generalGetString(MR.strings.settings_section_title_language),
+            color = MaterialTheme.colors.onBackground
+        )
+        Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = DEFAULT_PADDING),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .clip(RoundedCornerShape(8.dp))
+                .background(MaterialTheme.colors.onBackground.copy(alpha = 0.08f))
+                .padding(2.dp)
         ) {
-            Text(
-                "Your Inqalaab QR Code",
-                style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.SemiBold),
-                color = MaterialTheme.colors.primary
-            )
-            Spacer(Modifier.height(4.dp))
-            Text(
-                "Show or share to connect",
-                style = MaterialTheme.typography.body2,
-                color = MaterialTheme.colors.secondary
-            )
-            SimpleXCreatedLinkQRCode(
-                connLink = userAddress.connLinkContact,
-                short = true,
-                modifier = Modifier.fillMaxWidth(0.6f),
-                padding = PaddingValues(vertical = 8.dp)
-            )
-            val clipboard = LocalClipboardManager.current
-            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                OutlinedButton(
-                    onClick = { clipboard.shareText(userAddress.connLinkContact.simplexChatUri(short = true)) },
-                    shape = RoundedCornerShape(20.dp)
+            languages.forEach { (code, label) ->
+                val selected = state.value == code
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(6.dp))
+                        .background(if (selected) MaterialTheme.colors.primary else Color.Transparent)
+                        .clickable {
+                            if (state.value != code) {
+                                state.value = code
+                                languagePref.set(code)
+                                withApi {
+                                    delay(200)
+                                    restartChatOrApp()
+                                }
+                            }
+                        }
+                        .padding(horizontal = 16.dp, vertical = 6.dp)
                 ) {
-                    Icon(
-                        painterResource(MR.images.ic_share),
-                        contentDescription = null,
-                        modifier = Modifier.size(18.dp)
+                    Text(
+                        label,
+                        color = if (selected) Color.White else MaterialTheme.colors.secondary,
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 14.sp
                     )
-                    Spacer(Modifier.width(6.dp))
-                    Text("Share")
-                }
-                OutlinedButton(
-                    onClick = { clipboard.setText(AnnotatedString(userAddress.connLinkContact.simplexChatUri(short = true))) },
-                    shape = RoundedCornerShape(20.dp)
-                ) {
-                    Icon(
-                        painterResource(MR.images.ic_content_copy),
-                        contentDescription = null,
-                        modifier = Modifier.size(18.dp)
-                    )
-                    Spacer(Modifier.width(6.dp))
-                    Text("Copy Link")
-                }
-            }
-        }
-    } else {
-        // No address created yet
-        SectionView("YOUR ADDRESS") {
-            SectionItemView(click = {
-                withBGApi {
-                    val connLink = chatModel.controller.apiCreateUserAddress(chatModel.currentUser.value?.remoteHostId)
-                    if (connLink != null) {
-                        val slDataSet = connLink.connShortLink != null
-                        chatModel.userAddress.value = UserContactLinkRec(
-                            connLink,
-                            shortLinkDataSet = slDataSet,
-                            shortLinkLargeDataSet = slDataSet,
-                            addressSettings = AddressSettings(businessAddress = false, autoAccept = null, autoReply = null)
-                        )
-                    }
-                }
-            }) {
-                Row(
-                    Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        painterResource(MR.images.ic_qr_code),
-                        contentDescription = null,
-                        tint = MaterialTheme.colors.primary,
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Spacer(Modifier.width(12.dp))
-                    Column {
-                        Text(
-                            "Create Your Address",
-                            style = MaterialTheme.typography.body1,
-                            color = MaterialTheme.colors.primary,
-                            fontWeight = FontWeight.Medium
-                        )
-                        Text(
-                            "Generate a QR code so others can connect with you",
-                            style = MaterialTheme.typography.body2,
-                            color = MaterialTheme.colors.secondary,
-                            fontSize = 13.sp
-                        )
-                    }
                 }
             }
         }
@@ -276,13 +226,13 @@ private fun GetStartedCard() {
         )
         Spacer(Modifier.height(12.dp))
         Text(
-            "Set Up Your Safety",
+            generalGetString(MR.strings.inq_setup_safety),
             style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Bold),
             color = MaterialTheme.colors.onBackground
         )
         Spacer(Modifier.height(8.dp))
         Text(
-            "None of your security features are enabled yet. Scroll down to the Security Checklist and enable protections like App Lock, Screen Protection, and Database Encryption.",
+            generalGetString(MR.strings.inq_setup_safety_desc),
             style = MaterialTheme.typography.body2,
             color = MaterialTheme.colors.secondary,
             fontSize = 13.sp,
@@ -293,7 +243,7 @@ private fun GetStartedCard() {
 
 @Composable
 private fun SecurityStatusDashboard(enabledCount: Int, totalCount: Int, appLockEnabled: Boolean) {
-    SectionView("SECURITY STATUS") {
+    SectionView(generalGetString(MR.strings.inq_security_status)) {
         SectionItemView {
             Row(
                 Modifier.fillMaxWidth(),
@@ -302,29 +252,29 @@ private fun SecurityStatusDashboard(enabledCount: Int, totalCount: Int, appLockE
             ) {
                 StatusIndicator(
                     icon = painterResource(MR.images.ic_lock),
-                    label = "Encryption",
+                    label = generalGetString(MR.strings.inq_encryption),
                     active = true
                 )
                 StatusIndicator(
                     icon = painterResource(MR.images.ic_wifi_tethering),
-                    label = "Relay",
+                    label = generalGetString(MR.strings.inq_relay),
                     active = true
                 )
                 StatusIndicator(
                     icon = painterResource(MR.images.ic_bluetooth),
-                    label = "Nearby",
+                    label = generalGetString(MR.strings.inq_nearby_label),
                     active = false
                 )
                 StatusIndicator(
                     icon = painterResource(MR.images.ic_security),
-                    label = "Device Lock",
+                    label = generalGetString(MR.strings.inq_device_lock),
                     active = appLockEnabled
                 )
             }
         }
         SectionItemView {
             Text(
-                "$enabledCount of $totalCount protections active",
+                String.format(generalGetString(MR.strings.inq_protections_active), enabledCount, totalCount),
                 style = MaterialTheme.typography.body2,
                 color = if (enabledCount == totalCount) SimplexGreen else MaterialTheme.colors.secondary
             )
@@ -353,17 +303,17 @@ private fun StatusIndicator(icon: Painter, label: String, active: Boolean) {
 
 @Composable
 private fun TrustedContactsSection() {
-    SectionView("TRUSTED CONTACTS") {
+    SectionView(generalGetString(MR.strings.inq_trusted_contacts)) {
         SectionItemView {
             Column {
                 Text(
-                    "Mark contacts as Trusted",
+                    generalGetString(MR.strings.inq_mark_trusted),
                     style = MaterialTheme.typography.body1,
                     color = MaterialTheme.colors.onBackground
                 )
                 Spacer(Modifier.height(4.dp))
                 Text(
-                    "Long-press any contact in your Chats tab and select \"Mark as Trusted\" to add them here. Trusted contacts receive your emergency broadcasts.",
+                    generalGetString(MR.strings.inq_mark_trusted_desc),
                     style = MaterialTheme.typography.body2,
                     color = MaterialTheme.colors.secondary,
                     fontSize = 13.sp
@@ -373,9 +323,9 @@ private fun TrustedContactsSection() {
         // "I'm Safe" broadcast
         SectionItemView(click = {
             AlertManager.shared.showAlertDialog(
-                title = "Send \"I'm Safe\" Message",
-                text = "This will send \"I'm safe\" to all your trusted contacts. Continue?",
-                confirmText = "Send to All",
+                title = generalGetString(MR.strings.inq_send_safe_title),
+                text = generalGetString(MR.strings.inq_send_safe_text),
+                confirmText = generalGetString(MR.strings.inq_send_to_all),
                 onConfirm = {
                     // TODO: implement broadcast to trusted contacts
                 }
@@ -394,13 +344,13 @@ private fun TrustedContactsSection() {
                 Spacer(Modifier.width(12.dp))
                 Column {
                     Text(
-                        "Send \"I'm Safe\" Broadcast",
+                        generalGetString(MR.strings.inq_send_safe_broadcast),
                         style = MaterialTheme.typography.body1,
                         color = SimplexGreen,
                         fontWeight = FontWeight.Medium
                     )
                     Text(
-                        "Notify all trusted contacts that you are safe",
+                        generalGetString(MR.strings.inq_send_safe_broadcast_desc),
                         style = MaterialTheme.typography.body2,
                         color = MaterialTheme.colors.secondary,
                         fontSize = 13.sp
@@ -437,7 +387,7 @@ private fun SecurityScoreHeader(enabledCount: Int, totalCount: Int) {
 
         // Score text
         Text(
-            "$enabledCount of $totalCount security features enabled",
+            String.format(generalGetString(MR.strings.inq_security_features_count), enabledCount, totalCount),
             style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Medium),
             color = MaterialTheme.colors.onBackground
         )
@@ -457,14 +407,14 @@ private fun SecurityScoreHeader(enabledCount: Int, totalCount: Int) {
         if (enabledCount == totalCount) {
             Spacer(Modifier.height(8.dp))
             Text(
-                "All security features are active",
+                generalGetString(MR.strings.inq_all_features_active),
                 style = MaterialTheme.typography.body2,
                 color = SimplexGreen
             )
         } else {
             Spacer(Modifier.height(8.dp))
             Text(
-                "Tap items below to improve your security",
+                generalGetString(MR.strings.inq_tap_to_improve),
                 style = MaterialTheme.typography.body2,
                 color = MaterialTheme.colors.secondary
             )
@@ -474,7 +424,7 @@ private fun SecurityScoreHeader(enabledCount: Int, totalCount: Int) {
 
 @Composable
 private fun SecurityChecklistSection(checks: List<SecurityCheck>) {
-    SectionView("SECURITY CHECKLIST") {
+    SectionView(generalGetString(MR.strings.inq_security_checklist)) {
         checks.forEach { check ->
             SecurityChecklistRow(check)
         }
@@ -531,13 +481,13 @@ private fun SecurityChecklistRow(check: SecurityCheck) {
 
 @Composable
 private fun EmergencyActionsSection() {
-    SectionView("EMERGENCY ACTIONS") {
+    SectionView(generalGetString(MR.strings.inq_emergency_actions)) {
         // Emergency Wipe button
         SectionItemView({
             AlertManager.shared.showAlertDialog(
-                title = generalGetString(MR.strings.app_name) + " — Emergency Wipe",
-                text = "This will permanently delete ALL messages, contacts, files and encryption keys. A new empty profile will be created.\n\nThis action CANNOT be undone.",
-                confirmText = "Wipe Everything",
+                title = generalGetString(MR.strings.app_name) + " — " + generalGetString(MR.strings.inq_emergency_wipe),
+                text = generalGetString(MR.strings.inq_emergency_wipe_text),
+                confirmText = generalGetString(MR.strings.inq_wipe_everything),
                 destructive = true,
                 onConfirm = {
                     withLongRunningApi {
@@ -559,13 +509,13 @@ private fun EmergencyActionsSection() {
                 Spacer(Modifier.width(12.dp))
                 Column {
                     Text(
-                        "Emergency Wipe",
+                        generalGetString(MR.strings.inq_emergency_wipe),
                         style = MaterialTheme.typography.body1,
                         color = Color.Red,
                         fontWeight = FontWeight.Medium
                     )
                     Text(
-                        "Delete all data and create empty profile",
+                        generalGetString(MR.strings.inq_emergency_wipe_desc),
                         style = MaterialTheme.typography.body2,
                         color = MaterialTheme.colors.secondary,
                         fontSize = 13.sp
@@ -574,29 +524,29 @@ private fun EmergencyActionsSection() {
             }
         }
     }
-    SectionTextFooter("Add the Emergency Wipe tile to Quick Settings for one-tap access from any screen. Swipe down from the top of your screen and tap Edit to add it.")
+    SectionTextFooter(generalGetString(MR.strings.inq_emergency_wipe_tip))
 }
 
 @Composable
 private fun SafetyResourcesSection() {
     val uriHandler = LocalUriHandler.current
 
-    SectionView("SAFETY RESOURCES") {
+    SectionView(generalGetString(MR.strings.inq_safety_resources)) {
         SettingsActionItem(
             painterResource(MR.images.ic_shield),
-            "Digital Security Guide",
+            generalGetString(MR.strings.inq_digital_security_guide),
             click = { uriHandler.openUriCatching("https://ssd.eff.org/") },
             textColor = MaterialTheme.colors.primary
         )
         SettingsActionItem(
             painterResource(MR.images.ic_security),
-            "Secure Communication Tips",
+            generalGetString(MR.strings.inq_secure_comm_tips),
             click = { uriHandler.openUriCatching("https://www.frontlinedefenders.org/en/digital-security") },
             textColor = MaterialTheme.colors.primary
         )
         SettingsActionItem(
             painterResource(MR.images.ic_warning),
-            "Report Surveillance",
+            generalGetString(MR.strings.inq_report_surveillance),
             click = { uriHandler.openUriCatching("https://privacyinternational.org/") },
             textColor = MaterialTheme.colors.primary
         )

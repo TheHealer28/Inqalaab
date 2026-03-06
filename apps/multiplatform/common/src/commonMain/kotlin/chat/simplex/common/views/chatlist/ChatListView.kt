@@ -155,7 +155,19 @@ fun ChatListView(chatModel: ChatModel, userPickerState: MutableStateFlow<Animate
   val searchText = rememberSaveable(stateSaver = TextFieldValue.Saver) { mutableStateOf(TextFieldValue("")) }
   val listState = rememberLazyListState(lazyListState.first, lazyListState.second)
   Box(Modifier.fillMaxSize()) {
-      if (oneHandUI.value) {
+      if (appPlatform.isAndroid) {
+        // Android: toolbar always at bottom with Inqalaab branding, above tab bar
+        ChatListWithLoadingScreen(searchText, listState)
+        val tabBarHeight = LocalTabBarHeight.current
+        Column(Modifier.align(Alignment.BottomCenter).padding(bottom = tabBarHeight)) {
+          ChatListToolbar(
+            userPickerState,
+            listState,
+            stopped,
+            setPerformLA,
+          )
+        }
+      } else if (oneHandUI.value) {
         ChatListWithLoadingScreen(searchText, listState)
         Column(Modifier.align(Alignment.BottomCenter)) {
           ChatListToolbar(
@@ -451,22 +463,22 @@ private fun ChatListToolbar(userPickerState: MutableStateFlow<AnimatedViewState>
       }
     }
 
-    if (oneHandUI.value) {
-      val sp16 = with(LocalDensity.current) { 16.sp.toDp() }
-
-      if (appPlatform.isDesktop && oneHandUI.value) {
-        val call = remember { chatModel.activeCall }
-        if (call.value != null) {
-          barButtons.add {
-            val c = call.value
-            if (c != null) {
-              ActiveCallInteractiveArea(c)
-              Spacer(Modifier.width(5.dp))
-            }
+    if (oneHandUI.value && appPlatform.isDesktop) {
+      val call = remember { chatModel.activeCall }
+      if (call.value != null) {
+        barButtons.add {
+          val c = call.value
+          if (c != null) {
+            ActiveCallInteractiveArea(c)
+            Spacer(Modifier.width(5.dp))
           }
         }
       }
+    }
 
+    // Compose button: always visible on Android, oneHandUI only on desktop
+    if (oneHandUI.value || appPlatform.isAndroid) {
+      val sp16 = with(LocalDensity.current) { 16.sp.toDp() }
       barButtons.add {
         IconButton(
           onClick = {
@@ -515,8 +527,8 @@ private fun ChatListToolbar(userPickerState: MutableStateFlow<AnimatedViewState>
     title = {
       Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(DEFAULT_SPACE_AFTER_ICON)) {
         Text(
-          stringResource(MR.strings.your_chats),
-          color = MaterialTheme.colors.onBackground,
+          if (appPlatform.isAndroid) "Inqalaab" else stringResource(MR.strings.your_chats),
+          color = if (appPlatform.isAndroid) MaterialTheme.colors.primary else MaterialTheme.colors.onBackground,
           fontWeight = FontWeight.SemiBold,
         )
         SubscriptionStatusIndicator(
@@ -541,7 +553,7 @@ private fun ChatListToolbar(userPickerState: MutableStateFlow<AnimatedViewState>
       }
     },
     onTitleClick = if (canScrollToZero.value) { { scrollToBottom(scope, listState) } } else null,
-    onTop = !oneHandUI.value,
+    onTop = if (appPlatform.isAndroid) false else !oneHandUI.value,
     onSearchValueChanged = {},
     buttons = { barButtons.forEach { it() } }
   )

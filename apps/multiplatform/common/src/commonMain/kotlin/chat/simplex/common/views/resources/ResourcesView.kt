@@ -28,73 +28,73 @@ fun ResourcesView() {
     ColumnWithScrollBar(
         Modifier.fillMaxSize().padding(bottom = tabBarHeight)
     ) {
-        AppBarTitle("Resources")
+        AppBarTitle(generalGetString(MR.strings.inq_resources_title))
 
         // Internet Shutdown Guide
-        SectionView("DURING AN INTERNET SHUTDOWN") {
+        SectionView(generalGetString(MR.strings.inq_during_shutdown)) {
             ResourceCard(
-                title = "1. Enable Nearby Mode",
-                description = "Switch to the Nearby tab and turn on device discovery. Your phone uses Bluetooth and WiFi Direct — no internet needed."
+                title = generalGetString(MR.strings.inq_step1_title),
+                description = generalGetString(MR.strings.inq_step1_desc)
             )
             ResourceCard(
-                title = "2. Find People Around You",
-                description = "Use 'Find People Nearby' to discover other Inqalaab users within range. Both devices must have the app open."
+                title = generalGetString(MR.strings.inq_step2_title),
+                description = generalGetString(MR.strings.inq_step2_desc)
             )
             ResourceCard(
-                title = "3. Create or Join a Room",
-                description = "Start a group chat room with a code. Share the code verbally with people near you so they can join."
+                title = generalGetString(MR.strings.inq_step3_title),
+                description = generalGetString(MR.strings.inq_step3_desc)
             )
             ResourceCard(
-                title = "4. Relay Messages",
-                description = "If someone needs to reach people outside your range, pass messages along through trusted contacts who can bridge the gap."
+                title = generalGetString(MR.strings.inq_step4_title),
+                description = generalGetString(MR.strings.inq_step4_desc)
             )
         }
         SectionDividerSpaced()
 
         // Secure Communications
-        SectionView("SECURE COMMUNICATIONS") {
+        SectionView(generalGetString(MR.strings.inq_secure_comm)) {
             ResourceCard(
-                title = "Use disappearing messages",
-                description = "Enable auto-delete for sensitive conversations. Messages vanish after a set time on both devices."
+                title = generalGetString(MR.strings.inq_use_disappearing),
+                description = generalGetString(MR.strings.inq_use_disappearing_desc)
             )
             ResourceCard(
-                title = "Verify contacts in person",
-                description = "Scan QR codes face-to-face when possible. This confirms you're talking to who you think you are."
+                title = generalGetString(MR.strings.inq_verify_contacts),
+                description = generalGetString(MR.strings.inq_verify_contacts_desc)
             )
             ResourceCard(
-                title = "Enable all Safety Hub features",
-                description = "App lock, screen protection, and database encryption work together to keep your data safe if your device is seized."
+                title = generalGetString(MR.strings.inq_enable_all_safety),
+                description = generalGetString(MR.strings.inq_enable_all_safety_desc)
             )
             ResourceCard(
-                title = "Set up your panic code",
-                description = "The self-destruct code wipes all data instantly. Memorize it — you may need it under pressure."
+                title = generalGetString(MR.strings.inq_setup_panic),
+                description = generalGetString(MR.strings.inq_setup_panic_desc)
             )
         }
         SectionDividerSpaced()
 
         // Digital Rights Organizations
-        SectionView("KNOW YOUR DIGITAL RIGHTS") {
+        SectionView(generalGetString(MR.strings.inq_digital_rights)) {
             SettingsActionItem(
                 painterResource(MR.images.ic_shield),
-                "Electronic Frontier Foundation",
+                generalGetString(MR.strings.inq_eff),
                 click = { uriHandler.openUriCatching("https://ssd.eff.org/") },
                 textColor = MaterialTheme.colors.primary
             )
             SettingsActionItem(
                 painterResource(MR.images.ic_shield),
-                "Frontline Defenders",
+                generalGetString(MR.strings.inq_frontline),
                 click = { uriHandler.openUriCatching("https://www.frontlinedefenders.org/en/digital-security") },
                 textColor = MaterialTheme.colors.primary
             )
             SettingsActionItem(
                 painterResource(MR.images.ic_shield),
-                "Privacy International",
+                generalGetString(MR.strings.inq_privacy_intl),
                 click = { uriHandler.openUriCatching("https://privacyinternational.org/") },
                 textColor = MaterialTheme.colors.primary
             )
             SettingsActionItem(
                 painterResource(MR.images.ic_shield),
-                "Digital Rights Foundation",
+                generalGetString(MR.strings.inq_drf),
                 click = { uriHandler.openUriCatching("https://digitalrightsfoundation.pk/") },
                 textColor = MaterialTheme.colors.primary
             )
@@ -102,22 +102,22 @@ fun ResourcesView() {
         SectionDividerSpaced()
 
         // Safety if detained
-        SectionView("IF YOU ARE DETAINED") {
+        SectionView(generalGetString(MR.strings.inq_if_detained)) {
             ResourceCard(
-                title = "Before it happens",
-                description = "Set up your panic code now. Tell a trusted contact your self-destruct plan. Enable app lock with biometrics."
+                title = generalGetString(MR.strings.inq_before_it_happens),
+                description = generalGetString(MR.strings.inq_before_desc)
             )
             ResourceCard(
-                title = "If you have a moment",
-                description = "Trigger your panic code to wipe all data. The app will show an empty profile — nothing to find."
+                title = generalGetString(MR.strings.inq_if_you_have_moment),
+                description = generalGetString(MR.strings.inq_moment_desc)
             )
             ResourceCard(
-                title = "If your device is taken",
-                description = "With screen protection enabled, no screenshots or screen recordings exist. Database encryption protects data at rest."
+                title = generalGetString(MR.strings.inq_device_taken),
+                description = generalGetString(MR.strings.inq_device_taken_desc)
             )
             ResourceCard(
-                title = "After release",
-                description = "Reinstall Inqalaab and reconnect with trusted contacts via QR codes. Your previous data cannot be recovered — by design."
+                title = generalGetString(MR.strings.inq_after_release),
+                description = generalGetString(MR.strings.inq_after_release_desc)
             )
         }
         SectionBottomSpacer()

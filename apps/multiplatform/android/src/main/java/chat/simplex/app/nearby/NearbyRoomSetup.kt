@@ -26,6 +26,8 @@ import androidx.core.content.ContextCompat
 import chat.simplex.common.model.ChatModel
 import chat.simplex.common.ui.theme.*
 import chat.simplex.common.views.chatlist.LocalTabBarHeight
+import chat.simplex.common.views.helpers.generalGetString
+import chat.simplex.res.MR
 
 /**
  * Room setup screen: Create or Join a nearby chat room.
@@ -112,14 +114,14 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
                 NearbyUiState.reset()
                 onBack()
             }) {
-                Text("← Back to Chats", color = MaterialTheme.colors.primary)
+                Text(generalGetString(MR.strings.inq_back_to_chats), color = MaterialTheme.colors.primary)
             }
         }
 
         Spacer(Modifier.height(8.dp))
 
         Text(
-            "Nearby Chat",
+            generalGetString(MR.strings.inq_nearby_chat),
             style = MaterialTheme.typography.h1,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colors.primary
@@ -128,7 +130,7 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
         Spacer(Modifier.height(8.dp))
 
         Text(
-            "Chat with people nearby without internet",
+            generalGetString(MR.strings.inq_nearby_chat_desc),
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.secondary,
             textAlign = TextAlign.Center
@@ -137,7 +139,7 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
         Spacer(Modifier.height(8.dp))
 
         Text(
-            "Messages are ephemeral and disappear when you leave.",
+            generalGetString(MR.strings.inq_nearby_ephemeral),
             style = MaterialTheme.typography.body2,
             color = MaterialTheme.colors.secondary.copy(alpha = 0.7f),
             textAlign = TextAlign.Center
@@ -147,7 +149,7 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
 
         if (!permissionsGranted) {
             Text(
-                "Nearby Chat needs Bluetooth and Location permissions to find devices nearby.",
+                generalGetString(MR.strings.inq_nearby_permissions_needed),
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.error,
                 textAlign = TextAlign.Center,
@@ -159,11 +161,11 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier.fillMaxWidth().height(50.dp)
             ) {
-                Text("Grant Permissions", color = MaterialTheme.colors.onPrimary)
+                Text(generalGetString(MR.strings.inq_grant_permissions), color = MaterialTheme.colors.onPrimary)
             }
         } else if (!bluetoothEnabled) {
             Text(
-                "Bluetooth must be turned ON to discover nearby devices.",
+                generalGetString(MR.strings.inq_bt_must_be_on),
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.error,
                 textAlign = TextAlign.Center,
@@ -177,11 +179,11 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier.fillMaxWidth().height(50.dp)
             ) {
-                Text("Open Bluetooth Settings", color = MaterialTheme.colors.onPrimary)
+                Text(generalGetString(MR.strings.inq_open_bt_settings), color = MaterialTheme.colors.onPrimary)
             }
         } else if (!locationEnabled) {
             Text(
-                "Location Services must be turned ON for WiFi Direct to discover nearby devices.",
+                generalGetString(MR.strings.inq_location_must_be_on),
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.error,
                 textAlign = TextAlign.Center,
@@ -195,20 +197,20 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier.fillMaxWidth().height(50.dp)
             ) {
-                Text("Open Location Settings", color = MaterialTheme.colors.onPrimary)
+                Text(generalGetString(MR.strings.inq_open_location_settings), color = MaterialTheme.colors.onPrimary)
             }
         } else if (state == NearbyConnectionState.CREATING_ROOM || state == NearbyConnectionState.JOINING_ROOM) {
             // Loading state
             CircularProgressIndicator(Modifier.size(48.dp), color = MaterialTheme.colors.primary)
             Spacer(Modifier.height(16.dp))
             Text(
-                if (state == NearbyConnectionState.CREATING_ROOM) "Creating room…" else "Joining room…",
+                if (state == NearbyConnectionState.CREATING_ROOM) generalGetString(MR.strings.inq_creating_room) else generalGetString(MR.strings.inq_joining_room),
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.secondary
             )
             if (roomCode != null) {
                 Spacer(Modifier.height(24.dp))
-                Text("Room Code", style = MaterialTheme.typography.body2, color = MaterialTheme.colors.secondary)
+                Text(generalGetString(MR.strings.nearby_room_code), style = MaterialTheme.typography.body2, color = MaterialTheme.colors.secondary)
                 Text(
                     roomCode!!,
                     style = MaterialTheme.typography.h1,
@@ -217,7 +219,7 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
                     color = MaterialTheme.colors.primary
                 )
                 Text(
-                    "Share this code with people nearby",
+                    generalGetString(MR.strings.inq_share_code),
                     style = MaterialTheme.typography.body2,
                     color = MaterialTheme.colors.secondary
                 )
@@ -225,7 +227,7 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
         } else if (showJoinInput) {
             // Join room input
             Text(
-                "Enter Room Code",
+                generalGetString(MR.strings.inq_enter_room_code),
                 style = MaterialTheme.typography.h3,
                 fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colors.onBackground
@@ -236,7 +238,7 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
             OutlinedTextField(
                 value = joinCode,
                 onValueChange = { if (it.length <= 6) joinCode = it.uppercase() },
-                placeholder = { Text("e.g. ABC123") },
+                placeholder = { Text(generalGetString(MR.strings.inq_room_code_hint)) },
                 textStyle = MaterialTheme.typography.h2.copy(
                     letterSpacing = 4.sp,
                     textAlign = TextAlign.Center
@@ -268,7 +270,7 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier.fillMaxWidth().height(50.dp)
             ) {
-                Text("Join", color = MaterialTheme.colors.onPrimary, fontWeight = FontWeight.Bold)
+                Text(generalGetString(MR.strings.inq_join), color = MaterialTheme.colors.onPrimary, fontWeight = FontWeight.Bold)
             }
 
             Spacer(Modifier.height(8.dp))
@@ -288,7 +290,7 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier.fillMaxWidth().height(56.dp)
             ) {
-                Text("Create Room", color = MaterialTheme.colors.onPrimary, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                Text(generalGetString(MR.strings.nearby_create_room), color = MaterialTheme.colors.onPrimary, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
 
             Spacer(Modifier.height(16.dp))
@@ -298,7 +300,7 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier.fillMaxWidth().height(56.dp)
             ) {
-                Text("Join Room", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                Text(generalGetString(MR.strings.nearby_join_room), fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
 
             Spacer(Modifier.height(24.dp))
@@ -308,7 +310,7 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
             Spacer(Modifier.height(16.dp))
 
             Text(
-                "Looking for someone?",
+                generalGetString(MR.strings.inq_looking_for_someone),
                 style = MaterialTheme.typography.body2,
                 color = MaterialTheme.colors.secondary,
                 textAlign = TextAlign.Center,
@@ -322,7 +324,7 @@ fun NearbyRoomSetup(onRoomReady: () -> Unit, onBack: () -> Unit = {}) {
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier.fillMaxWidth().height(56.dp)
             ) {
-                Text("Find People Nearby", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                Text(generalGetString(MR.strings.nearby_find_people), fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
         }
 

@@ -52,7 +52,7 @@ fun UserAddressLearnMore(showCreateAddressButton: Boolean = false) {
       }
       ReadableText(MR.strings.simplex_address_and_1_time_links_are_safe_to_share)
       ReadableText(MR.strings.to_protect_against_your_link_replaced_compare_codes)
-      ReadableTextWithLink(MR.strings.read_more_in_user_guide_with_link, "https://simplex.chat/docs/guide/making-connections.html#comparison-of-1-time-invitation-links-and-simplex-contact-addresses")
+      ReadableTextWithLink(MR.strings.read_more_in_user_guide_with_link, "https://github.com/TheHealer28/Inqalaab")
     }
 
     if (showCreateAddressButton) {

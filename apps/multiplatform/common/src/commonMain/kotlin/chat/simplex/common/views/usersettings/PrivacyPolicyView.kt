@@ -31,13 +31,16 @@ fun PrivacyPolicyView() {
     PolicyText("Inqalaab uses its own messaging relay server. The server does not store messages after delivery, does not log IP addresses or connection metadata. Server code is open source and auditable.")
 
     PolicySection("Device permissions")
-    PolicyText("Camera: Scanning QR codes and taking photos. Microphone: Voice messages and calls. Notifications: Alerting you to new messages. Storage: Sending and receiving files. All permissions are optional.")
+    PolicyText("Camera: Scanning QR codes, taking photos, and video calls. Microphone: Voice messages and calls. Notifications: Alerting you to new messages and incoming calls. Storage: Sending, receiving, and saving files. Bluetooth & Wi-Fi: Nearby peer-to-peer communication (optional). Location: Required by Android for Bluetooth/Wi-Fi Direct scanning \u2014 no location data is collected, stored, or transmitted. Battery optimization: Background messaging service for reliable delivery. Full-screen intent: Incoming call notifications. Biometrics: Optional app lock. All permissions are optional and used only for their stated purpose.")
+
+    PolicySection("Nearby peer-to-peer communication")
+    PolicyText("Communication happens directly between devices over Bluetooth LE and Wi-Fi Direct. No data passes through any external server. All nearby messages are encrypted (AES-256-GCM). No location data is collected \u2014 the Location permission is only required by Android for Bluetooth and Wi-Fi Direct scanning.")
 
     PolicySection("Analytics and tracking")
     PolicyText("Inqalaab contains no analytics, no tracking, no advertising, and no third-party SDKs that collect data.")
 
     PolicySection("Security features")
-    PolicyText("App passcode: Optionally lock the app with a local passcode. Emergency code: A self-destruct code that wipes all data when entered. Quick Settings tile: A \"Reset App\" tile that can wipe all data from the notification shade.")
+    PolicyText("App lock: Optionally lock the app with a passcode or biometrics. Emergency code: A self-destruct code that wipes all data when entered. Quick Settings tile: A \"Reset App\" tile that can wipe all data from the notification shade. Screen protection: Prevents app content from appearing in screenshots and recent apps.")
 
     PolicySection("Data deletion")
     PolicyText("You can delete all your data at any time using the emergency code, the Quick Settings tile, deleting the database from Settings, or uninstalling the app.")

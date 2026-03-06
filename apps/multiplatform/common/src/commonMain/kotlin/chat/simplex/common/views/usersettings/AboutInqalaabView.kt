@@ -20,64 +20,64 @@ import dev.icerock.moko.resources.compose.painterResource
 @Composable
 fun AboutInqalaabView() {
     ColumnWithScrollBar {
-        AppBarTitle("About Inqalaab")
+        AppBarTitle(generalGetString(MR.strings.inq_about_title))
 
-        SectionView("SERVER INFRASTRUCTURE") {
+        SectionView(generalGetString(MR.strings.inq_server_infrastructure)) {
             InfoCard(
-                "Community-Run Relay Servers",
-                "Your messages are routed through independent relay servers operated by the Inqalaab community. No single entity controls all servers. Servers never see message content — they only relay encrypted data between devices."
+                generalGetString(MR.strings.inq_community_relay),
+                generalGetString(MR.strings.inq_community_relay_desc)
             )
             InfoCard(
-                "Server Locations",
-                "Relay servers are distributed across multiple jurisdictions to prevent any single government from intercepting or shutting down the network."
+                generalGetString(MR.strings.inq_server_locations),
+                generalGetString(MR.strings.inq_server_locations_desc)
             )
         }
         SectionDividerSpaced()
 
-        SectionView("DATA STORED ON YOUR DEVICE") {
+        SectionView(generalGetString(MR.strings.inq_data_stored)) {
             InfoCard(
-                "What We Store Locally",
-                "Your chat messages, contacts, and downloaded files are stored only on your device. The database is encrypted at rest when you enable database encryption."
+                generalGetString(MR.strings.inq_what_we_store),
+                generalGetString(MR.strings.inq_what_we_store_desc)
             )
             InfoCard(
-                "What We Never Store",
-                "No message content, metadata, contact lists, or usage data is ever stored on our servers or sent to any third party. We have no analytics, no telemetry, and no crash reporting."
-            )
-        }
-        SectionDividerSpaced()
-
-        SectionView("PANIC WIPE") {
-            InfoCard(
-                "How Emergency Wipe Works",
-                "When triggered, emergency wipe permanently deletes all messages, contacts, encryption keys, downloaded files, and your profile. A new empty profile is created so the app appears freshly installed."
-            )
-            InfoCard(
-                "Self-Destruct Code",
-                "When enabled, entering the self-destruct code instead of your regular passcode triggers an immediate emergency wipe. This protects you if you are forced to unlock the app."
+                generalGetString(MR.strings.inq_what_never_store),
+                generalGetString(MR.strings.inq_what_never_store_desc)
             )
         }
         SectionDividerSpaced()
 
-        SectionView("ENCRYPTION") {
+        SectionView(generalGetString(MR.strings.inq_panic_wipe_section)) {
             InfoCard(
-                "End-to-End Encryption",
-                "All messages use double-ratchet end-to-end encryption. Even relay servers cannot read your messages. Each conversation uses unique encryption keys."
+                generalGetString(MR.strings.inq_how_wipe_works),
+                generalGetString(MR.strings.inq_how_wipe_works_desc)
             )
             InfoCard(
-                "Database Encryption",
-                "When enabled, your entire local database is encrypted with a passphrase you choose. Without the passphrase, the data is unreadable — even if your device is seized."
-            )
-            InfoCard(
-                "File Encryption",
-                "Downloaded files and media can be encrypted on-device. Encrypted files cannot be accessed by other apps or file managers."
+                generalGetString(MR.strings.inq_self_destruct_about),
+                generalGetString(MR.strings.inq_self_destruct_about_desc)
             )
         }
         SectionDividerSpaced()
 
-        SectionView("OPEN SOURCE") {
+        SectionView(generalGetString(MR.strings.inq_encryption_section)) {
             InfoCard(
-                "Full Transparency",
-                "Inqalaab is fully open source. Every line of code — client, server, and cryptographic protocols — is publicly auditable. We believe security through obscurity is no security at all."
+                generalGetString(MR.strings.inq_e2e_encryption),
+                generalGetString(MR.strings.inq_e2e_encryption_desc)
+            )
+            InfoCard(
+                generalGetString(MR.strings.inq_db_encryption),
+                generalGetString(MR.strings.inq_db_encryption_desc)
+            )
+            InfoCard(
+                generalGetString(MR.strings.inq_file_encryption),
+                generalGetString(MR.strings.inq_file_encryption_desc)
+            )
+        }
+        SectionDividerSpaced()
+
+        SectionView(generalGetString(MR.strings.inq_open_source_section)) {
+            InfoCard(
+                generalGetString(MR.strings.inq_full_transparency),
+                generalGetString(MR.strings.inq_full_transparency_desc)
             )
         }
         SectionBottomSpacer()

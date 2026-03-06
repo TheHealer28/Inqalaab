@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import chat.simplex.common.model.ChatController.appPrefs
+import chat.simplex.common.views.helpers.generalGetString
 import chat.simplex.common.views.helpers.mixWith
 import chat.simplex.res.MR
 import dev.icerock.moko.resources.compose.painterResource
@@ -33,40 +34,40 @@ fun InqalaabBottomTabBar(
             BottomNavigationItem(
                 selected = selectedTab == InqalaabTab.SAFETY_HUB,
                 onClick = { onTabSelected(InqalaabTab.SAFETY_HUB) },
-                icon = { Icon(painterResource(MR.images.ic_shield), contentDescription = "Safety") },
-                label = { Text("Safety", fontSize = 10.sp) },
+                icon = { Icon(painterResource(MR.images.ic_shield), contentDescription = generalGetString(MR.strings.inq_tab_safety)) },
+                label = { Text(generalGetString(MR.strings.inq_tab_safety), fontSize = 10.sp) },
                 selectedContentColor = MaterialTheme.colors.primary,
                 unselectedContentColor = MaterialTheme.colors.secondary
             )
             BottomNavigationItem(
                 selected = selectedTab == InqalaabTab.NEARBY,
                 onClick = { onTabSelected(InqalaabTab.NEARBY) },
-                icon = { Icon(painterResource(MR.images.ic_wifi_tethering), contentDescription = "Nearby") },
-                label = { Text("Nearby", fontSize = 10.sp) },
+                icon = { Icon(painterResource(MR.images.ic_wifi_tethering), contentDescription = generalGetString(MR.strings.inq_tab_nearby)) },
+                label = { Text(generalGetString(MR.strings.inq_tab_nearby), fontSize = 10.sp) },
                 selectedContentColor = MaterialTheme.colors.primary,
                 unselectedContentColor = MaterialTheme.colors.secondary
             )
             BottomNavigationItem(
                 selected = selectedTab == InqalaabTab.CHATS,
                 onClick = { onTabSelected(InqalaabTab.CHATS) },
-                icon = { Icon(painterResource(MR.images.ic_chat_bubble), contentDescription = "Chats") },
-                label = { Text("Chats", fontSize = 10.sp) },
+                icon = { Icon(painterResource(MR.images.ic_chat_bubble), contentDescription = generalGetString(MR.strings.inq_tab_chats)) },
+                label = { Text(generalGetString(MR.strings.inq_tab_chats), fontSize = 10.sp) },
                 selectedContentColor = MaterialTheme.colors.primary,
                 unselectedContentColor = MaterialTheme.colors.secondary
             )
             BottomNavigationItem(
                 selected = selectedTab == InqalaabTab.RESOURCES,
                 onClick = { onTabSelected(InqalaabTab.RESOURCES) },
-                icon = { Icon(painterResource(MR.images.ic_article), contentDescription = "Resources") },
-                label = { Text("Resources", fontSize = 10.sp) },
+                icon = { Icon(painterResource(MR.images.ic_article), contentDescription = generalGetString(MR.strings.inq_tab_resources)) },
+                label = { Text(generalGetString(MR.strings.inq_tab_resources), fontSize = 10.sp) },
                 selectedContentColor = MaterialTheme.colors.primary,
                 unselectedContentColor = MaterialTheme.colors.secondary
             )
             BottomNavigationItem(
                 selected = selectedTab == InqalaabTab.SETTINGS,
                 onClick = { onTabSelected(InqalaabTab.SETTINGS) },
-                icon = { Icon(painterResource(MR.images.ic_settings), contentDescription = "Settings") },
-                label = { Text("Settings", fontSize = 10.sp) },
+                icon = { Icon(painterResource(MR.images.ic_settings), contentDescription = generalGetString(MR.strings.inq_tab_settings)) },
+                label = { Text(generalGetString(MR.strings.inq_tab_settings), fontSize = 10.sp) },
                 selectedContentColor = MaterialTheme.colors.primary,
                 unselectedContentColor = MaterialTheme.colors.secondary
             )

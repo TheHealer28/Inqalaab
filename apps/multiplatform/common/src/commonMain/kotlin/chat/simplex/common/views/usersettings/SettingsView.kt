@@ -99,38 +99,38 @@ fun SettingsLayout(
   val uriHandler = LocalUriHandler.current
   ColumnWithScrollBar {
     if (appPlatform.isAndroid) {
-      AppBarTitle("Settings")
+      AppBarTitle(generalGetString(MR.strings.inq_settings))
 
       // Safety & Emergency
-      SectionView("SAFETY & EMERGENCY") {
+      SectionView(generalGetString(MR.strings.inq_safety_emergency)) {
         SettingsActionItem(painterResource(MR.images.ic_lock), stringResource(MR.strings.privacy_and_security), showSettingsModal { PrivacySettingsView(it, showSettingsModal, setPerformLA) }, disabled = stopped)
         SettingsActionItem(painterResource(if (notificationsMode.value == NotificationsMode.OFF) MR.images.ic_bolt_off else MR.images.ic_bolt), stringResource(MR.strings.notifications), showSettingsModal { NotificationsSettingsView(it) }, disabled = stopped)
       }
       SectionDividerSpaced()
 
       // Privacy & Metadata
-      SectionView("PRIVACY & METADATA") {
+      SectionView(generalGetString(MR.strings.inq_privacy_metadata)) {
         DatabaseItem(encrypted, passphraseSaved, showSettingsModal { DatabaseView() }, stopped)
         SettingsActionItem(painterResource(MR.images.ic_ios_share), stringResource(MR.strings.migrate_from_device_to_another_device), { withAuth(generalGetString(MR.strings.auth_open_migration_to_another_device), generalGetString(MR.strings.auth_log_in_using_credential)) { ModalManager.fullscreen.showCustomModal { close -> MigrateFromDeviceView(close) } } }, disabled = stopped)
       }
       SectionDividerSpaced()
 
       // Relay Network
-      SectionView("RELAY NETWORK") {
+      SectionView(generalGetString(MR.strings.inq_relay_network)) {
         SettingsActionItem(painterResource(MR.images.ic_wifi_tethering), stringResource(MR.strings.network_and_servers), showCustomModal { _, close -> NetworkAndServersView(close) }, disabled = stopped)
         SettingsActionItem(painterResource(MR.images.ic_videocam), stringResource(MR.strings.settings_audio_video_calls), showSettingsModal { CallSettingsView(it, showModal) }, disabled = stopped)
       }
       SectionDividerSpaced()
 
       // Appearance
-      SectionView("APPEARANCE") {
+      SectionView(generalGetString(MR.strings.inq_appearance)) {
         SettingsActionItem(painterResource(MR.images.ic_light_mode), stringResource(MR.strings.appearance_settings), showSettingsModal { AppearanceView(it) })
       }
       SectionDividerSpaced()
 
       // About Inqalaab
-      SectionView("ABOUT INQALAAB") {
-        SettingsActionItem(painterResource(MR.images.ic_info), "About Inqalaab", showModal { AboutInqalaabView() })
+      SectionView(generalGetString(MR.strings.inq_about_section)) {
+        SettingsActionItem(painterResource(MR.images.ic_info), generalGetString(MR.strings.inq_about_title), showModal { AboutInqalaabView() })
         SettingsActionItem(painterResource(MR.images.ic_mail), stringResource(MR.strings.send_us_an_email), { uriHandler.openUriCatching("mailto:chat@inqalaab.chat") }, textColor = MaterialTheme.colors.primary)
         if (!BuildConfigCommon.ANDROID_BUNDLE) {
           ContributeItem(uriHandler)
@@ -266,8 +266,8 @@ fun ChatLockItem(
 
 @Composable private fun RateAppItem(uriHandler: UriHandler) {
   SectionItemView({
-    runCatching { uriHandler.openUriCatching("market://details?id=chat.simplex.app") }
-      .onFailure { uriHandler.openUriCatching("https://play.google.com/store/apps/details?id=chat.simplex.app") }
+    runCatching { uriHandler.openUriCatching("market://details?id=com.inqalaab.app") }
+      .onFailure { uriHandler.openUriCatching("https://play.google.com/store/apps/details?id=com.inqalaab.app") }
   }
   ) {
     Icon(

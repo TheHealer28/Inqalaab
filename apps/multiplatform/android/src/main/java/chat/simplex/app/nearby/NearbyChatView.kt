@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import dev.icerock.moko.resources.compose.painterResource
 import chat.simplex.common.ui.theme.*
 import chat.simplex.common.views.chatlist.LocalTabBarHeight
+import chat.simplex.common.views.helpers.generalGetString
 import chat.simplex.res.MR
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -68,19 +69,19 @@ fun NearbyChatView(onLeave: () -> Unit) {
             ) {
                 Column(Modifier.weight(1f)) {
                     Text(
-                        "Nearby Chat",
+                        generalGetString(MR.strings.inq_nearby_chat),
                         style = MaterialTheme.typography.h3,
                         fontWeight = FontWeight.Bold
                     )
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         if (room != null) {
                             Text(
-                                "Room: ${room.code}",
+                                generalGetString(MR.strings.inq_room_label) + room.code,
                                 style = MaterialTheme.typography.body2,
                                 color = MaterialTheme.colors.secondary
                             )
                             Text(
-                                "  •  ${peers.size + 1} members",
+                                "  •  ${peers.size + 1}${generalGetString(MR.strings.inq_members_count)}",
                                 style = MaterialTheme.typography.body2,
                                 color = MaterialTheme.colors.secondary
                             )
@@ -95,7 +96,7 @@ fun NearbyChatView(onLeave: () -> Unit) {
                     }
                 ) {
                     Text(
-                        "Leave",
+                        generalGetString(MR.strings.inq_leave),
                         color = MaterialTheme.colors.error,
                         fontWeight = FontWeight.Bold
                     )
@@ -134,7 +135,7 @@ fun NearbyChatView(onLeave: () -> Unit) {
                 OutlinedTextField(
                     value = inputText,
                     onValueChange = { inputText = it },
-                    placeholder = { Text("Type a message") },
+                    placeholder = { Text(generalGetString(MR.strings.nearby_type_message)) },
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(24.dp),
                     singleLine = false,
@@ -154,7 +155,7 @@ fun NearbyChatView(onLeave: () -> Unit) {
                 ) {
                     Icon(
                         painterResource(MR.images.ic_arrow_upward),
-                        contentDescription = "Send",
+                        contentDescription = generalGetString(MR.strings.inq_send),
                         tint = if (inputText.isNotBlank()) MaterialTheme.colors.primary
                         else MaterialTheme.colors.secondary.copy(alpha = 0.5f)
                     )

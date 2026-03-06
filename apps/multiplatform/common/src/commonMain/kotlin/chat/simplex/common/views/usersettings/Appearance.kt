@@ -705,7 +705,7 @@ object AppearanceScope {
           val lines = yaml.encodeToString<ThemeOverrides>(overrides).lines()
           // Removing theme id without using custom serializer or data class
           theme.value = lines.subList(1, lines.size).joinToString("\n")
-          withLongRunningApi { exportThemeLauncher.launch("simplex.theme") }
+          withLongRunningApi { exportThemeLauncher.launch("inqalaab.theme") }
         }) {
           Text(generalGetString(MR.strings.export_theme), color = colors.primary)
         }

@@ -40,7 +40,7 @@ fun InqalaabMissionScreen() {
         Spacer(Modifier.height(24.dp))
 
         Text(
-            "Why Inqalaab Exists",
+            generalGetString(MR.strings.inq_why_exists),
             style = MaterialTheme.typography.h4.copy(fontWeight = FontWeight.Bold),
             color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Center,
@@ -50,7 +50,7 @@ fun InqalaabMissionScreen() {
         Spacer(Modifier.height(8.dp))
 
         Text(
-            "Built for people who face real danger",
+            generalGetString(MR.strings.inq_built_for_danger),
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.secondary,
             textAlign = TextAlign.Center,
@@ -61,29 +61,29 @@ fun InqalaabMissionScreen() {
 
         ValueCard(
             painterResource(MR.images.ic_warning_filled),
-            "Internet shutdowns are rising",
-            "Governments cut access during protests, elections, and crises. You need a way to communicate when they do."
+            generalGetString(MR.strings.inq_shutdowns_rising),
+            generalGetString(MR.strings.inq_shutdowns_desc)
         )
         Spacer(Modifier.height(12.dp))
 
         ValueCard(
             painterResource(MR.images.ic_shield),
-            "Activists face surveillance",
-            "Standard messaging apps leak metadata — who you talk to, when, and how often. Inqalaab protects all of that."
+            generalGetString(MR.strings.inq_surveillance),
+            generalGetString(MR.strings.inq_surveillance_desc)
         )
         Spacer(Modifier.height(12.dp))
 
         ValueCard(
             painterResource(MR.images.ic_wifi_tethering),
-            "Offline-first communication",
-            "Nearby Chat uses Bluetooth and WiFi Direct — no internet, no cell towers, no way to block it."
+            generalGetString(MR.strings.inq_offline_first),
+            generalGetString(MR.strings.inq_offline_first_desc)
         )
         Spacer(Modifier.height(12.dp))
 
         ValueCard(
             painterResource(MR.images.ic_lock),
-            "No identity required",
-            "No phone number, no email, no account. You are invisible by default."
+            generalGetString(MR.strings.inq_no_identity),
+            generalGetString(MR.strings.inq_no_identity_desc)
         )
 
         Spacer(Modifier.weight(1f))
@@ -117,7 +117,7 @@ fun InqalaabSecurityPledgeScreen() {
         Spacer(Modifier.height(24.dp))
 
         Text(
-            "Your Security Pledge",
+            generalGetString(MR.strings.inq_security_pledge),
             style = MaterialTheme.typography.h4.copy(fontWeight = FontWeight.Bold),
             color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Center,
@@ -127,7 +127,7 @@ fun InqalaabSecurityPledgeScreen() {
         Spacer(Modifier.height(8.dp))
 
         Text(
-            "We make these promises to you:",
+            generalGetString(MR.strings.inq_we_promise),
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.secondary,
             textAlign = TextAlign.Center,
@@ -136,19 +136,19 @@ fun InqalaabSecurityPledgeScreen() {
 
         Spacer(Modifier.height(32.dp))
 
-        PledgeItem(1, "Zero data collection", "We collect nothing. No analytics, no telemetry, no usage data. Ever.")
+        PledgeItem(1, generalGetString(MR.strings.inq_zero_data), generalGetString(MR.strings.inq_zero_data_desc))
         Spacer(Modifier.height(12.dp))
 
-        PledgeItem(2, "No phone number required", "Your identity stays hidden. Connect via QR codes and links only.")
+        PledgeItem(2, generalGetString(MR.strings.inq_no_phone), generalGetString(MR.strings.inq_no_phone_desc))
         Spacer(Modifier.height(12.dp))
 
-        PledgeItem(3, "Panic mode for emergencies", "Wipe all data instantly if you're ever in danger.")
+        PledgeItem(3, generalGetString(MR.strings.inq_panic_mode), generalGetString(MR.strings.inq_panic_mode_desc))
         Spacer(Modifier.height(12.dp))
 
-        PledgeItem(4, "Community-run servers", "Your messages route through independent servers that no government controls.")
+        PledgeItem(4, generalGetString(MR.strings.inq_community_servers), generalGetString(MR.strings.inq_community_servers_desc))
         Spacer(Modifier.height(12.dp))
 
-        PledgeItem(5, "Open source & auditable", "Our code is public. Anyone can verify we keep these promises.")
+        PledgeItem(5, generalGetString(MR.strings.inq_open_source_pledge), generalGetString(MR.strings.inq_open_source_pledge_desc))
 
         Spacer(Modifier.weight(1f))
 
@@ -184,7 +184,7 @@ fun InqalaabEnableSafetyScreen() {
         Spacer(Modifier.height(24.dp))
 
         Text(
-            "Enable Safety Features",
+            generalGetString(MR.strings.inq_enable_safety),
             style = MaterialTheme.typography.h4.copy(fontWeight = FontWeight.Bold),
             color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Center,
@@ -194,7 +194,7 @@ fun InqalaabEnableSafetyScreen() {
         Spacer(Modifier.height(8.dp))
 
         Text(
-            "These protect you if your device is seized or inspected",
+            generalGetString(MR.strings.inq_protect_seized),
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.secondary,
             textAlign = TextAlign.Center,
@@ -206,8 +206,8 @@ fun InqalaabEnableSafetyScreen() {
         // Screen Protection toggle
         SafetyToggleCard(
             icon = painterResource(MR.images.ic_visibility_off),
-            title = "Screen Protection",
-            description = "Block screenshots and screen recording. Nothing gets captured.",
+            title = generalGetString(MR.strings.inq_screen_prot_onboard),
+            description = generalGetString(MR.strings.inq_screen_prot_onboard_desc),
             checked = screenProtection.value,
             onCheckedChange = { appPrefs.privacyProtectScreen.set(it) }
         )
@@ -216,8 +216,8 @@ fun InqalaabEnableSafetyScreen() {
         // Encrypt local files toggle
         SafetyToggleCard(
             icon = painterResource(MR.images.ic_lock),
-            title = "Encrypt Local Files",
-            description = "All downloaded files are encrypted on your device.",
+            title = generalGetString(MR.strings.inq_encrypt_files),
+            description = generalGetString(MR.strings.inq_encrypt_files_desc),
             checked = localFilesEncrypted.value,
             onCheckedChange = { appPrefs.privacyEncryptLocalFiles.set(it) }
         )
@@ -226,8 +226,8 @@ fun InqalaabEnableSafetyScreen() {
         // Info card about panic mode (set up later)
         ValueCard(
             painterResource(MR.images.ic_delete_forever),
-            "Panic Mode & Decoy PIN",
-            "You'll set these up after creating your profile. The panic code instantly wipes all data."
+            generalGetString(MR.strings.inq_panic_decoy),
+            generalGetString(MR.strings.inq_panic_decoy_desc)
         )
 
         Spacer(Modifier.weight(1f))
@@ -261,7 +261,7 @@ fun InqalaabNearbyExplainerScreen() {
         Spacer(Modifier.height(24.dp))
 
         Text(
-            "Nearby Mode",
+            generalGetString(MR.strings.inq_nearby_mode),
             style = MaterialTheme.typography.h4.copy(fontWeight = FontWeight.Bold),
             color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Center,
@@ -271,7 +271,7 @@ fun InqalaabNearbyExplainerScreen() {
         Spacer(Modifier.height(8.dp))
 
         Text(
-            "Communicate without any internet connection",
+            generalGetString(MR.strings.inq_comm_without_internet),
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.secondary,
             textAlign = TextAlign.Center,
@@ -282,29 +282,29 @@ fun InqalaabNearbyExplainerScreen() {
 
         ValueCard(
             painterResource(MR.images.ic_bluetooth),
-            "Find People Nearby",
-            "Bluetooth Low Energy discovers other Inqalaab users within range — no internet or cell signal needed."
+            generalGetString(MR.strings.nearby_find_people),
+            generalGetString(MR.strings.inq_ble_desc)
         )
         Spacer(Modifier.height(12.dp))
 
         ValueCard(
             painterResource(MR.images.ic_wifi_tethering),
-            "Create a Local Chat Room",
-            "WiFi Direct creates a private network between devices. Share a room code verbally and start chatting."
+            generalGetString(MR.strings.inq_create_local_room),
+            generalGetString(MR.strings.inq_wifi_direct_desc)
         )
         Spacer(Modifier.height(12.dp))
 
         ValueCard(
             painterResource(MR.images.ic_shield),
-            "Nothing Leaves Your Device",
-            "Messages stay between connected devices. No servers, no cloud, no records."
+            generalGetString(MR.strings.inq_nothing_leaves),
+            generalGetString(MR.strings.inq_nothing_leaves_desc)
         )
         Spacer(Modifier.height(12.dp))
 
         ValueCard(
             painterResource(MR.images.ic_warning),
-            "When the Internet Goes Down",
-            "During shutdowns, switch to the Nearby tab. Everyone around you with Inqalaab can still communicate."
+            generalGetString(MR.strings.inq_when_internet_down),
+            generalGetString(MR.strings.inq_when_internet_desc)
         )
 
         Spacer(Modifier.weight(1f))
@@ -315,7 +315,7 @@ fun InqalaabNearbyExplainerScreen() {
             shape = RoundedCornerShape(50),
             contentPadding = PaddingValues(horizontal = DEFAULT_PADDING * 2, vertical = 17.dp),
         ) {
-            Text("Create My Profile", color = Color.White, fontWeight = FontWeight.Medium)
+            Text(generalGetString(MR.strings.inq_create_profile), color = Color.White, fontWeight = FontWeight.Medium)
         }
 
         SectionBottomSpacer()

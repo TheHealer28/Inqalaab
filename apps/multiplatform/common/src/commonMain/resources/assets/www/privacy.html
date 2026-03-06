@@ -36,7 +36,7 @@
 <body>
 
 <h1>Inqalaab Privacy Policy</h1>
-<p class="date">Effective: February 27, 2026</p>
+<p class="date">Effective: March 6, 2026</p>
 
 <div class="highlight">
 <strong>Summary:</strong> Inqalaab does not collect, store, or have access to any of your messages, contacts, groups, or personal data. Everything stays on your device.
@@ -71,23 +71,40 @@
 <h2>5. Device permissions</h2>
 <p>Inqalaab may request the following device permissions, all of which are optional and used only for the stated purpose:</p>
 <ul>
-  <li><strong>Camera:</strong> Scanning QR codes to connect with contacts, and taking photos to send.</li>
+  <li><strong>Camera:</strong> Scanning QR codes to connect with contacts, taking photos to send, and video calls.</li>
   <li><strong>Microphone:</strong> Voice messages and voice/video calls.</li>
-  <li><strong>Notifications:</strong> Alerting you to new messages.</li>
-  <li><strong>Storage:</strong> Sending and receiving files.</li>
+  <li><strong>Notifications:</strong> Alerting you to new messages and incoming calls.</li>
+  <li><strong>Storage:</strong> Sending, receiving, and saving files and media.</li>
+  <li><strong>Bluetooth (BLE):</strong> Discovering nearby devices for the optional Nearby peer-to-peer feature. No Bluetooth data is collected or transmitted to any server.</li>
+  <li><strong>Wi-Fi (Wi-Fi Direct):</strong> Establishing direct device-to-device connections for the optional Nearby peer-to-peer feature. No Wi-Fi data is collected or transmitted to any server.</li>
+  <li><strong>Location:</strong> Required by Android to use Bluetooth LE scanning and Wi-Fi Direct peer discovery for the Nearby feature. <strong>No location data is collected, stored, or transmitted.</strong> Location is never used for tracking or geolocation purposes.</li>
+  <li><strong>Battery optimization exemption:</strong> Allows the background messaging service to reliably receive messages. This does not collect any data.</li>
+  <li><strong>Full-screen intent:</strong> Displays incoming voice and video call notifications. This does not collect any data.</li>
+  <li><strong>Foreground service:</strong> Keeps the messaging service running to receive messages reliably while the app is in the background. This does not collect any data.</li>
+  <li><strong>Biometrics (fingerprint/face):</strong> Optional app lock authentication. Biometric data is handled entirely by the Android system and is never accessed by Inqalaab.</li>
 </ul>
 
-<h2>6. Analytics and tracking</h2>
+<h2>6. Nearby peer-to-peer communication</h2>
+<p>When using the optional Nearby feature:</p>
+<ul>
+  <li>Communication happens directly between devices over Bluetooth LE and Wi-Fi Direct.</li>
+  <li>No data passes through any external server.</li>
+  <li>All nearby messages are encrypted end-to-end (AES-256-GCM).</li>
+  <li>No location data is collected or transmitted. The Location permission is required only by the Android operating system to perform Bluetooth and Wi-Fi Direct scanning.</li>
+</ul>
+
+<h2>7. Analytics and tracking</h2>
 <p>Inqalaab contains no analytics, no tracking, no advertising, and no third-party SDKs that collect data. We do not use Google Analytics, Firebase Analytics, or any similar service.</p>
 
-<h2>7. Security features</h2>
+<h2>8. Security features</h2>
 <ul>
-  <li><strong>App passcode:</strong> Optionally lock the app with a local passcode stored only on your device.</li>
+  <li><strong>App lock:</strong> Optionally lock the app with a passcode or biometrics (fingerprint/face), stored and handled entirely on your device.</li>
   <li><strong>Emergency code:</strong> An optional self-destruct code that wipes all app data when entered.</li>
   <li><strong>Quick Settings tile:</strong> An optional "Reset App" tile that can wipe all data from the notification shade.</li>
+  <li><strong>Screen protection:</strong> Prevents app content from appearing in screenshots and the recent apps list.</li>
 </ul>
 
-<h2>8. Data deletion</h2>
+<h2>9. Data deletion</h2>
 <p>You can delete all your data at any time by:</p>
 <ul>
   <li>Using the emergency code feature.</li>
@@ -96,14 +113,14 @@
   <li>Uninstalling the app (all data is stored locally and is removed with the app).</li>
 </ul>
 
-<h2>9. Children's privacy</h2>
+<h2>10. Children's privacy</h2>
 <p>Inqalaab is not directed at children under 13. We do not knowingly collect any data from anyone, including children.</p>
 
-<h2>10. Changes to this policy</h2>
+<h2>11. Changes to this policy</h2>
 <p>We may update this privacy policy from time to time. Any changes will be reflected in the app and on this page with an updated effective date.</p>
 
-<h2>11. Contact</h2>
-<p>If you have questions about this privacy policy, you can reach us through the app or at our website.</p>
+<h2>12. Contact</h2>
+<p>If you have questions about this privacy policy, you can reach us at <a href="mailto:chat@inqalaab.chat">chat@inqalaab.chat</a>.</p>
 
 </body>
 </html>

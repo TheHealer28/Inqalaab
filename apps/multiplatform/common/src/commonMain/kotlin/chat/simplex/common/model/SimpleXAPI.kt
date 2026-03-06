@@ -4226,10 +4226,10 @@ data class ServerOperatorInfo(
 val operatorsInfo: Map<OperatorTag, ServerOperatorInfo> = mapOf(
   OperatorTag.SimpleX to ServerOperatorInfo(
     description = listOf(
-      "SimpleX Chat is the first communication network that has no user profile IDs of any kind, not even random numbers or keys that identify the users.",
-      "SimpleX Chat Ltd develops the communication software for SimpleX network."
+      "Inqalaab is a secure messaging app for activists — built on the first communication protocol with no user profile IDs of any kind, ensuring maximum privacy.",
+      "Inqalaab operates community-run relay servers independent of any single entity."
     ),
-    website = "https://simplex.chat",
+    website = "https://github.com/TheHealer28/Inqalaab",
     logo = MR.images.decentralized,
     largeLogo = MR.images.logo,
     logoDarkMode = MR.images.decentralized_light,
@@ -4239,10 +4239,10 @@ val operatorsInfo: Map<OperatorTag, ServerOperatorInfo> = mapOf(
     description = listOf(
       "Flux is the largest decentralized cloud, based on a global network of user-operated nodes.",
       "Flux offers a powerful, scalable, and affordable cutting edge technology platform for all.",
-      "Flux operates servers in SimpleX network to improve its privacy and decentralization."
+      "Flux provides decentralized infrastructure for privacy-focused communication networks."
     ),
     website = "https://runonflux.com",
-    selfhost = "Self-host SimpleX servers on Flux" to "https://home.runonflux.io/apps/marketplace?q=simplex",
+    selfhost = "Self-host relay servers on Flux" to "https://home.runonflux.io/apps/marketplace?q=simplex",
     logo = MR.images.flux_logo_symbol,
     largeLogo = MR.images.flux_logo,
     logoDarkMode = MR.images.flux_logo_symbol,
@@ -4327,7 +4327,7 @@ data class ServerOperator(
   companion object {
     val dummyOperatorInfo = ServerOperatorInfo(
       description = listOf("Default"),
-      website = "https://simplex.chat",
+      website = "https://github.com/TheHealer28/Inqalaab",
       logo = MR.images.decentralized,
       largeLogo = MR.images.logo,
       logoDarkMode = MR.images.decentralized_light,
@@ -4337,8 +4337,8 @@ data class ServerOperator(
     val sampleData1 = ServerOperator(
       operatorId = 1,
       operatorTag = OperatorTag.SimpleX,
-      tradeName = "SimpleX Chat",
-      legalName = "SimpleX Chat Ltd",
+      tradeName = "Inqalaab",
+      legalName = "Inqalaab",
       serverDomains = listOf("simplex.im"),
       conditionsAcceptance = ConditionsAcceptance.Accepted(acceptedAt = null, autoAccepted = false),
       enabled = true,

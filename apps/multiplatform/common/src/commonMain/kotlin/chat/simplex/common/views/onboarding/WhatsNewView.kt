@@ -891,6 +891,8 @@ fun setLastVersionDefault(m: ChatModel) {
 }
 
 fun shouldShowWhatsNew(m: ChatModel): Boolean {
+  // Inqalaab: never auto-show SimpleX version history on Android
+  if (appPlatform.isAndroid) return false
   val v = m.controller.appPrefs.whatsNewVersion.get()
   setLastVersionDefault(m)
   return v != lastVersion

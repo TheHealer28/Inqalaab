@@ -19,7 +19,7 @@ fun AddContactLearnMore(close: () -> Unit) {
     AppBarTitle(stringResource(MR.strings.one_time_link), withPadding = false)
     ReadableText(MR.strings.scan_qr_to_connect_to_contact)
     ReadableText(MR.strings.if_you_cant_meet_in_person)
-    ReadableTextWithLink(MR.strings.read_more_in_user_guide_with_link, "https://simplex.chat/docs/guide/readme.html#connect-to-friends")
+    ReadableTextWithLink(MR.strings.read_more_in_user_guide_with_link, "https://github.com/TheHealer28/Inqalaab")
   }
   KeyChangeEffect(chatModel.chatId.value) {
     close()

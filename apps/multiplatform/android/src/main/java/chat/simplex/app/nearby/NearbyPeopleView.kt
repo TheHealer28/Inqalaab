@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import chat.simplex.common.ui.theme.*
 import chat.simplex.common.views.chatlist.LocalTabBarHeight
+import chat.simplex.common.views.helpers.generalGetString
+import chat.simplex.res.MR
 
 /**
  * Shows a live list of nearby Inqalaab users discovered via BLE.
@@ -55,14 +57,14 @@ fun NearbyPeopleView(onBack: () -> Unit) {
         // Back button
         Row(Modifier.fillMaxWidth()) {
             TextButton(onClick = onBack) {
-                Text("\u2190 Back", color = MaterialTheme.colors.primary)
+                Text(generalGetString(MR.strings.inq_back), color = MaterialTheme.colors.primary)
             }
         }
 
         Spacer(Modifier.height(8.dp))
 
         Text(
-            "Find People Nearby",
+            generalGetString(MR.strings.nearby_find_people),
             style = MaterialTheme.typography.h2,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colors.primary
@@ -71,7 +73,7 @@ fun NearbyPeopleView(onBack: () -> Unit) {
         Spacer(Modifier.height(4.dp))
 
         Text(
-            "Searching for Inqalaab users near you\u2026",
+            generalGetString(MR.strings.inq_searching_nearby),
             style = MaterialTheme.typography.body2,
             color = MaterialTheme.colors.secondary.copy(alpha = alpha)
         )
@@ -88,7 +90,7 @@ fun NearbyPeopleView(onBack: () -> Unit) {
             ) {
                 Column(Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        "${incoming.name} wants to connect",
+                        String.format(generalGetString(MR.strings.inq_wants_to_connect), incoming.name),
                         style = MaterialTheme.typography.body1,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colors.onBackground
@@ -99,14 +101,14 @@ fun NearbyPeopleView(onBack: () -> Unit) {
                             onClick = { NearbyUiState.incomingRequest.value = null },
                             shape = RoundedCornerShape(20.dp)
                         ) {
-                            Text("Decline")
+                            Text(generalGetString(MR.strings.inq_decline))
                         }
                         Button(
                             onClick = { NearbyManager.acceptDirectConnection(incoming) },
                             colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
                             shape = RoundedCornerShape(20.dp)
                         ) {
-                            Text("Accept", color = MaterialTheme.colors.onPrimary, fontWeight = FontWeight.Bold)
+                            Text(generalGetString(MR.strings.inq_accept), color = MaterialTheme.colors.onPrimary, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -129,7 +131,7 @@ fun NearbyPeopleView(onBack: () -> Unit) {
                 ) {
                     CircularProgressIndicator(Modifier.size(24.dp), color = MaterialTheme.colors.primary, strokeWidth = 2.dp)
                     Text(
-                        "Waiting for ${outgoing.name} to accept\u2026",
+                        String.format(generalGetString(MR.strings.inq_waiting_accept), outgoing.name),
                         style = MaterialTheme.typography.body1,
                         color = MaterialTheme.colors.secondary
                     )
@@ -137,7 +139,7 @@ fun NearbyPeopleView(onBack: () -> Unit) {
             }
             Spacer(Modifier.height(8.dp))
             TextButton(onClick = { NearbyManager.cancelDirectRequest() }) {
-                Text("Cancel", color = MaterialTheme.colors.error)
+                Text(generalGetString(MR.strings.inq_cancel), color = MaterialTheme.colors.error)
             }
             Spacer(Modifier.height(16.dp))
         }
@@ -156,21 +158,21 @@ fun NearbyPeopleView(onBack: () -> Unit) {
                     )
                     Spacer(Modifier.height(16.dp))
                     Text(
-                        "Scanning for people\u2026",
+                        generalGetString(MR.strings.inq_scanning),
                         style = MaterialTheme.typography.h6,
                         fontWeight = FontWeight.Medium,
                         color = MaterialTheme.colors.onBackground
                     )
                     Spacer(Modifier.height(16.dp))
                     Text(
-                        "Troubleshooting",
+                        generalGetString(MR.strings.inq_troubleshooting),
                         style = MaterialTheme.typography.body2,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colors.secondary
                     )
                     Spacer(Modifier.height(8.dp))
                     Text(
-                        "\u2022 Both devices need Bluetooth turned on\n\u2022 Both devices need Location Services enabled\n\u2022 The other person must also have Nearby open\n\u2022 Stay within ~30 feet of each other",
+                        generalGetString(MR.strings.inq_troubleshooting_tips),
                         style = MaterialTheme.typography.body2,
                         color = MaterialTheme.colors.secondary.copy(alpha = 0.7f),
                         textAlign = TextAlign.Start
@@ -230,7 +232,7 @@ private fun PersonCard(person: DiscoveredPerson, enabled: Boolean, onClick: () -
                     color = MaterialTheme.colors.onSurface
                 )
                 Text(
-                    "Tap to connect",
+                    generalGetString(MR.strings.inq_tap_connect),
                     style = MaterialTheme.typography.caption,
                     color = MaterialTheme.colors.secondary
                 )

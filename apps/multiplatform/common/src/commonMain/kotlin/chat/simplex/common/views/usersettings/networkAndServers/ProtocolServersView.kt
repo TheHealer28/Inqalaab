@@ -288,7 +288,7 @@ private fun HowToButton() {
   SettingsActionItem(
     painterResource(MR.images.ic_open_in_new),
     stringResource(MR.strings.how_to_use_your_servers),
-    { uriHandler.openUriCatching("https://simplex.chat/docs/server.html") },
+    { uriHandler.openUriCatching("https://github.com/TheHealer28/Inqalaab") },
     textColor = MaterialTheme.colors.primary,
     iconColor = MaterialTheme.colors.primary
   )

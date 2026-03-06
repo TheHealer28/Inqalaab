@@ -587,7 +587,7 @@ suspend fun exportChatArchive(
 ): Pair<String, List<ArchiveError>> {
   val archiveTime = Clock.System.now()
   val ts = SimpleDateFormat("yyyy-MM-dd'T'HHmmss", Locale.US).format(Date.from(archiveTime.toJavaInstant()))
-  val archiveName = "simplex-chat.$ts.zip"
+  val archiveName = "inqalaab.$ts.zip"
   val archivePath = "${(storagePath ?: databaseExportDir).absolutePath}${File.separator}$archiveName"
   val config = ArchiveConfig(archivePath, parentTempDirectory = databaseExportDir.toString())
   // Settings should be saved before changing a passphrase, otherwise the database needs to be migrated first
