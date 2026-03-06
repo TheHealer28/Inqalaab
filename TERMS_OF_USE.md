@@ -47,7 +47,7 @@ Because Inqalaab uses end-to-end encryption, we cannot access, read, moderate, o
 - **Group message reporting:** You can report abusive messages within groups. Reports are sent to group administrators for review.
 - **Group member blocking:** Group administrators can block members from posting, preventing further messages from that member in the group.
 - **Group member removal:** Group administrators can remove members from groups.
-- **Delete contact:** You can delete any 1:1 contact, which removes the conversation and prevents further messages.
+- **Block & Delete:** You can block and delete any 1:1 contact, which permanently severs the connection, deletes all messages, and prevents the contact from messaging you again. They are not notified.
 - **Leaving:** You can leave any group at any time.
 - **Clear chat:** You can clear the message history of any conversation.
 

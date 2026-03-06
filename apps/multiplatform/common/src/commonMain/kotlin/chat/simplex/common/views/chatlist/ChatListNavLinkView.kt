@@ -291,6 +291,7 @@ fun ContactMenuItems(chat: Chat, contact: Contact, chatModel: ChatModel, showMen
       TagListAction(chat, showMenu)
       ClearChatAction(chat, showMenu)
     }
+    BlockAndDeleteContactAction(chat, chatModel, showMenu)
     DeleteContactAction(chat, chatModel, showMenu)
   }
 }
@@ -450,6 +451,19 @@ fun ClearNoteFolderAction(chat: Chat, showMenu: MutableState<Boolean>) {
       showMenu.value = false
     },
     color = WarningOrange
+  )
+}
+
+@Composable
+fun BlockAndDeleteContactAction(chat: Chat, chatModel: ChatModel, showMenu: MutableState<Boolean>) {
+  ItemAction(
+    generalGetString(MR.strings.inq_block_and_delete),
+    painterResource(MR.images.ic_person_off),
+    onClick = {
+      blockAndDeleteContactDialog(chat, chatModel)
+      showMenu.value = false
+    },
+    color = Color.Red
   )
 }
 

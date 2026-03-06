@@ -2891,6 +2891,9 @@
   <string name="inq_about_title">About Inqalaab</string>
   <string name="inq_terms_of_use">Terms of Use</string>
   <string name="inq_community_guidelines">Community Guidelines</string>
+  <string name="inq_block_and_delete">Block &amp; Delete</string>
+  <string name="inq_block_contact_question">Block this contact?</string>
+  <string name="inq_block_contact_desc">This will permanently block this contact and delete all messages. They will not be notified and cannot message you again.</string>
 
   <!-- Inqalaab Onboarding -->
   <string name="inq_why_exists">Why Inqalaab Exists</string>

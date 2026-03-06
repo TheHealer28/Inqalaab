@@ -2614,6 +2614,9 @@
     <string name="inq_about_title">انقلاب کے بارے میں</string>
     <string name="inq_terms_of_use">استعمال کی شرائط</string>
     <string name="inq_community_guidelines">کمیونٹی رہنما اصول</string>
+    <string name="inq_block_and_delete">بلاک کریں اور حذف کریں</string>
+    <string name="inq_block_contact_question">اس رابطے کو بلاک کریں؟</string>
+    <string name="inq_block_contact_desc">یہ اس رابطے کو مستقل طور پر بلاک کر دے گا اور تمام پیغامات حذف کر دے گا۔ انہیں مطلع نہیں کیا جائے گا اور وہ آپ کو دوبارہ پیغام نہیں بھیج سکیں گے۔</string>
 
     <!-- انقلاب آن بورڈنگ -->
     <string name="inq_why_exists">انقلاب کیوں موجود ہے</string>

@@ -73,7 +73,7 @@ Inqalaab uses end-to-end encryption. This means:
 | **Remove member** | Groups | Group administrators can remove a member from the group entirely. |
 | **Leave group** | Groups | Removes you from any group instantly. |
 | **Group permissions** | Groups | Administrators can control who can send messages, add members, or share content. |
-| **Delete contact** | 1:1 chats | Removes a contact and the conversation, preventing further messages. |
+| **Block & Delete** | 1:1 chats | Permanently blocks a contact, deletes all messages, and prevents them from messaging you again. They are not notified. |
 | **Clear chat** | Any chat | Permanently removes message history from your device. |
 
 ### What Happens When You Report
@@ -94,7 +94,7 @@ Inqalaab uses end-to-end encryption. This means:
 4. **Contact local authorities** if you face credible threats of violence or illegal activity.
 
 ### In a 1:1 conversation
-1. **Delete the contact** to stop further messages from that person.
+1. **Block & Delete the contact** to permanently stop all messages from that person.
 2. **Document evidence** — take screenshots before deleting if you may need them for authorities.
 3. **Contact local authorities** if you face credible threats of violence or illegal activity.
 

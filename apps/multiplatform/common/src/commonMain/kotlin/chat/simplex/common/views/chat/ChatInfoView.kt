@@ -233,6 +233,18 @@ sealed class SendReceipts {
   }
 }
 
+fun blockAndDeleteContactDialog(chat: Chat, chatModel: ChatModel, close: (() -> Unit)? = null) {
+  AlertManager.shared.showAlertDialog(
+    title = generalGetString(MR.strings.inq_block_contact_question),
+    text = generalGetString(MR.strings.inq_block_contact_desc),
+    confirmText = generalGetString(MR.strings.inq_block_and_delete),
+    destructive = true,
+    onConfirm = {
+      deleteContact(chat, chatModel, close, chatDeleteMode = ChatDeleteMode.Full(notify = false))
+    }
+  )
+}
+
 fun deleteContactDialog(chat: Chat, chatModel: ChatModel, close: (() -> Unit)? = null) {
   val chatInfo = chat.chatInfo
   if (chatInfo is ChatInfo.Direct) {
@@ -676,6 +688,7 @@ fun ChatInfoLayout(
     }
 
     SectionView {
+      BlockAndDeleteContactButton { blockAndDeleteContactDialog(chat, chatModel, close) }
       ClearChatButton(clearChat)
       DeleteContactButton(deleteContact)
     }
@@ -1212,6 +1225,17 @@ fun ClearChatButton(onClick: () -> Unit) {
     click = onClick,
     textColor = WarningOrange,
     iconColor = WarningOrange,
+  )
+}
+
+@Composable
+private fun BlockAndDeleteContactButton(onClick: () -> Unit) {
+  SettingsActionItem(
+    painterResource(MR.images.ic_person_off),
+    generalGetString(MR.strings.inq_block_and_delete),
+    click = onClick,
+    textColor = Color.Red,
+    iconColor = Color.Red,
   )
 }
 
