@@ -58,11 +58,11 @@
     <string name="error_showing_content">مواد دکھانے میں خرابی</string>
     <string name="decryption_error">ڈیکرپشن میں خرابی</string>
     <string name="encryption_renegotiation_error">انکرپشن دوبارہ مذاکرات میں خرابی</string>
-    <string name="e2ee_info_e2ee">اینڈ ٹو اینڈ انکرپشن</string>
-    <string name="e2ee_info_no_pq">اینڈ ٹو اینڈ انکرپشن</string>
-    <string name="e2ee_info_pq">کوانٹم ریزسٹنٹ اینڈ ٹو اینڈ انکرپشن</string>
-    <string name="e2ee_info_no_pq_short">یہ چیٹ اینڈ ٹو اینڈ انکرپشن سے محفوظ ہے۔</string>
-    <string name="e2ee_info_pq_short">یہ چیٹ کوانٹم ریزسٹنٹ اینڈ ٹو اینڈ انکرپشن سے محفوظ ہے۔</string>
+    <string name="e2ee_info_e2ee"><![CDATA[انقلاب آپ کے پیغامات کو <b>اینڈ ٹو اینڈ انکرپشن</b> سے محفوظ رکھتا ہے۔]]></string>
+    <string name="e2ee_info_no_pq"><![CDATA[انقلاب آپ کے پیغامات، فائلز اور کالز کو <b>اینڈ ٹو اینڈ انکرپشن</b>، پرفیکٹ فارورڈ سیکریسی، ریپیوڈیشن اور بریک ان ریکوری سے محفوظ رکھتا ہے۔]]></string>
+    <string name="e2ee_info_pq"><![CDATA[انقلاب آپ کے پیغامات، فائلز اور کالز کو <b>کوانٹم ریزسٹنٹ اینڈ ٹو اینڈ انکرپشن</b>، پرفیکٹ فارورڈ سیکریسی، ریپیوڈیشن اور بریک ان ریکوری سے محفوظ رکھتا ہے۔]]></string>
+    <string name="e2ee_info_no_pq_short">انقلاب اس چیٹ کو اینڈ ٹو اینڈ انکرپشن سے محفوظ رکھتا ہے۔</string>
+    <string name="e2ee_info_pq_short">انقلاب اس چیٹ کو کوانٹم ریزسٹنٹ اینڈ ٹو اینڈ انکرپشن سے محفوظ رکھتا ہے۔</string>
     <string name="note_folder_local_display_name">نجی نوٹس</string>
     <string name="connection_local_display_name">کنکشن %1$d</string>
     <string name="display_name_connection_established">رابطہ قائم ہوا</string>
