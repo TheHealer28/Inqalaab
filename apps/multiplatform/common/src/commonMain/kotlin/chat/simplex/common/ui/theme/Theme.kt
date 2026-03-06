@@ -637,9 +637,9 @@ val DarkColorPalette = darkColors(
 )
 val DarkColorPaletteApp = AppColors(
   title = SimplexBlue,
-  primaryVariant2 = Color(0xFF18262E),
-  sentMessage = Color(0xFF18262E),
-  sentQuote = Color(0xFF1D3847),
+  primaryVariant2 = Color(0xFF1B2E1B),
+  sentMessage = Color(0xFF1B2E1B),
+  sentQuote = Color(0xFF1D3D1D),
   receivedMessage = Color(0xff262627),
   receivedQuote = Color(0xff373739),
 )
@@ -659,16 +659,16 @@ val LightColorPalette = lightColors(
 )
 val LightColorPaletteApp = AppColors(
   title = SimplexBlue,
-  primaryVariant2 = Color(0xFFE9F7FF),
-  sentMessage = Color(0xFFE9F7FF),
-  sentQuote = Color(0xFFD6F0FF),
+  primaryVariant2 = Color(0xFFE8F5E9),
+  sentMessage = Color(0xFFE8F5E9),
+  sentQuote = Color(0xFFC8E6C9),
   receivedMessage = Color(0xfff5f5f6),
   receivedQuote = Color(0xffececee),
 )
 
 val SimplexColorPalette = darkColors(
-  primary = Color(0xFF70F0F9),  // If this value changes also need to update #0088ff in string resource files
-  primaryVariant = Color(0xFF1298A5),
+  primary = SimplexBlue,  // If this value changes also need to update #0088ff in string resource files
+  primaryVariant = SimplexBlue,
   secondary = HighOrLowlight,
   secondaryVariant = Color(0xFF2C464D),
   background = Color(0xFF111528),
@@ -681,17 +681,17 @@ val SimplexColorPalette = darkColors(
   //  onError: Color = Color.Black,
 )
 val SimplexColorPaletteApp = AppColors(
-  title = Color(0xFF267BE5),
-  primaryVariant2 = Color(0xFF172941),
-  sentMessage = Color(0xFF172941),
-  sentQuote = Color(0xFF1C3A57),
+  title = SimplexBlue,
+  primaryVariant2 = Color(0xFF152D1A),
+  sentMessage = Color(0xFF152D1A),
+  sentQuote = Color(0xFF1A3D20),
   receivedMessage = Color(0xff25283a),
   receivedQuote = Color(0xff36394a),
 )
 
 val BlackColorPalette = darkColors(
-  primary = Color(0xff0077e0),  // If this value changes also need to update #0088ff in string resource files
-  primaryVariant = Color(0xff0077e0),
+  primary = SimplexBlue,  // If this value changes also need to update #0088ff in string resource files
+  primaryVariant = SimplexBlue,
   secondary = HighOrLowlight,
   secondaryVariant = DarkGray,
   background = Color(0xff070707),
@@ -704,10 +704,10 @@ val BlackColorPalette = darkColors(
   //  onError: Color = Color.Black,
 )
 val BlackColorPaletteApp = AppColors(
-  title = Color(0xff0077e0),
-  primaryVariant2 = Color(0xff243747),
-  sentMessage = Color(0xFF18262E),
-  sentQuote = Color(0xFF1D3847),
+  title = SimplexBlue,
+  primaryVariant2 = Color(0xFF1B2E1B),
+  sentMessage = Color(0xFF1B2E1B),
+  sentQuote = Color(0xFF1D3D1D),
   receivedMessage = Color(0xff1b1b1b),
   receivedQuote = Color(0xff29292b),
 )
