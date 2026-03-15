@@ -50,7 +50,7 @@ fun InqalaabBottomTabBar(
             BottomNavigationItem(
                 selected = selectedTab == InqalaabTab.CHATS,
                 onClick = { onTabSelected(InqalaabTab.CHATS) },
-                icon = { Icon(painterResource(MR.images.ic_chat_bubble), contentDescription = generalGetString(MR.strings.inq_tab_chats)) },
+                icon = { Icon(painterResource(MR.images.ic_chat_person), contentDescription = generalGetString(MR.strings.inq_tab_chats)) },
                 label = { Text(generalGetString(MR.strings.inq_tab_chats), fontSize = 10.sp) },
                 selectedContentColor = MaterialTheme.colors.primary,
                 unselectedContentColor = MaterialTheme.colors.secondary

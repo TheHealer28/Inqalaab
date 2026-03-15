@@ -7,6 +7,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -136,7 +137,7 @@ fun ChatView(
         }
       )
     }
-    val attachmentOption = rememberSaveable { mutableStateOf<AttachmentOption?>(null) }
+    val attachmentOption = remember { mutableStateOf<AttachmentOption?>(null) }
     val attachmentBottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
     val scope = rememberCoroutineScope()
     val selectedChatItems = rememberSaveable { mutableStateOf(null as Set<Long>?) }
@@ -1118,16 +1119,28 @@ fun BoxScope.ChatInfoToolbar(
   if (chatInfo is ChatInfo.Direct && chatInfo.contact.mergedPreferences.calls.enabled.forUser) {
     if (activeCall == null) {
       barButtons.add {
+        val callEnabled = chatInfo.contact.ready && chatInfo.contact.active
         IconButton({
           showMenu.value = false
           startCall(CallMediaType.Audio)
-        }, enabled = chatInfo.contact.ready && chatInfo.contact.active
+        }, enabled = callEnabled
         ) {
-          Icon(
-            painterResource(MR.images.ic_call_500),
-            stringResource(MR.strings.icon_descr_audio_call).capitalize(Locale.current),
-            tint = if (chatInfo.contact.ready && chatInfo.contact.active) MaterialTheme.colors.primary else MaterialTheme.colors.secondary
-          )
+          Box(
+            modifier = Modifier
+              .size(36.dp)
+              .background(
+                color = if (callEnabled) MaterialTheme.colors.primary else MaterialTheme.colors.secondary,
+                shape = CircleShape
+              ),
+            contentAlignment = Alignment.Center
+          ) {
+            Icon(
+              painterResource(MR.images.ic_call_filled),
+              stringResource(MR.strings.icon_descr_audio_call).capitalize(Locale.current),
+              tint = Color.White,
+              modifier = Modifier.size(20.dp)
+            )
+          }
         }
       }
     } else if (activeCall?.contact?.id == chatInfo.id && appPlatform.isDesktop) {
@@ -1912,16 +1925,6 @@ fun BoxScope.ChatItemsList(
 
       if (item.content is CIContent.ChatBanner) {
         Column {
-          Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-              .fillMaxSize()
-              .padding(horizontal = DEFAULT_PADDING)
-              .padding(bottom = 90.dp, top = DEFAULT_PADDING)
-          ) {
-            ChatBannerView()
-          }
-
           val prevItem = listItem.prevItem
           if (prevItem != null) {
             DateSeparator(prevItem.meta.itemTs)

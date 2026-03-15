@@ -320,7 +320,8 @@ private fun BoxScope.ChatListWithLoadingScreen(searchText: MutableState<TextFiel
       )
     } else {
       val userAddress = remember { chatModel.userAddress }.value
-      if (userAddress != null) {
+      val hasRealChats = chatModel.chats.value.any { it.chatInfo is ChatInfo.Direct || it.chatInfo is ChatInfo.Group }
+      if (userAddress != null && !hasRealChats) {
         Column(
           Modifier.align(Alignment.Center).offset(y = (-260).dp).padding(horizontal = DEFAULT_PADDING),
           horizontalAlignment = Alignment.CenterHorizontally
@@ -341,13 +342,13 @@ private fun BoxScope.ChatListWithLoadingScreen(searchText: MutableState<TextFiel
             short = true
           )
         }
-      } else if (chatModel.chats.value.isEmpty()) {
+      } else if (!hasRealChats && userAddress == null) {
         Column(
           Modifier.align(Alignment.Center).padding(horizontal = DEFAULT_PADDING * 2),
           horizontalAlignment = Alignment.CenterHorizontally
         ) {
           Icon(
-            painterResource(MR.images.ic_chat_bubble),
+            painterResource(MR.images.ic_chat_person),
             contentDescription = null,
             modifier = Modifier.size(48.dp),
             tint = MaterialTheme.colors.secondary.copy(alpha = 0.5f)

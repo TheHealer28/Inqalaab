@@ -85,3 +85,6 @@ apps/multiplatform/.kotlin/sessions
 build/
 CLAUDE.md
 MEMORY.md
+
+# Firebase config (contains project API keys)
+google-services.json

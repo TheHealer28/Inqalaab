@@ -31,6 +31,10 @@ class MainActivity: FragmentActivity() {
     const val OLD_ANDROID_UI_FLAGS = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
   }
 
+  override fun attachBaseContext(newBase: Context) {
+    super.attachBaseContext(wrapContextWithLocale(newBase, ChatModel.controller.appPrefs.appLanguage))
+  }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     mainActivity = WeakReference(this)
     platform.androidSetNightModeIfSupported()

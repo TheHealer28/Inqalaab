@@ -202,7 +202,7 @@ class AppPreferences {
   /** after importing new database, this flag will be set and unset only after importing app settings in [initChatController] */
   val shouldImportAppSettings = mkBoolPreference(SHARED_PREFS_SHOULD_IMPORT_APP_SETTINGS, false)
 
-  val currentTheme = mkStrPreference(SHARED_PREFS_CURRENT_THEME, DefaultTheme.SYSTEM_THEME_NAME)
+  val currentTheme = mkStrPreference(SHARED_PREFS_CURRENT_THEME, DefaultTheme.SIMPLEX.themeName)
   val systemDarkTheme = mkStrPreference(SHARED_PREFS_SYSTEM_DARK_THEME, DefaultTheme.SIMPLEX.themeName)
   val currentThemeIds = mkMapPreference(SHARED_PREFS_CURRENT_THEME_IDs, mapOf(), encode = {
     json.encodeToString(MapSerializer(String.serializer(), String.serializer()), it)
@@ -4227,7 +4227,7 @@ val operatorsInfo: Map<OperatorTag, ServerOperatorInfo> = mapOf(
   OperatorTag.SimpleX to ServerOperatorInfo(
     description = listOf(
       "Inqalaab is a secure messaging app for activists — built on the first communication protocol with no user profile IDs of any kind, ensuring maximum privacy.",
-      "Inqalaab operates community-run relay servers independent of any single entity."
+      "Inqalaab operates relay servers for secure communication."
     ),
     website = "https://github.com/TheHealer28/Inqalaab",
     logo = MR.images.decentralized,
@@ -5446,20 +5446,20 @@ enum class ChatFeature: Feature {
     @Composable get() = when(this) {
       TimedMessages -> painterResource(MR.images.ic_timer)
       FullDelete -> painterResource(MR.images.ic_delete_forever)
-      Reactions -> painterResource(MR.images.ic_add_reaction)
-      Voice -> painterResource(MR.images.ic_keyboard_voice)
+      Reactions -> painterResource(MR.images.ic_heart)
+      Voice -> painterResource(MR.images.ic_graphic_eq)
       Files -> painterResource(MR.images.ic_draft)
-      Calls -> painterResource(MR.images.ic_call)
+      Calls -> painterResource(MR.images.ic_videocam)
     }
 
   @Composable
   override fun iconFilled(): Painter = when(this) {
       TimedMessages -> painterResource(MR.images.ic_timer_filled)
       FullDelete -> painterResource(MR.images.ic_delete_forever_filled)
-      Reactions -> painterResource(MR.images.ic_add_reaction_filled)
-      Voice -> painterResource(MR.images.ic_keyboard_voice_filled)
+      Reactions -> painterResource(MR.images.ic_heart_filled)
+      Voice -> painterResource(MR.images.ic_graphic_eq_filled)
       Files -> painterResource(MR.images.ic_draft_filled)
-      Calls -> painterResource(MR.images.ic_call_filled)
+      Calls -> painterResource(MR.images.ic_videocam_filled)
   }
 
   fun allowDescription(allowed: FeatureAllowed): String =
@@ -5585,8 +5585,8 @@ enum class GroupFeature: Feature {
       TimedMessages -> painterResource(MR.images.ic_timer)
       DirectMessages -> painterResource(MR.images.ic_swap_horizontal_circle)
       FullDelete -> painterResource(MR.images.ic_delete_forever)
-      Reactions -> painterResource(MR.images.ic_add_reaction)
-      Voice -> painterResource(MR.images.ic_keyboard_voice)
+      Reactions -> painterResource(MR.images.ic_heart)
+      Voice -> painterResource(MR.images.ic_graphic_eq)
       Files -> painterResource(MR.images.ic_draft)
       SimplexLinks -> painterResource(MR.images.ic_link)
       Reports -> painterResource(MR.images.ic_flag)
@@ -5598,8 +5598,8 @@ enum class GroupFeature: Feature {
     TimedMessages -> painterResource(MR.images.ic_timer_filled)
     DirectMessages -> painterResource(MR.images.ic_swap_horizontal_circle_filled)
     FullDelete -> painterResource(MR.images.ic_delete_forever_filled)
-    Reactions -> painterResource(MR.images.ic_add_reaction_filled)
-    Voice -> painterResource(MR.images.ic_keyboard_voice_filled)
+    Reactions -> painterResource(MR.images.ic_heart_filled)
+    Voice -> painterResource(MR.images.ic_graphic_eq_filled)
     Files -> painterResource(MR.images.ic_draft_filled)
     SimplexLinks -> painterResource(MR.images.ic_link)
     Reports -> painterResource(MR.images.ic_flag_filled)

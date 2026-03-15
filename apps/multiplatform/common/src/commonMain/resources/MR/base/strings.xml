@@ -68,14 +68,14 @@
   <string name="decryption_error">Decryption error</string>
   <string name="encryption_renegotiation_error">Encryption re-negotiation error</string>
 
-  <string name="e2ee_info_e2ee"><![CDATA[Inqalaab protects your messages with <b>end-to-end encryption</b>.]]></string>
-  <string name="e2ee_info_no_pq"><![CDATA[Inqalaab protects your messages, files and calls with <b>end-to-end encryption</b>, perfect forward secrecy, repudiation and break-in recovery.]]></string>
-  <string name="e2ee_info_pq"><![CDATA[Inqalaab protects your messages, files and calls with <b>quantum resistant e2e encryption</b>, perfect forward secrecy, repudiation and break-in recovery.]]></string>
-  <string name="e2ee_info_no_pq_short">Inqalaab protects this chat with end-to-end encryption.</string>
-  <string name="e2ee_info_pq_short">Inqalaab protects this chat with quantum resistant end-to-end encryption.</string>
+  <string name="e2ee_info_e2ee"><![CDATA[This conversation is secured with <b>end-to-end encryption</b>. Your messages, files and calls are private.]]></string>
+  <string name="e2ee_info_no_pq"><![CDATA[This conversation is secured with <b>end-to-end encryption</b>. Your messages, files and calls are private.]]></string>
+  <string name="e2ee_info_pq"><![CDATA[This conversation is secured with <b>quantum-resistant encryption</b>. Your messages, files and calls are private.]]></string>
+  <string name="e2ee_info_no_pq_short">This conversation is secured with end-to-end encryption.</string>
+  <string name="e2ee_info_pq_short">This conversation is secured with quantum-resistant encryption.</string>
 
   <!-- NoteFolder - ChatModel.kt -->
-  <string name="note_folder_local_display_name">Private notes</string>
+  <string name="note_folder_local_display_name">Note To Yourself</string>
 
   <!-- PendingContactConnection - ChatModel.kt -->
   <string name="connection_local_display_name">connection %1$d</string>
@@ -2941,8 +2941,8 @@
 
   <!-- About Inqalaab -->
   <string name="inq_server_infrastructure">SERVER INFRASTRUCTURE</string>
-  <string name="inq_community_relay">Community-Run Relay Servers</string>
-  <string name="inq_community_relay_desc">Your messages are routed through independent relay servers operated by the Inqalaab community. No single entity controls all servers. Servers never see message content — they only relay encrypted data between devices.</string>
+  <string name="inq_community_relay">Relay Servers</string>
+  <string name="inq_community_relay_desc">Your messages are routed through relay servers operated by Inqalaab. Servers never see message content — they only relay encrypted data between devices.</string>
   <string name="inq_server_locations">Server Locations</string>
   <string name="inq_server_locations_desc">Relay servers are distributed across multiple jurisdictions to prevent any single government from intercepting or shutting down the network.</string>
   <string name="inq_data_stored">DATA STORED ON YOUR DEVICE</string>

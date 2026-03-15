@@ -34,6 +34,7 @@ import chat.simplex.common.views.chat.topPaddingToContent
 import chat.simplex.common.views.chatlist.*
 import chat.simplex.common.views.contacts.*
 import chat.simplex.common.views.helpers.*
+import chat.simplex.common.views.usersettings.UserAddressView
 import chat.simplex.res.MR
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -62,6 +63,11 @@ fun ModalData.NewChatSheet(rh: RemoteHostInfo?, close: () -> Unit) {
         },
         createGroup = {
           ModalManager.start.showCustomModal { close -> AddGroupView(chatModel, chatModel.currentRemoteHost.value, close, closeAll) }
+        },
+        showMyAddress = {
+          ModalManager.start.showModalCloseable { close ->
+            UserAddressView(chatModel = chatModel, shareViaProfile = false, autoCreateAddress = true, close = closeAll)
+          }
         },
         rh = rh,
         close = close
@@ -110,6 +116,7 @@ private fun ModalData.NewChatSheetLayout(
   addContact: () -> Unit,
   scanPaste: () -> Unit,
   createGroup: () -> Unit,
+  showMyAddress: () -> Unit,
   close: () -> Unit,
 ) {
   val oneHandUI = remember { appPrefs.oneHandUI.state }
@@ -178,6 +185,8 @@ private fun ModalData.NewChatSheetLayout(
     derivedStateOf { filterContactTypes(chatModel.chats.value, deletedContactTypes) }
   }
 
+  val userAddress = remember { chatModel.userAddress }.value
+
   val actionButtonsOriginal = listOf(
     Triple(
       painterResource(MR.images.ic_add_link),
@@ -203,6 +212,28 @@ private fun ModalData.NewChatSheetLayout(
     }
 
     if (searchText.value.text.isEmpty()) {
+      // Inline QR code for user's address
+      if (userAddress != null) {
+        Column(
+          modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+          horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+          SimpleXCreatedLinkQRCode(
+            connLink = userAddress.connLinkContact,
+            short = true,
+            modifier = Modifier.size(200.dp),
+            padding = PaddingValues(0.dp),
+            withLogo = true,
+          )
+          Spacer(Modifier.height(4.dp))
+          Text(
+            stringResource(MR.strings.your_simplex_contact_address),
+            style = MaterialTheme.typography.caption,
+            color = MaterialTheme.colors.secondary,
+            textAlign = TextAlign.Center,
+          )
+        }
+      }
       Row {
         SectionView {
           actionButtons.map {

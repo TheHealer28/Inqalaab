@@ -187,7 +187,7 @@ fun SendMsgView(
                 menuItems.add {
                   ItemAction(
                     generalGetString(MR.strings.send_live_message),
-                    BoltFilled,
+                    painterResource(MR.images.ic_chat_person),
                     onClick = {
                       startLiveMessage(scope, sendLiveMessage, updateLiveMessage, sendButtonSize, sendButtonAlpha, composeState, liveMessageAlertShown)
                       showDropdown.value = false
@@ -349,7 +349,7 @@ private fun RecordVoiceView(recState: MutableState<RecordingState>, stopRecOnNex
 private fun DisallowedVoiceButton(onClick: () -> Unit) {
   IconButton(onClick, Modifier.size(36.dp)) {
     Icon(
-      painterResource(MR.images.ic_keyboard_voice),
+      painterResource(MR.images.ic_mic),
       stringResource(MR.strings.icon_descr_record_voice_message),
       tint = MaterialTheme.colors.secondary,
       modifier = Modifier
@@ -363,7 +363,7 @@ private fun DisallowedVoiceButton(onClick: () -> Unit) {
 fun VoiceButtonWithoutPermission(onClick: () -> Unit) {
   IconButton(onClick, Modifier.size(36.dp)) {
     Icon(
-      painterResource(MR.images.ic_keyboard_voice_filled),
+      painterResource(MR.images.ic_mic_filled),
       stringResource(MR.strings.icon_descr_record_voice_message),
       tint = MaterialTheme.colors.primary,
       modifier = Modifier
@@ -391,7 +391,7 @@ private fun StopRecordButton(onClick: () -> Unit) {
 private fun RecordVoiceButton(interactionSource: MutableInteractionSource) {
   IconButton({}, Modifier.size(36.dp), interactionSource = interactionSource) {
     Icon(
-      painterResource(MR.images.ic_keyboard_voice_filled),
+      painterResource(MR.images.ic_mic_filled),
       stringResource(MR.strings.icon_descr_record_voice_message),
       tint = MaterialTheme.colors.primary,
       modifier = Modifier
@@ -484,7 +484,7 @@ private fun StartLiveMessageButton(onClick: () -> Unit) {
     contentAlignment = Alignment.Center
   ) {
     Icon(
-      BoltFilled,
+      painterResource(MR.images.ic_chat_person),
       stringResource(MR.strings.icon_descr_send_message),
       tint = MaterialTheme.colors.primary,
       modifier = Modifier

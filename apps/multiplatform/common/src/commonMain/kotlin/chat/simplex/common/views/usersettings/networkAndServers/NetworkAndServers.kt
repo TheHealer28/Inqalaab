@@ -229,27 +229,42 @@ fun ModalData.NetworkAndServersView(closeNetworkAndServers: () -> Unit) {
       val nullOperatorIndex = userServers.value.indexOfFirst { it.operator == null }
 
       if (nullOperatorIndex != -1) {
-        SectionItemView({
-          ModalManager.start.showModal {
-            YourServersView(
-              userServers = userServers,
-              serverErrors = serverErrors,
-              operatorIndex = nullOperatorIndex,
-              rhId = currentRemoteHost?.remoteHostId
-            )
-          }
-        }) {
-          Icon(
-            painterResource(MR.images.ic_dns),
-            stringResource(MR.strings.your_servers),
-            tint = MaterialTheme.colors.secondary
-          )
-          TextIconSpaced()
-          Text(stringResource(MR.strings.your_servers), color = MaterialTheme.colors.onBackground)
+        val testing = remember { mutableStateOf(false) }
+        val smpServers = userServers.value[nullOperatorIndex].smpServers
+        val xftpServers = userServers.value[nullOperatorIndex].xftpServers
+        val activeSmp = smpServers.filter { it.enabled && !it.deleted }
+        val activeXftp = xftpServers.filter { it.enabled && !it.deleted }
 
-          if (currUserServers.value.getOrNull(nullOperatorIndex) != userServers.value.getOrNull(nullOperatorIndex)) {
-            Spacer(Modifier.weight(1f))
-            UnsavedChangesIndicator()
+        // Show SMP servers with numbered labels and test status
+        activeSmp.forEachIndexed { index, server ->
+          SectionItemView {
+            ShowTestStatus(server)
+            Spacer(Modifier.width(8.dp))
+            Text("Message Server ${index + 1}", color = MaterialTheme.colors.onBackground)
+          }
+        }
+
+        // Show XFTP servers with numbered labels and test status
+        activeXftp.forEachIndexed { index, server ->
+          SectionItemView {
+            ShowTestStatus(server)
+            Spacer(Modifier.width(8.dp))
+            Text("Media Server ${index + 1}", color = MaterialTheme.colors.onBackground)
+          }
+        }
+
+        TestServersButton(
+          testing = testing,
+          smpServers = smpServers,
+          xftpServers = xftpServers,
+        ) { p, l ->
+          when (p) {
+            ServerProtocol.XFTP -> userServers.value = userServers.value.toMutableList().apply {
+              this[nullOperatorIndex] = this[nullOperatorIndex].copy(xftpServers = l)
+            }
+            ServerProtocol.SMP -> userServers.value = userServers.value.toMutableList().apply {
+              this[nullOperatorIndex] = this[nullOperatorIndex].copy(smpServers = l)
+            }
           }
         }
       }

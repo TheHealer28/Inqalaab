@@ -428,7 +428,7 @@ fun GroupMemberInfoLayout(
           })
         } else { // no known contact chat && directMessages are off
           val messageId = if (groupInfo.businessChat == null) MR.strings.direct_messages_are_prohibited_in_group else MR.strings.direct_messages_are_prohibited_in_chat
-          InfoViewActionButton(modifier = Modifier.fillMaxWidth(0.33f), painterResource(MR.images.ic_chat_bubble), generalGetString(MR.strings.info_view_message_button), disabled = false, disabledLook = true, onClick = {
+          InfoViewActionButton(modifier = Modifier.fillMaxWidth(0.33f), painterResource(MR.images.ic_chat_person), generalGetString(MR.strings.info_view_message_button), disabled = false, disabledLook = true, onClick = {
             showDirectMessagesProhibitedAlert(generalGetString(MR.strings.cant_send_message_to_member_alert_title), messageId)
           })
           InfoViewActionButton(modifier = Modifier.fillMaxWidth(0.5f), painterResource(MR.images.ic_call), generalGetString(MR.strings.info_view_call_button), disabled = false, disabledLook = true, onClick = {
@@ -667,7 +667,7 @@ fun OpenChatButton(
 ) {
   InfoViewActionButton(
     modifier = modifier,
-    icon = painterResource(MR.images.ic_chat_bubble),
+    icon = painterResource(MR.images.ic_chat_person),
     title = generalGetString(MR.strings.info_view_message_button),
     disabled = false,
     disabledLook = disabledLook,

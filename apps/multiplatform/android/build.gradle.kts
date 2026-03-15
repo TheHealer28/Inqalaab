@@ -6,6 +6,7 @@ plugins {
     kotlin("android")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("org.jetbrains.kotlin.plugin.compose")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -41,7 +42,7 @@ android {
             isDebuggable = rootProject.extra["enable_debuggable"] as Boolean
             manifestPlaceholders["app_name"] = rootProject.extra["app.name"] as String
             // Provider can"t be the same for different apps on the same device
-            manifestPlaceholders["provider_authorities"] = "chat.simplex.app${rootProject.extra["application_id.suffix"]}.provider"
+            manifestPlaceholders["provider_authorities"] = "com.inqalaab.app${rootProject.extra["application_id.suffix"]}.provider"
         }
         release {
             isMinifyEnabled = false
@@ -110,6 +111,11 @@ android {
         "vi",
         "zh-rCN"
     )
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
     ndkVersion = "23.1.7779620"
     if (isBundle) {
         defaultConfig.ndk.abiFilters("arm64-v8a", "armeabi-v7a")
@@ -144,6 +150,10 @@ dependencies {
     implementation("androidx.work:work-multiprocess:$workVersion")
 
     implementation("com.jakewharton:process-phoenix:3.0.0")
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:34.10.0"))
+    implementation("com.google.firebase:firebase-config")
 
     //Camera Permission
     implementation("com.google.accompanist:accompanist-permissions:0.34.0")

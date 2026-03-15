@@ -1393,7 +1393,7 @@ fun ComposeView(
       verticalAlignment = Alignment.CenterVertically
     ) {
       Icon(
-        painterResource(MR.images.ic_chat),
+        painterResource(MR.images.ic_chat_person),
         contentDescription = null,
         modifier = Modifier
           .padding(end = 8.dp)

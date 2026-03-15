@@ -89,15 +89,18 @@ class SimplexApp: Application(), LifecycleEventObserver {
 
     // Inqalaab: Wait for app to be fully ready, then replace servers and clean contacts
     CoroutineScope(Dispatchers.Default).launch {
-      while (true) {
+      // Wait up to 2 minutes for onboarding + chat to be ready
+      var waited = 0
+      while (waited < 120) {
         if (appPrefs.onboardingStage.get() == OnboardingStage.OnboardingComplete &&
             chatModel.chatRunning.value == true &&
             chatModel.currentUser.value != null) {
-          delay(3000) // Extra buffer for chats list to populate
+          delay(1000) // Short buffer for chats list and servers to populate
           InqalaabServers.configureIfNeeded()
           break
         }
-        delay(2000)
+        delay(1000)
+        waited++
       }
     }
   }
@@ -108,6 +111,8 @@ class SimplexApp: Application(), LifecycleEventObserver {
       when (event) {
         Lifecycle.Event.ON_START -> {
           isAppOnForeground = true
+          // Inqalaab: Retry server config on every foreground resume
+          InqalaabServers.configureIfNeeded()
           if (chatModel.chatRunning.value == true) {
             withContext(Dispatchers.Main) {
               kotlin.runCatching {

@@ -73,7 +73,7 @@ fun PrivacySettingsView(
         chatModel.controller.appPrefs.privacySanitizeLinks
       )
       SettingsPreferenceItem(
-        painterResource(MR.images.ic_chat_bubble),
+        painterResource(MR.images.ic_chat_person),
         stringResource(MR.strings.privacy_show_last_messages),
         chatModel.controller.appPrefs.privacyShowChatPreviews,
         onChange = { showPreviews ->
