@@ -3,27 +3,30 @@
 //  Inqalaab (iOS)
 //
 //  Server hardcoding and configuration for Inqalaab.
+//  Firebase Remote Config integration: fetches server addresses from Firebase,
+//  falls back to hardcoded addresses if fetch fails.
 //
 
 import Foundation
-import SimpleXChat
+import InqalaabChat
+import FirebaseRemoteConfig
 
 class InqalaabServers {
     static let shared = InqalaabServers()
 
-    private let INQALAAB_SMP_SERVERS = [
+    // Hardcoded fallback server addresses (used when Firebase fetch fails)
+    private let FALLBACK_SMP_SERVERS = [
         "smp://4CfWwei1oOFAhmfUkmpsrSRELYLCvKBPgQIJlOT5z8I=@smp.suchkitalash.info",
         "smp://jKkKmm64Gf6jWa2unI5t0QudCoTZxxFp8o28fDZWZU4=@smp1.inqalaab.chat",
         "smp://JfdjUvMRakyzH7yzucTLoxKsY-EfvA0bMTj7kZG3Szs=@smp2.inqalaab.chat",
         "smp://3XECaNOaqlLc_hPyrWSmw4rxrUGxALf5qQVqjaz-D-Y=@smp3.inqalaab.chat",
     ]
-    private let INQALAAB_XFTP_SERVERS = [
+    private let FALLBACK_XFTP_SERVERS = [
         "xftp://RzgzPjyel91YLliscUGXCjReG1kYV_5_o0pvOfZA_4s=@xftp.suchkitalash.info:5233",
         "xftp://oOvy6k99LT5dySeIOmw5-G4FDZ5o3SSpVwm6YmyBsZI=@xftp1.inqalaab.chat",
         "xftp://Aik60WjmVFLWOK2dKYEjEbfdUWxuyUpAp-VO3FcOE5w=@xftp2.inqalaab.chat:5233",
         "xftp://rQDMhOx8wUv7O6J3vht2W3HMsUXbqv0HZPQb3Ce02ss=@xftp3.inqalaab.chat:5233",
     ]
-    private let INQALAAB_HOSTS: Set<String> = ["suchkitalash.info", "inqalaab.chat"]
 
     private let KEY_SERVERS_CONFIGURED = "inqalaab_servers_configured_v2"
     private let KEY_CONTACTS_CLEANED = "inqalaab_contacts_cleaned"
@@ -63,25 +66,60 @@ class InqalaabServers {
         }
     }
 
+    /// Fetch server addresses from Firebase Remote Config.
+    /// Returns (smpServers, xftpServers) from Firebase, or falls back to hardcoded.
+    private func fetchServerAddresses() async -> (smp: [String], xftp: [String]) {
+        let remoteConfig = RemoteConfig.remoteConfig()
+        let settings = RemoteConfigSettings()
+        // First fetch: no minimum interval. Subsequent: 1 hour cache.
+        settings.minimumFetchInterval = 3600
+        remoteConfig.configSettings = settings
+
+        do {
+            let status = try await remoteConfig.fetch()
+            if status == .success {
+                try await remoteConfig.activate()
+
+                let smpValue = remoteConfig.configValue(forKey: "smp_servers").stringValue ?? ""
+                let xftpValue = remoteConfig.configValue(forKey: "xftp_servers").stringValue ?? ""
+
+                let smpServers = smpValue.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
+                let xftpServers = xftpValue.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
+
+                if !smpServers.isEmpty && !xftpServers.isEmpty {
+                    logger.debug("Inqalaab: Firebase Remote Config fetched \(smpServers.count) SMP, \(xftpServers.count) XFTP servers")
+                    return (smpServers, xftpServers)
+                }
+            }
+        } catch {
+            logger.debug("Inqalaab: Firebase fetch failed, using fallback servers: \(error.localizedDescription)")
+        }
+
+        return (FALLBACK_SMP_SERVERS, FALLBACK_XFTP_SERVERS)
+    }
+
     private func replaceServers() async {
         do {
             let currentServers = try await getUserServers()
 
-            // Check if ALL Inqalaab servers are already active
+            // Fetch server addresses (Firebase or fallback)
+            let addresses = await fetchServerAddresses()
+
+            // Check if ALL servers are already active
             let enabledSmpAddrs = Set(currentServers.flatMap { $0.smpServers }.filter { $0.enabled }.map { $0.server })
-            let allSmpPresent = INQALAAB_SMP_SERVERS.allSatisfy { enabledSmpAddrs.contains($0) }
+            let allSmpPresent = addresses.smp.allSatisfy { enabledSmpAddrs.contains($0) }
             let enabledXftpAddrs = Set(currentServers.flatMap { $0.xftpServers }.filter { $0.enabled }.map { $0.server })
-            let allXftpPresent = INQALAAB_XFTP_SERVERS.allSatisfy { enabledXftpAddrs.contains($0) }
+            let allXftpPresent = addresses.xftp.allSatisfy { enabledXftpAddrs.contains($0) }
             if allSmpPresent && allXftpPresent {
                 UserDefaults.standard.set(true, forKey: KEY_SERVERS_CONFIGURED)
                 return
             }
 
             // Build Inqalaab server entries
-            let inqSmp: [UserServer] = INQALAAB_SMP_SERVERS.map {
+            let inqSmp: [UserServer] = addresses.smp.map {
                 UserServer(serverId: nil, server: $0, preset: false, tested: nil, enabled: true, deleted: false)
             }
-            let inqXftp: [UserServer] = INQALAAB_XFTP_SERVERS.map {
+            let inqXftp: [UserServer] = addresses.xftp.map {
                 UserServer(serverId: nil, server: $0, preset: false, tested: nil, enabled: true, deleted: false)
             }
 
