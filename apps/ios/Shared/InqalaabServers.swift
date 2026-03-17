@@ -32,7 +32,8 @@ class InqalaabServers {
     private let KEY_CONTACTS_CLEANED = "inqalaab_contacts_cleaned"
     private let KEY_ADDRESS_CREATED = "inqalaab_address_created"
 
-    private let PRESET_CONTACTS_TO_DELETE: Set<String> = ["SimpleX Status", "Ask SimpleX Team"]
+    // Names match the binary-patched Haskell library output (space-padded to same length as originals)
+    private let PRESET_CONTACTS_TO_DELETE: Set<String> = ["Inqalb Status ", "Ask Inqalb Team "]
 
     /// Guard against concurrent execution
     private var isConfiguring = false
