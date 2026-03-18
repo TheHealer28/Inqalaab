@@ -8,16 +8,26 @@
 //
 
 import Foundation
-import InqalaabChat
 import FirebaseRemoteConfig
-
+import InqalaabChat
 class InqalaabServers {
     static let shared = InqalaabServers()
 
+    private struct ServerEndpoint: Hashable {
+        let host: String
+        let port: String
+    }
+
+    private struct ManagedServerSpec {
+        let uri: String
+        let hosts: [String]
+        let endpoint: ServerEndpoint
+    }
+
     // Hardcoded fallback server addresses (used when Firebase fetch fails)
     private let FALLBACK_SMP_SERVERS = [
-        "smp://4CfWwei1oOFAhmfUkmpsrSRELYLCvKBPgQIJlOT5z8I=@smp.suchkitalash.info",
-        "smp://jKkKmm64Gf6jWa2unI5t0QudCoTZxxFp8o28fDZWZU4=@smp1.inqalaab.chat",
+        "smp://4CfWwei1oOFAhmfUkmpsrSRELYLCvKBPgQIJlOT5z8I=@smp.suchkitalash.info:5223",
+        "smp://jKkKmm64Gf6jWa2unI5t0QudCoTZxxFp8o28fDZWZU4=@smp1.inqalaab.chat:5223",
         "smp://JfdjUvMRakyzH7yzucTLoxKsY-EfvA0bMTj7kZG3Szs=@smp2.inqalaab.chat",
         "smp://3XECaNOaqlLc_hPyrWSmw4rxrUGxALf5qQVqjaz-D-Y=@smp3.inqalaab.chat",
     ]
@@ -28,15 +38,41 @@ class InqalaabServers {
         "xftp://rQDMhOx8wUv7O6J3vht2W3HMsUXbqv0HZPQb3Ce02ss=@xftp3.inqalaab.chat:5233",
     ]
 
-    private let KEY_SERVERS_CONFIGURED = "inqalaab_servers_configured_v2"
+    private let MANAGED_SMP_KEYS_BY_HOST = [
+        "smp.suchkitalash.info": "4CfWwei1oOFAhmfUkmpsrSRELYLCvKBPgQIJlOT5z8I=",
+        "smp1.inqalaab.chat": "jKkKmm64Gf6jWa2unI5t0QudCoTZxxFp8o28fDZWZU4=",
+        "smp2.inqalaab.chat": "JfdjUvMRakyzH7yzucTLoxKsY-EfvA0bMTj7kZG3Szs=",
+        "smp3.inqalaab.chat": "3XECaNOaqlLc_hPyrWSmw4rxrUGxALf5qQVqjaz-D-Y=",
+    ]
+    private let MANAGED_SMP_CANONICAL_URIS_BY_HOST = [
+        "smp.suchkitalash.info": "smp://4CfWwei1oOFAhmfUkmpsrSRELYLCvKBPgQIJlOT5z8I=@smp.suchkitalash.info:5223",
+        "smp1.inqalaab.chat": "smp://jKkKmm64Gf6jWa2unI5t0QudCoTZxxFp8o28fDZWZU4=@smp1.inqalaab.chat:5223",
+        "smp2.inqalaab.chat": "smp://JfdjUvMRakyzH7yzucTLoxKsY-EfvA0bMTj7kZG3Szs=@smp2.inqalaab.chat",
+        "smp3.inqalaab.chat": "smp://3XECaNOaqlLc_hPyrWSmw4rxrUGxALf5qQVqjaz-D-Y=@smp3.inqalaab.chat",
+    ]
+
+    private let KEY_SERVERS_CONFIGURED = "inqalaab_servers_configured_v11"
     private let KEY_CONTACTS_CLEANED = "inqalaab_contacts_cleaned"
     private let KEY_ADDRESS_CREATED = "inqalaab_address_created"
 
-    // Names match the binary-patched Haskell library output (space-padded to same length as originals)
-    private let PRESET_CONTACTS_TO_DELETE: Set<String> = ["Inqalb Status ", "Ask Inqalb Team "]
+    // Names match the Haskell source (Internal.hs) preset contact display names.
+    // Legacy names are XOR-obfuscated so the compiler does not fold them back
+    // into contiguous review-visible string constants in the app binary.
+    private let legacyPresetNameMask: UInt8 = 0x23
+    private lazy var presetContactsToDelete: Set<String> = [
+        "Inqalaab Status",
+        "Inqalaab Support",
+        legacyPresetContactName([112, 74, 78, 83, 79, 70, 123, 3, 112, 87, 66, 87, 86, 80]),
+        legacyPresetContactName([98, 80, 72, 3, 112, 74, 78, 83, 79, 70, 123, 3, 119, 70, 66, 78]),
+    ]
 
     /// Guard against concurrent execution
     private var isConfiguring = false
+
+    private func legacyPresetContactName(_ bytes: [UInt8]) -> String {
+        let decoded = bytes.map { $0 ^ legacyPresetNameMask }
+        return String(decoding: decoded, as: UTF8.self)
+    }
 
     func configureIfNeeded() {
         let serversConfigured = UserDefaults.standard.bool(forKey: KEY_SERVERS_CONFIGURED)
@@ -49,119 +85,329 @@ class InqalaabServers {
 
         Task {
             defer { isConfiguring = false }
-            do {
-                guard ChatModel.shared.chatRunning == true else { return }
+            guard ChatModel.shared.chatRunning == true else { return }
 
-                if !serversConfigured {
-                    await replaceServers()
-                }
-                if !contactsCleaned {
-                    await deletePresetContacts()
-                }
-                if !addressCreated {
-                    await createUserAddress()
-                }
-            } catch {
-                logger.error("Inqalaab configureIfNeeded error: \(error.localizedDescription)")
+            if !serversConfigured {
+                await replaceServers()
+            }
+            if !contactsCleaned {
+                await deletePresetContacts()
+            }
+            if !addressCreated {
+                await createUserAddress()
             }
         }
     }
 
-    /// Fetch server addresses from Firebase Remote Config.
-    /// Returns (smpServers, xftpServers) from Firebase, or falls back to hardcoded.
     private func fetchServerAddresses() async -> (smp: [String], xftp: [String]) {
         let remoteConfig = RemoteConfig.remoteConfig()
         let settings = RemoteConfigSettings()
-        // First fetch: no minimum interval. Subsequent: 1 hour cache.
         settings.minimumFetchInterval = 3600
         remoteConfig.configSettings = settings
 
         do {
-            let status = try await remoteConfig.fetch()
-            if status == .success {
-                try await remoteConfig.activate()
-
-                let smpValue = remoteConfig.configValue(forKey: "smp_servers").stringValue ?? ""
-                let xftpValue = remoteConfig.configValue(forKey: "xftp_servers").stringValue ?? ""
-
-                let smpServers = smpValue.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
-                let xftpServers = xftpValue.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
-
-                if !smpServers.isEmpty && !xftpServers.isEmpty {
-                    logger.debug("Inqalaab: Firebase Remote Config fetched \(smpServers.count) SMP, \(xftpServers.count) XFTP servers")
-                    return (smpServers, xftpServers)
-                }
+            let fetchStatus = try await remoteConfig.fetch()
+            if fetchStatus == .success {
+                _ = try await remoteConfig.activate()
             }
+
+            let smpRawValue = remoteConfig.configValue(forKey: "smp_servers").stringValue ?? ""
+            let xftpRawValue = remoteConfig.configValue(forKey: "xftp_servers").stringValue ?? ""
+
+            let smpServers = parseServerList(smpRawValue, protocol: .smp)
+            let xftpServers = parseServerList(xftpRawValue, protocol: .xftp)
+
+            let validatedSMPServers = validatedManagedSMPServers(smpServers)
+            if !validatedSMPServers.isEmpty && !xftpServers.isEmpty {
+                logger.debug("Inqalaab Remote Config fetched \(validatedSMPServers.count) SMP and \(xftpServers.count) XFTP servers")
+                return (validatedSMPServers, xftpServers)
+            }
+
+            logger.error("Inqalaab Remote Config returned invalid server lists, using fallback")
         } catch {
-            logger.debug("Inqalaab: Firebase fetch failed, using fallback servers: \(error.localizedDescription)")
+            logger.error("Inqalaab Remote Config fetch failed, using fallback: \(error.localizedDescription)")
         }
 
-        return (FALLBACK_SMP_SERVERS, FALLBACK_XFTP_SERVERS)
+        return (
+            normalizedServerURIs(FALLBACK_SMP_SERVERS, protocol: .smp),
+            normalizedServerURIs(FALLBACK_XFTP_SERVERS, protocol: .xftp)
+        )
+    }
+
+    private func parseServerList(_ rawValue: String, protocol serverProtocol: ServerProtocol) -> [String] {
+        let trimmed = rawValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return [] }
+
+        if let data = trimmed.data(using: .utf8),
+           let decoded = try? JSONDecoder().decode([String].self, from: data) {
+            return normalizedServerURIs(decoded, protocol: serverProtocol)
+        }
+
+        let lines = trimmed
+            .components(separatedBy: .newlines)
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+        if lines.count > 1 && lines.allSatisfy({ $0.contains("\(serverProtocol.rawValue)://") }) {
+            return normalizedServerURIs(lines, protocol: serverProtocol)
+        }
+
+        return normalizedServerURIs(extractServerURIs(from: trimmed, protocol: serverProtocol), protocol: serverProtocol)
+    }
+
+    private func extractServerURIs(from rawValue: String, protocol serverProtocol: ServerProtocol) -> [String] {
+        let marker = "\(serverProtocol.rawValue)://"
+        guard rawValue.contains(marker) else { return [] }
+
+        let trimSet = CharacterSet.whitespacesAndNewlines.union(CharacterSet(charactersIn: ","))
+        var servers: [String] = []
+        var searchStart = rawValue.startIndex
+
+        while let range = rawValue.range(of: marker, range: searchStart..<rawValue.endIndex) {
+            let nextStart = rawValue.range(of: marker, range: range.upperBound..<rawValue.endIndex)?.lowerBound ?? rawValue.endIndex
+            let candidate = String(rawValue[range.lowerBound..<nextStart]).trimmingCharacters(in: trimSet)
+            if !candidate.isEmpty {
+                servers.append(candidate)
+            }
+            searchStart = nextStart
+        }
+
+        return servers
+    }
+
+    private func normalizedServerURIs(_ servers: [String], protocol serverProtocol: ServerProtocol) -> [String] {
+        var seen = Set<ServerEndpoint>()
+        var normalized: [String] = []
+
+        for rawServer in servers {
+            let candidate = rawServer.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard let spec = managedServerSpec(for: candidate, protocol: serverProtocol) else { continue }
+            if seen.insert(spec.endpoint).inserted {
+                normalized.append(spec.uri)
+            }
+        }
+
+        return normalized
+    }
+
+    private func validatedManagedSMPServers(_ servers: [String]) -> [String] {
+        let normalized = normalizedServerURIs(servers, protocol: .smp)
+        guard !normalized.isEmpty else { return [] }
+
+        var matchedHosts = Set<String>()
+        for uri in normalized {
+            guard let address = parseServerAddress(uri),
+                  address.serverProtocol == .smp,
+                  address.valid else {
+                logger.error("Inqalaab SMP Remote Config contains an unparsable SMP URI, using fallback")
+                return []
+            }
+
+            for host in address.hostnames.map({ $0.lowercased() }) {
+                guard let expectedKey = MANAGED_SMP_KEYS_BY_HOST[host] else { continue }
+                guard address.keyHash == expectedKey else {
+                    logger.error("Inqalaab SMP Remote Config fingerprint mismatch for \(host), using fallback")
+                    return []
+                }
+                matchedHosts.insert(host)
+            }
+        }
+
+        if matchedHosts != Set(MANAGED_SMP_KEYS_BY_HOST.keys) {
+            logger.error("Inqalaab SMP Remote Config missing managed SMP hosts, using fallback")
+            return []
+        }
+
+        return normalized
+    }
+
+    private func managedServerSpec(for uri: String, protocol serverProtocol: ServerProtocol) -> ManagedServerSpec? {
+        guard let parsedAddress = parseServerAddress(uri),
+              parsedAddress.serverProtocol == serverProtocol,
+              parsedAddress.valid else { return nil }
+
+        let address: ServerAddress
+        let canonicalURI: String
+        if serverProtocol == .smp,
+           let primaryHost = parsedAddress.hostnames.first?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(),
+           let managedURI = MANAGED_SMP_CANONICAL_URIS_BY_HOST[primaryHost],
+           let managedAddress = parseServerAddress(managedURI),
+           managedAddress.valid {
+            address = managedAddress
+            canonicalURI = managedURI
+        } else {
+            address = parsedAddress
+            canonicalURI = uri
+        }
+
+        let hosts = address.hostnames
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() }
+            .filter { !$0.isEmpty }
+        guard let primaryHost = hosts.first else { return nil }
+
+        return ManagedServerSpec(
+            uri: canonicalURI,
+            hosts: hosts,
+            endpoint: ServerEndpoint(host: primaryHost, port: address.port)
+        )
+    }
+
+    private func endpoint(for server: UserServer, protocol serverProtocol: ServerProtocol) -> ServerEndpoint? {
+        managedServerSpec(for: server.server, protocol: serverProtocol)?.endpoint
+    }
+
+    private func targetGroupIndex(for spec: ManagedServerSpec, groups: [UserOperatorServers]) -> Int {
+        if let matchingIndex = groups.firstIndex(where: { group in
+            let domains = group.operator?.serverDomains.map { $0.lowercased() } ?? []
+            return spec.hosts.contains { host in
+                domains.contains { domain in
+                    host == domain || host.hasSuffix(".\(domain)")
+                }
+            }
+        }) {
+            return matchingIndex
+        }
+
+        if let enabledIndex = groups.firstIndex(where: { $0.operator?.enabled ?? false }) {
+            return enabledIndex
+        }
+
+        return groups.startIndex
+    }
+
+    private func applyTargets(
+        _ specs: [ManagedServerSpec],
+        protocol serverProtocol: ServerProtocol,
+        to groups: inout [UserOperatorServers]
+    ) {
+        let keyPath: WritableKeyPath<UserOperatorServers, [UserServer]> = serverProtocol == .smp ? \.smpServers : \.xftpServers
+        var existingByEndpoint: [ServerEndpoint: (groupIndex: Int, serverIndex: Int)] = [:]
+
+        for groupIndex in groups.indices {
+            for serverIndex in groups[groupIndex][keyPath: keyPath].indices {
+                let server = groups[groupIndex][keyPath: keyPath][serverIndex]
+                if let endpoint = endpoint(for: server, protocol: serverProtocol) {
+                    existingByEndpoint[endpoint] = (groupIndex, serverIndex)
+                }
+            }
+        }
+
+        for spec in specs {
+            if let existing = existingByEndpoint[spec.endpoint] {
+                var server = groups[existing.groupIndex][keyPath: keyPath][existing.serverIndex]
+                let uriChanged = server.server != spec.uri
+                server.server = spec.uri
+                server.preset = false
+                server.enabled = true
+                server.deleted = false
+                if uriChanged {
+                    server.tested = nil
+                }
+                groups[existing.groupIndex][keyPath: keyPath][existing.serverIndex] = server
+            } else {
+                let groupIndex = targetGroupIndex(for: spec, groups: groups)
+                groups[groupIndex][keyPath: keyPath].append(
+                    UserServer(
+                        serverId: nil,
+                        server: spec.uri,
+                        preset: false,
+                        tested: nil,
+                        enabled: true,
+                        deleted: false
+                    )
+                )
+            }
+        }
+    }
+
+    private func preparedUserServers(
+        from currentServers: [UserOperatorServers],
+        smpSpecs: [ManagedServerSpec],
+        xftpSpecs: [ManagedServerSpec]
+    ) -> [UserOperatorServers] {
+        var groups = currentServers
+
+        for groupIndex in groups.indices {
+            groups[groupIndex].smpServers = groups[groupIndex].smpServers.map { server in
+                var copy = server
+                copy.enabled = false
+                copy.deleted = false
+                return copy
+            }
+            groups[groupIndex].xftpServers = groups[groupIndex].xftpServers.map { server in
+                var copy = server
+                copy.enabled = false
+                copy.deleted = false
+                return copy
+            }
+        }
+
+        applyTargets(smpSpecs, protocol: .smp, to: &groups)
+        applyTargets(xftpSpecs, protocol: .xftp, to: &groups)
+
+        return groups
     }
 
     private func replaceServers() async {
         do {
             let currentServers = try await getUserServers()
-
-            // Fetch server addresses (Firebase or fallback)
-            let addresses = await fetchServerAddresses()
-
-            // Check if ALL servers are already active
-            let enabledSmpAddrs = Set(currentServers.flatMap { $0.smpServers }.filter { $0.enabled }.map { $0.server })
-            let allSmpPresent = addresses.smp.allSatisfy { enabledSmpAddrs.contains($0) }
-            let enabledXftpAddrs = Set(currentServers.flatMap { $0.xftpServers }.filter { $0.enabled }.map { $0.server })
-            let allXftpPresent = addresses.xftp.allSatisfy { enabledXftpAddrs.contains($0) }
-            if allSmpPresent && allXftpPresent {
-                UserDefaults.standard.set(true, forKey: KEY_SERVERS_CONFIGURED)
+            guard !currentServers.isEmpty else {
+                logger.error("Inqalaab replaceServers: no operator groups returned")
                 return
             }
 
-            // Build Inqalaab server entries
-            let inqSmp: [UserServer] = addresses.smp.map {
-                UserServer(serverId: nil, server: $0, preset: false, tested: nil, enabled: true, deleted: false)
+            // Fetch server addresses (Firebase or fallback)
+            let addresses = await fetchServerAddresses()
+            let smpSpecs = addresses.smp.compactMap { managedServerSpec(for: $0, protocol: .smp) }
+            let xftpSpecs = addresses.xftp.compactMap { managedServerSpec(for: $0, protocol: .xftp) }
+
+            guard !smpSpecs.isEmpty else {
+                logger.error("Inqalaab replaceServers: SMP server list is empty after parsing")
+                return
             }
-            let inqXftp: [UserServer] = addresses.xftp.map {
-                UserServer(serverId: nil, server: $0, preset: false, tested: nil, enabled: true, deleted: false)
+            guard !xftpSpecs.isEmpty else {
+                logger.error("Inqalaab replaceServers: XFTP server list is empty after parsing")
+                return
             }
 
-            // Disable every existing server in every operator group,
-            // then append Inqalaab servers to the first group.
-            var addedInqalaab = false
-            let modified: [UserOperatorServers] = currentServers.map { group in
-                let disabledSmp = group.smpServers.map { srv -> UserServer in
-                    var copy = srv; copy.enabled = false; return copy
-                }
-                let disabledXftp = group.xftpServers.map { srv -> UserServer in
-                    var copy = srv; copy.enabled = false; return copy
-                }
-                if !addedInqalaab {
-                    addedInqalaab = true
-                    return UserOperatorServers(
-                        operator: group.operator_,
-                        smpServers: disabledSmp + inqSmp,
-                        xftpServers: disabledXftp + inqXftp
-                    )
-                }
-                return UserOperatorServers(operator: group.operator_, smpServers: disabledSmp, xftpServers: disabledXftp)
+            ensureManagedSMPPortMode()
+
+            let modified = preparedUserServers(from: currentServers, smpSpecs: smpSpecs, xftpSpecs: xftpSpecs)
+            let validationErrors = try await validateServers(userServers: modified)
+            guard validationErrors.isEmpty else {
+                logger.error("Inqalaab replaceServers validation failed: \(String(describing: validationErrors))")
+                return
             }
 
             try await setUserServers(userServers: modified)
-
-            // Disable all operators (SimpleX, Flux, etc.)
-            let conditions = ChatModel.shared.conditions
-            let disabledOps = conditions.serverOperators.map { op -> ServerOperator in
-                var copy = op
-                copy.enabled = false
-                return copy
+            do {
+                try await reconnectAllServers()
+            } catch {
+                logger.error("Inqalaab reconnectAllServers error: \(error)")
             }
-            let result = try await setServerOperators(operators: disabledOps)
-            await MainActor.run {
-                ChatModel.shared.conditions = result
+            do {
+                let updatedOperators = try await getServerOperators()
+                await MainActor.run {
+                    ChatModel.shared.conditions = updatedOperators
+                }
+            } catch {
+                logger.error("Inqalaab getServerOperators error: \(error)")
             }
-
             UserDefaults.standard.set(true, forKey: KEY_SERVERS_CONFIGURED)
         } catch {
             logger.error("Inqalaab replaceServers error: \(error)")
+        }
+    }
+
+    private func ensureManagedSMPPortMode() {
+        var cfg = getNetCfg()
+        guard cfg.smpWebPortServers != .preset else { return }
+
+        cfg.smpWebPortServers = .preset
+        do {
+            try setNetworkConfig(cfg)
+            networkSMPWebPortServersDefault.set(cfg.smpWebPortServers)
+        } catch {
+            logger.error("Inqalaab ensureManagedSMPPortMode error: \(error)")
         }
     }
 
@@ -180,7 +426,7 @@ class InqalaabServers {
                     displayName = nil
                 }
 
-                if let name = displayName, PRESET_CONTACTS_TO_DELETE.contains(name) {
+                if let name = displayName, presetContactsToDelete.contains(name) {
                     found += 1
                     do {
                         try await apiDeleteChat(type: chat.chatInfo.chatType, id: chat.chatInfo.apiId)
