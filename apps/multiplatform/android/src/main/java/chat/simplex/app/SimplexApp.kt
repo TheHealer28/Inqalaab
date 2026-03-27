@@ -87,7 +87,8 @@ class SimplexApp: Application(), LifecycleEventObserver {
     }
     ProcessLifecycleOwner.get().lifecycle.addObserver(this@SimplexApp)
 
-    // Inqalaab: Wait for app to be fully ready, then replace servers and clean contacts
+    // Inqalaab: Register emergency wipe hook and wait for app to be fully ready
+    InqalaabServers.init()
     CoroutineScope(Dispatchers.Default).launch {
       // Wait up to 2 minutes for onboarding + chat to be ready
       var waited = 0

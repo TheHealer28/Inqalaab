@@ -1122,6 +1122,31 @@ fun BoxScope.ChatInfoToolbar(
         val callEnabled = chatInfo.contact.ready && chatInfo.contact.active
         IconButton({
           showMenu.value = false
+          startCall(CallMediaType.Video)
+        }, enabled = callEnabled
+        ) {
+          Box(
+            modifier = Modifier
+              .size(36.dp)
+              .background(
+                color = if (callEnabled) MaterialTheme.colors.primary else MaterialTheme.colors.secondary,
+                shape = CircleShape
+              ),
+            contentAlignment = Alignment.Center
+          ) {
+            Icon(
+              painterResource(MR.images.ic_videocam_filled),
+              stringResource(MR.strings.icon_descr_video_call).capitalize(Locale.current),
+              tint = Color.White,
+              modifier = Modifier.size(20.dp)
+            )
+          }
+        }
+      }
+      barButtons.add {
+        val callEnabled = chatInfo.contact.ready && chatInfo.contact.active
+        IconButton({
+          showMenu.value = false
           startCall(CallMediaType.Audio)
         }, enabled = callEnabled
         ) {

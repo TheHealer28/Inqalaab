@@ -14,6 +14,16 @@ import chat.simplex.common.views.onboarding.OnboardingStage
 import kotlinx.coroutines.delay
 
 /**
+ * Platform-specific callback to reset server config prefs before reinit.
+ */
+var onEmergencyWipeResetConfig: (() -> Unit)? = null
+
+/**
+ * Platform-specific callback to reconfigure servers after wipe and chat restart.
+ */
+var onEmergencyWipeReconfigure: (() -> Unit)? = null
+
+/**
  * Performs a complete emergency wipe of all app data.
  * This is shared between SafetyHubView and EmergencyWipeConfirmActivity
  * to avoid code duplication.
@@ -50,6 +60,9 @@ suspend fun performEmergencyWipe() {
         m.controller.appPrefs.selfDestruct.set(false)
         m.controller.appPrefs.selfDestructDisplayName.set(null)
 
+        // Reset Inqalaab server config prefs so reconfiguration happens after reinit
+        onEmergencyWipeResetConfig?.invoke()
+
         // Cancel all notifications
         ntfManager.cancelAllNotifications()
 
@@ -69,6 +82,9 @@ suspend fun performEmergencyWipe() {
                 m.controller.startChat(createdUser)
             }
         }
+
+        // Trigger Inqalaab server reconfiguration now that chat is running again
+        onEmergencyWipeReconfigure?.invoke()
 
         Log.d("EmergencyWipe", "Wipe completed successfully")
     } catch (e: Exception) {

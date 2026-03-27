@@ -13,6 +13,22 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 object InqalaabServers {
+    /**
+     * Call this once during app startup to register the emergency wipe hooks.
+     * This ensures server config is reset and reconfigured after emergency wipe.
+     */
+    fun init() {
+        chat.simplex.common.views.safetyhub.onEmergencyWipeResetConfig = {
+            val prefs = androidAppContext.getSharedPreferences(PREFS_NAME, 0)
+            prefs.edit().clear().apply()
+            println("Inqalaab: Server config prefs cleared via emergency wipe")
+        }
+        chat.simplex.common.views.safetyhub.onEmergencyWipeReconfigure = {
+            println("Inqalaab: Triggering server reconfiguration after emergency wipe")
+            configureIfNeeded()
+        }
+    }
+
     // Obfuscated fallback server addresses (Base64 encoded)
     private val FALLBACK_SMP = listOf(
         "c21wOi8vNENmV3dlaTFvT0ZBaG1mVWttcHNyU1JFTFlMQ3ZLQlBnUUlKbE9UNXo4ST1Ac21wLnN1Y2hraXRhbGFzaC5pbmZv",
