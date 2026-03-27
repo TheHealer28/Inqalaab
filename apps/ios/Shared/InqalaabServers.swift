@@ -28,12 +28,12 @@ class InqalaabServers {
     private let FALLBACK_SMP_SERVERS = [
         "smp://4CfWwei1oOFAhmfUkmpsrSRELYLCvKBPgQIJlOT5z8I=@smp.suchkitalash.info:5223",
         "smp://jKkKmm64Gf6jWa2unI5t0QudCoTZxxFp8o28fDZWZU4=@smp1.inqalaab.chat:5223",
-        "smp://JfdjUvMRakyzH7yzucTLoxKsY-EfvA0bMTj7kZG3Szs=@smp2.inqalaab.chat",
-        "smp://3XECaNOaqlLc_hPyrWSmw4rxrUGxALf5qQVqjaz-D-Y=@smp3.inqalaab.chat",
+        "smp://JfdjUvMRakyzH7yzucTLoxKsY-EfvA0bMTj7kZG3Szs=@smp2.inqalaab.chat:5223",
+        "smp://3XECaNOaqlLc_hPyrWSmw4rxrUGxALf5qQVqjaz-D-Y=@smp3.inqalaab.chat:5223",
     ]
     private let FALLBACK_XFTP_SERVERS = [
         "xftp://RzgzPjyel91YLliscUGXCjReG1kYV_5_o0pvOfZA_4s=@xftp.suchkitalash.info:5233",
-        "xftp://oOvy6k99LT5dySeIOmw5-G4FDZ5o3SSpVwm6YmyBsZI=@xftp1.inqalaab.chat",
+        "xftp://oOvy6k99LT5dySeIOmw5-G4FDZ5o3SSpVwm6YmyBsZI=@xftp1.inqalaab.chat:5233",
         "xftp://Aik60WjmVFLWOK2dKYEjEbfdUWxuyUpAp-VO3FcOE5w=@xftp2.inqalaab.chat:5233",
         "xftp://rQDMhOx8wUv7O6J3vht2W3HMsUXbqv0HZPQb3Ce02ss=@xftp3.inqalaab.chat:5233",
     ]
@@ -47,11 +47,11 @@ class InqalaabServers {
     private let MANAGED_SMP_CANONICAL_URIS_BY_HOST = [
         "smp.suchkitalash.info": "smp://4CfWwei1oOFAhmfUkmpsrSRELYLCvKBPgQIJlOT5z8I=@smp.suchkitalash.info:5223",
         "smp1.inqalaab.chat": "smp://jKkKmm64Gf6jWa2unI5t0QudCoTZxxFp8o28fDZWZU4=@smp1.inqalaab.chat:5223",
-        "smp2.inqalaab.chat": "smp://JfdjUvMRakyzH7yzucTLoxKsY-EfvA0bMTj7kZG3Szs=@smp2.inqalaab.chat",
-        "smp3.inqalaab.chat": "smp://3XECaNOaqlLc_hPyrWSmw4rxrUGxALf5qQVqjaz-D-Y=@smp3.inqalaab.chat",
+        "smp2.inqalaab.chat": "smp://JfdjUvMRakyzH7yzucTLoxKsY-EfvA0bMTj7kZG3Szs=@smp2.inqalaab.chat:5223",
+        "smp3.inqalaab.chat": "smp://3XECaNOaqlLc_hPyrWSmw4rxrUGxALf5qQVqjaz-D-Y=@smp3.inqalaab.chat:5223",
     ]
 
-    private let KEY_SERVERS_CONFIGURED = "inqalaab_servers_configured_v11"
+    private let KEY_SERVERS_CONFIGURED = "inqalaab_servers_configured_v14"
     private let KEY_CONTACTS_CLEANED = "inqalaab_contacts_cleaned"
     private let KEY_ADDRESS_CREATED = "inqalaab_address_created"
 
@@ -79,24 +79,98 @@ class InqalaabServers {
         let contactsCleaned = UserDefaults.standard.bool(forKey: KEY_CONTACTS_CLEANED)
         let addressCreated = UserDefaults.standard.bool(forKey: KEY_ADDRESS_CREATED)
 
-        if serversConfigured && contactsCleaned && addressCreated { return }
-        guard !isConfiguring else { return }
+        logger.debug("Inqalaab configureIfNeeded: servers=\(serversConfigured) contacts=\(contactsCleaned) address=\(addressCreated)")
+
+        guard !isConfiguring else {
+            logger.debug("Inqalaab configureIfNeeded: already configuring, skipping")
+            return
+        }
         isConfiguring = true
 
         Task {
             defer { isConfiguring = false }
-            guard ChatModel.shared.chatRunning == true else { return }
+            guard ChatModel.shared.chatRunning == true,
+                  AppChatState.shared.value == .active else {
+                logger.debug("Inqalaab configureIfNeeded: chat not running or not active, skipping")
+                return
+            }
 
             if !serversConfigured {
+                logger.debug("Inqalaab configureIfNeeded: replacing servers...")
                 await replaceServers()
             }
+
             if !contactsCleaned {
+                logger.debug("Inqalaab configureIfNeeded: cleaning contacts...")
                 await deletePresetContacts()
             }
             if !addressCreated {
+                logger.debug("Inqalaab configureIfNeeded: creating address...")
                 await createUserAddress()
             }
         }
+    }
+
+    /// Removes duplicate and non-managed servers — backend re-adds preset servers on each launch.
+    /// Deduplicates by host, keeping only the canonical URI (with explicit port).
+    private func cleanupStaleServers() async {
+        do {
+            let currentServers = try await getUserServers()
+            guard !currentServers.isEmpty else { return }
+
+            let canonicalXftp: [String: String] = [
+                "xftp.suchkitalash.info": "xftp://RzgzPjyel91YLliscUGXCjReG1kYV_5_o0pvOfZA_4s=@xftp.suchkitalash.info:5233",
+                "xftp1.inqalaab.chat": "xftp://oOvy6k99LT5dySeIOmw5-G4FDZ5o3SSpVwm6YmyBsZI=@xftp1.inqalaab.chat:5233",
+                "xftp2.inqalaab.chat": "xftp://Aik60WjmVFLWOK2dKYEjEbfdUWxuyUpAp-VO3FcOE5w=@xftp2.inqalaab.chat:5233",
+                "xftp3.inqalaab.chat": "xftp://rQDMhOx8wUv7O6J3vht2W3HMsUXbqv0HZPQb3Ce02ss=@xftp3.inqalaab.chat:5233",
+            ]
+
+            var groups = currentServers
+            var needsUpdate = false
+
+            for groupIndex in groups.indices {
+                // SMP: deduplicate by host, keep only canonical URI
+                var seenSmpHosts = Set<String>()
+                let smpBefore = groups[groupIndex].smpServers.count
+                groups[groupIndex].smpServers = groups[groupIndex].smpServers.filter { server in
+                    guard let host = parseHost(from: server.server) else { return false }
+                    guard MANAGED_SMP_CANONICAL_URIS_BY_HOST[host] != nil else { return false }
+                    guard !seenSmpHosts.contains(host) else { return false }
+                    seenSmpHosts.insert(host)
+                    return true
+                }
+                if groups[groupIndex].smpServers.count != smpBefore { needsUpdate = true }
+
+                // XFTP: deduplicate by host, keep only canonical URI
+                var seenXftpHosts = Set<String>()
+                let xftpBefore = groups[groupIndex].xftpServers.count
+                groups[groupIndex].xftpServers = groups[groupIndex].xftpServers.filter { server in
+                    guard let host = parseHost(from: server.server) else { return false }
+                    guard canonicalXftp[host] != nil else { return false }
+                    guard !seenXftpHosts.contains(host) else { return false }
+                    seenXftpHosts.insert(host)
+                    return true
+                }
+                if groups[groupIndex].xftpServers.count != xftpBefore { needsUpdate = true }
+            }
+
+            if needsUpdate {
+                logger.debug("Inqalaab cleanupStaleServers: removing \(needsUpdate ? "duplicate/non-managed" : "no") servers")
+                try await setUserServers(userServers: groups)
+            }
+        } catch {
+            logger.error("Inqalaab cleanupStaleServers error: \(error)")
+        }
+    }
+
+    /// Extract host from a server URI like "smp://key@host:port"
+    private func parseHost(from uri: String) -> String? {
+        guard let atIndex = uri.firstIndex(of: "@") else { return nil }
+        let afterAt = uri[uri.index(after: atIndex)...]
+        if let colonIndex = afterAt.lastIndex(of: ":") {
+            return String(afterAt[afterAt.startIndex..<colonIndex])
+        }
+        return String(afterAt)
     }
 
     private func fetchServerAddresses() async -> (smp: [String], xftp: [String]) {
@@ -114,10 +188,18 @@ class InqalaabServers {
             let smpRawValue = remoteConfig.configValue(forKey: "smp_servers").stringValue ?? ""
             let xftpRawValue = remoteConfig.configValue(forKey: "xftp_servers").stringValue ?? ""
 
+            logger.debug("Inqalaab Firebase SMP raw: \(smpRawValue)")
+            logger.debug("Inqalaab Firebase XFTP raw: \(xftpRawValue)")
+
             let smpServers = parseServerList(smpRawValue, protocol: .smp)
             let xftpServers = parseServerList(xftpRawValue, protocol: .xftp)
 
+            logger.debug("Inqalaab Firebase SMP parsed: \(smpServers)")
+            logger.debug("Inqalaab Firebase XFTP parsed: \(xftpServers)")
+
             let validatedSMPServers = validatedManagedSMPServers(smpServers)
+            logger.debug("Inqalaab Firebase SMP validated: \(validatedSMPServers)")
+
             if !validatedSMPServers.isEmpty && !xftpServers.isEmpty {
                 logger.debug("Inqalaab Remote Config fetched \(validatedSMPServers.count) SMP and \(xftpServers.count) XFTP servers")
                 return (validatedSMPServers, xftpServers)
@@ -330,19 +412,22 @@ class InqalaabServers {
             groups[groupIndex].smpServers = groups[groupIndex].smpServers.map { server in
                 var copy = server
                 copy.enabled = false
-                copy.deleted = false
+                copy.deleted = true
                 return copy
             }
             groups[groupIndex].xftpServers = groups[groupIndex].xftpServers.map { server in
                 var copy = server
                 copy.enabled = false
-                copy.deleted = false
+                copy.deleted = true
                 return copy
             }
         }
 
         applyTargets(smpSpecs, protocol: .smp, to: &groups)
         applyTargets(xftpSpecs, protocol: .xftp, to: &groups)
+
+        // Keep deleted servers in payload so backend actually removes them from DB
+        // (filtering them out causes backend to leave stale entries untouched)
 
         return groups
     }
@@ -400,9 +485,9 @@ class InqalaabServers {
 
     private func ensureManagedSMPPortMode() {
         var cfg = getNetCfg()
-        guard cfg.smpWebPortServers != .preset else { return }
+        guard cfg.smpWebPortServers != .off else { return }
 
-        cfg.smpWebPortServers = .preset
+        cfg.smpWebPortServers = .off
         do {
             try setNetworkConfig(cfg)
             networkSMPWebPortServersDefault.set(cfg.smpWebPortServers)
@@ -461,7 +546,7 @@ class InqalaabServers {
     private func createUserAddress() async {
         if ChatModel.shared.userAddress != nil {
             UserDefaults.standard.set(true, forKey: KEY_ADDRESS_CREATED)
-            await enableAutoAccept()
+
             return
         }
 
@@ -471,7 +556,7 @@ class InqalaabServers {
                 ChatModel.shared.userAddress = UserContactLink(connLink)
             }
             UserDefaults.standard.set(true, forKey: KEY_ADDRESS_CREATED)
-            await enableAutoAccept()
+
         } catch {
             do {
                 if let existingAddress = try await apiGetUserAddressAsync() {
@@ -479,7 +564,7 @@ class InqalaabServers {
                         ChatModel.shared.userAddress = existingAddress
                     }
                     UserDefaults.standard.set(true, forKey: KEY_ADDRESS_CREATED)
-                    await enableAutoAccept()
+        
                 }
             } catch {
                 logger.error("Inqalaab createUserAddress error: \(error)")
