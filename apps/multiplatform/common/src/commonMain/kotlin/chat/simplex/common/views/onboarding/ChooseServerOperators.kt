@@ -37,7 +37,7 @@ fun ModalData.OnboardingConditionsView() {
             )
             Spacer(modifier = Modifier.height(24.dp))
             Text(
-                "Inqalaab",
+                "ChatFort",
                 style = MaterialTheme.typography.h4,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colors.primary
@@ -57,7 +57,7 @@ fun ModalData.OnboardingConditionsView() {
         val operators = conditions.serverOperators
         if (operators.isEmpty()) return@LaunchedEffect
 
-        println("Inqalaab: ${operators.size} operators loaded")
+        println("ChatFort: ${operators.size} operators loaded")
 
         withBGApi {
             try {
@@ -69,7 +69,7 @@ fun ModalData.OnboardingConditionsView() {
                 val acceptResult = chatController.acceptConditions(rh, conditionsId = conditionsId, operatorIds = allOperatorIds)
                 if (acceptResult != null) {
                     chatModel.conditions.value = acceptResult
-                    println("Inqalaab: Conditions accepted")
+                    println("ChatFort: Conditions accepted")
 
                     // Enable operators so preset servers get created in DB
                     val enabledOps = prepareEnabledOperators(acceptResult.serverOperators, allOperatorIds.toSet())
@@ -77,16 +77,16 @@ fun ModalData.OnboardingConditionsView() {
                         val setOpsResult = chatController.setServerOperators(rh = rh, operators = enabledOps)
                         if (setOpsResult != null) {
                             chatModel.conditions.value = setOpsResult
-                            println("Inqalaab: Operators enabled")
+                            println("ChatFort: Operators enabled")
                         }
                     }
                 }
             } catch (e: Exception) {
-                println("Inqalaab: Onboarding error: ${e.message}")
+                println("ChatFort: Onboarding error: ${e.message}")
             }
 
             // Advance to next screen
-            println("Inqalaab: Advancing to notifications")
+            println("ChatFort: Advancing to notifications")
             appPrefs.onboardingStage.set(OnboardingStage.Step4_SetNotificationsMode)
         }
     }

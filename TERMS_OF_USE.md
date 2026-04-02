@@ -1,23 +1,23 @@
-# Inqalaab — Terms of Use
+# ChatFort — Terms of Use
 
 **Effective Date:** March 6, 2026
 **Last Updated:** March 6, 2026
 
 ## 1. Acceptance of Terms
 
-By downloading, installing, or using Inqalaab ("the App"), you agree to these Terms of Use. If you do not agree, do not use the App.
+By downloading, installing, or using ChatFort ("the App"), you agree to these Terms of Use. If you do not agree, do not use the App.
 
-## 2. About Inqalaab
+## 2. About ChatFort
 
-Inqalaab is a free, open-source, end-to-end encrypted messaging application. The App is provided as-is for private communication. Inqalaab does not require account creation, does not collect personal data, and does not assign user identifiers.
+ChatFort is a free, open-source, end-to-end encrypted messaging application. The App is provided as-is for private communication. ChatFort does not require account creation, does not collect personal data, and does not assign user identifiers.
 
 ## 3. Eligibility
 
-You must be at least 13 years old to use Inqalaab. By using the App, you confirm that you meet this age requirement.
+You must be at least 13 years old to use ChatFort. By using the App, you confirm that you meet this age requirement.
 
 ## 4. Acceptable Use
 
-You agree to use Inqalaab only for lawful purposes. You may **not** use Inqalaab to:
+You agree to use ChatFort only for lawful purposes. You may **not** use ChatFort to:
 
 - Distribute child sexual abuse material (CSAM) or any content that exploits minors.
 - Coordinate, plan, or carry out acts of terrorism or violent extremism.
@@ -31,18 +31,18 @@ You agree to use Inqalaab only for lawful purposes. You may **not** use Inqalaab
 
 ## 5. Community Guidelines
 
-Inqalaab is built for activists, organizers, and communities who need secure communication. We ask all users to:
+ChatFort is built for activists, organizers, and communities who need secure communication. We ask all users to:
 
 - **Respect others.** Treat fellow users with dignity regardless of background, identity, or beliefs.
 - **Protect privacy.** Do not share private conversations, screenshots, or personal information of others without their consent.
-- **Use responsibly.** The security features in Inqalaab exist to protect people facing real threats. Do not misuse them.
+- **Use responsibly.** The security features in ChatFort exist to protect people facing real threats. Do not misuse them.
 - **Report abuse.** If you encounter abusive behavior in a group, use the in-app reporting feature to flag messages to group administrators.
 
 ## 6. User-Generated Content
 
-Inqalaab enables users to send messages, share files, and communicate in groups. You are solely responsible for the content you create and share through the App.
+ChatFort enables users to send messages, share files, and communicate in groups. You are solely responsible for the content you create and share through the App.
 
-Because Inqalaab uses end-to-end encryption, we cannot access, read, moderate, or monitor message content. Content moderation relies on user-driven tools:
+Because ChatFort uses end-to-end encryption, we cannot access, read, moderate, or monitor message content. Content moderation relies on user-driven tools:
 
 - **Group message reporting:** You can report abusive messages within groups. Reports are sent to group administrators for review.
 - **Group member blocking:** Group administrators can block members from posting, preventing further messages from that member in the group.
@@ -53,13 +53,13 @@ Because Inqalaab uses end-to-end encryption, we cannot access, read, moderate, o
 
 ## 7. Intellectual Property
 
-Inqalaab is open-source software released under the **GNU Affero General Public License v3 (AGPLv3)**. You may view, modify, and distribute the source code in accordance with the license terms. The source code is available at [https://github.com/TheHealer28/Inqalaab](https://github.com/TheHealer28/Inqalaab).
+ChatFort is open-source software released under the **GNU Affero General Public License v3 (AGPLv3)**. You may view, modify, and distribute the source code in accordance with the license terms. The source code is available at [https://github.com/TheHealer28/ChatFort](https://github.com/TheHealer28/ChatFort).
 
-The Inqalaab name, logo, and visual identity are the property of the Inqalaab project.
+The ChatFort name, logo, and visual identity are the property of the ChatFort project.
 
 ## 8. Privacy
 
-Your privacy is fundamental to Inqalaab. Please review our [Privacy Policy](PRIVACY.md) for full details. In summary:
+Your privacy is fundamental to ChatFort. Please review our [Privacy Policy](PRIVACY.md) for full details. In summary:
 
 - No personal data is collected.
 - No user accounts or identifiers exist.
@@ -69,32 +69,32 @@ Your privacy is fundamental to Inqalaab. Please review our [Privacy Policy](PRIV
 
 ## 9. Security Features
 
-Inqalaab includes security features designed for user safety:
+ChatFort includes security features designed for user safety:
 
 - **App Lock** — Passcode and biometric authentication.
 - **Emergency Code** — A self-destruct code that permanently wipes all app data.
 - **Quick Settings Tile** — One-tap emergency data wipe from the notification shade.
 - **Screen Protection** — Prevents screenshots and visibility in recent apps.
 
-These features perform **irreversible data deletion**. You are responsible for understanding their function before enabling them. Inqalaab is not liable for data loss resulting from the use of these features.
+These features perform **irreversible data deletion**. You are responsible for understanding their function before enabling them. ChatFort is not liable for data loss resulting from the use of these features.
 
 ## 10. Disclaimer of Warranties
 
-Inqalaab is provided **"as is"** and **"as available"** without warranties of any kind, whether express or implied. We do not guarantee:
+ChatFort is provided **"as is"** and **"as available"** without warranties of any kind, whether express or implied. We do not guarantee:
 
 - Uninterrupted or error-free operation.
 - That the App will meet your specific requirements.
 - The security of data transmitted through third-party networks.
 
-While Inqalaab uses strong encryption and security practices, no system is completely immune to all threats. Users in high-risk environments should employ additional security measures appropriate to their situation.
+While ChatFort uses strong encryption and security practices, no system is completely immune to all threats. Users in high-risk environments should employ additional security measures appropriate to their situation.
 
 ## 11. Limitation of Liability
 
-To the maximum extent permitted by law, Inqalaab, its developers, contributors, and server operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, loss of privacy, or personal injury, arising from your use of the App.
+To the maximum extent permitted by law, ChatFort, its developers, contributors, and server operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, loss of privacy, or personal injury, arising from your use of the App.
 
 ## 12. Termination
 
-Since Inqalaab requires no account, there is no account to terminate. You may stop using the App at any time by uninstalling it. All local data is deleted upon uninstallation.
+Since ChatFort requires no account, there is no account to terminate. You may stop using the App at any time by uninstalling it. All local data is deleted upon uninstallation.
 
 We reserve the right to discontinue the App or any of its features at any time without notice.
 
@@ -115,4 +115,4 @@ If any provision of these Terms is found to be unenforceable, the remaining prov
 If you have questions about these Terms of Use:
 
 - **Email:** [chat@inqalaab.chat](mailto:chat@inqalaab.chat)
-- **GitHub:** [https://github.com/TheHealer28/Inqalaab](https://github.com/TheHealer28/Inqalaab)
+- **GitHub:** [https://github.com/TheHealer28/ChatFort](https://github.com/TheHealer28/ChatFort)

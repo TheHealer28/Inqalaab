@@ -189,7 +189,7 @@ fun InqalaabSecurityPledgeScreen() {
                         style = MaterialTheme.typography.body2.copy(textDecoration = TextDecoration.Underline),
                         color = MaterialTheme.colors.primary,
                         fontSize = 13.sp,
-                        modifier = Modifier.clickable { uriHandler.openUriCatching("https://github.com/TheHealer28/Inqalaab/blob/main/TERMS_OF_USE.md") }
+                        modifier = Modifier.clickable { uriHandler.openUriCatching("https://github.com/TheHealer28/Inqalaab/blob/android-updates/TERMS_OF_USE.md") }
                     )
                     Text("•", color = MaterialTheme.colors.secondary, fontSize = 13.sp)
                     Text(
@@ -197,7 +197,7 @@ fun InqalaabSecurityPledgeScreen() {
                         style = MaterialTheme.typography.body2.copy(textDecoration = TextDecoration.Underline),
                         color = MaterialTheme.colors.primary,
                         fontSize = 13.sp,
-                        modifier = Modifier.clickable { uriHandler.openUriCatching("https://github.com/TheHealer28/Inqalaab/blob/main/COMMUNITY_GUIDELINES.md") }
+                        modifier = Modifier.clickable { uriHandler.openUriCatching("https://github.com/TheHealer28/Inqalaab/blob/android-updates/COMMUNITY_GUIDELINES.md") }
                     )
                 }
             }

@@ -87,21 +87,19 @@ class SimplexApp: Application(), LifecycleEventObserver {
     }
     ProcessLifecycleOwner.get().lifecycle.addObserver(this@SimplexApp)
 
-    // Inqalaab: Register emergency wipe hook and wait for app to be fully ready
+    // ChatFort: Register emergency wipe hook and wait for app to be fully ready
     InqalaabServers.init()
     CoroutineScope(Dispatchers.Default).launch {
-      // Wait up to 2 minutes for onboarding + chat to be ready
-      var waited = 0
-      while (waited < 120) {
+      // Wait indefinitely for onboarding + chat to be ready (no timeout)
+      while (true) {
         if (appPrefs.onboardingStage.get() == OnboardingStage.OnboardingComplete &&
             chatModel.chatRunning.value == true &&
             chatModel.currentUser.value != null) {
-          delay(1000) // Short buffer for chats list and servers to populate
+          delay(2000) // Buffer for chats list and servers to populate
           InqalaabServers.configureIfNeeded()
           break
         }
         delay(1000)
-        waited++
       }
     }
   }
@@ -112,7 +110,7 @@ class SimplexApp: Application(), LifecycleEventObserver {
       when (event) {
         Lifecycle.Event.ON_START -> {
           isAppOnForeground = true
-          // Inqalaab: Retry server config on every foreground resume
+          // ChatFort: Retry server config on every foreground resume
           InqalaabServers.configureIfNeeded()
           if (chatModel.chatRunning.value == true) {
             withContext(Dispatchers.Main) {

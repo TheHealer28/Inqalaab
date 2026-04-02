@@ -1,12 +1,12 @@
-# Inqalaab Privacy Policy
+# ChatFort Privacy Policy
 
 **Effective: March 6, 2026**
 
-**Summary:** Inqalaab does not collect, store, or have access to any of your messages, contacts, groups, or personal data. Everything stays on your device.
+**Summary:** ChatFort does not collect, store, or have access to any of your messages, contacts, groups, or personal data. Everything stays on your device.
 
 ## 1. What data we collect
 
-**None.** Inqalaab does not collect any personal data. There are no user accounts, no registration, no phone number or email requirements, and no user identifiers of any kind.
+**None.** ChatFort does not collect any personal data. There are no user accounts, no registration, no phone number or email requirements, and no user identifiers of any kind.
 
 ## 2. Messages and files
 
@@ -23,14 +23,14 @@
 
 ## 4. Server infrastructure
 
-- Inqalaab uses its own messaging relay server.
+- ChatFort uses its own messaging relay server.
 - The server does not store messages after delivery.
 - The server does not log IP addresses or connection metadata.
 - Server code is open source and auditable.
 
 ## 5. Device permissions
 
-Inqalaab may request the following device permissions, all of which are optional and used only for the stated purpose:
+ChatFort may request the following device permissions, all of which are optional and used only for the stated purpose:
 
 - **Camera:** Scanning QR codes to connect with contacts, taking photos to send, and video calls.
 - **Microphone:** Voice messages and voice/video calls.
@@ -42,7 +42,7 @@ Inqalaab may request the following device permissions, all of which are optional
 - **Battery optimization exemption:** Allows the background messaging service to reliably receive messages. This does not collect any data.
 - **Full-screen intent:** Displays incoming voice and video call notifications. This does not collect any data.
 - **Foreground service:** Keeps the messaging service running for reliable message delivery in the background. This does not collect any data.
-- **Biometrics (fingerprint/face):** Optional app lock authentication. Biometric data is handled entirely by the Android system and is never accessed by Inqalaab.
+- **Biometrics (fingerprint/face):** Optional app lock authentication. Biometric data is handled entirely by the Android system and is never accessed by ChatFort.
 
 ## 6. Nearby peer-to-peer communication
 
@@ -55,7 +55,7 @@ When using the optional Nearby feature:
 
 ## 7. Analytics and tracking
 
-Inqalaab contains no analytics, no tracking, no advertising, and no third-party SDKs that collect data. We do not use Google Analytics, Firebase Analytics, or any similar service.
+ChatFort contains no analytics, no tracking, no advertising, and no third-party SDKs that collect data. We do not use Google Analytics, Firebase Analytics, or any similar service.
 
 ## 8. Security features
 
@@ -75,7 +75,7 @@ You can delete all your data at any time by:
 
 ## 10. Children's privacy
 
-Inqalaab is not directed at children under 13. We do not knowingly collect any data from anyone, including children.
+ChatFort is not directed at children under 13. We do not knowingly collect any data from anyone, including children.
 
 ## 11. Changes to this policy
 
@@ -83,7 +83,7 @@ We may update this privacy policy from time to time. Any changes will be reflect
 
 ## 12. Open source
 
-Inqalaab is open source under the AGPLv3 license. You can review the complete source code at [https://github.com/TheHealer28/Inqalaab](https://github.com/TheHealer28/Inqalaab).
+ChatFort is open source under the AGPLv3 license. You can review the complete source code at [https://github.com/TheHealer28/ChatFort](https://github.com/TheHealer28/ChatFort).
 
 ## 13. Contact
 

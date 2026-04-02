@@ -132,8 +132,8 @@ fun SettingsLayout(
       SectionView(generalGetString(MR.strings.inq_about_section)) {
         SettingsActionItem(painterResource(MR.images.ic_info), generalGetString(MR.strings.inq_about_title), showModal { AboutInqalaabView() })
         SettingsActionItem(painterResource(MR.images.ic_shield), stringResource(MR.strings.privacy_policy), showModal { PrivacyPolicyView() })
-        SettingsActionItem(painterResource(MR.images.ic_checklist), generalGetString(MR.strings.inq_terms_of_use), { uriHandler.openUriCatching("https://github.com/TheHealer28/Inqalaab/blob/main/TERMS_OF_USE.md") }, textColor = MaterialTheme.colors.primary)
-        SettingsActionItem(painterResource(MR.images.ic_verified_user), generalGetString(MR.strings.inq_community_guidelines), { uriHandler.openUriCatching("https://github.com/TheHealer28/Inqalaab/blob/main/COMMUNITY_GUIDELINES.md") }, textColor = MaterialTheme.colors.primary)
+        SettingsActionItem(painterResource(MR.images.ic_checklist), generalGetString(MR.strings.inq_terms_of_use), { uriHandler.openUriCatching("https://github.com/TheHealer28/Inqalaab/blob/android-updates/TERMS_OF_USE.md") }, textColor = MaterialTheme.colors.primary)
+        SettingsActionItem(painterResource(MR.images.ic_verified_user), generalGetString(MR.strings.inq_community_guidelines), { uriHandler.openUriCatching("https://github.com/TheHealer28/Inqalaab/blob/android-updates/COMMUNITY_GUIDELINES.md") }, textColor = MaterialTheme.colors.primary)
         SettingsActionItem(painterResource(MR.images.ic_mail), stringResource(MR.strings.send_us_an_email), { uriHandler.openUriCatching("mailto:chat@inqalaab.chat") }, textColor = MaterialTheme.colors.primary)
         if (!BuildConfigCommon.ANDROID_BUNDLE) {
           ContributeItem(uriHandler)

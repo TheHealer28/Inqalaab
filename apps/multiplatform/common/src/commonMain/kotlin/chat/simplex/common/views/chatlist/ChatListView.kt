@@ -319,30 +319,8 @@ private fun BoxScope.ChatListWithLoadingScreen(searchText: MutableState<TextFiel
         color = MaterialTheme.colors.secondary
       )
     } else {
-      val userAddress = remember { chatModel.userAddress }.value
       val hasRealChats = chatModel.chats.value.any { it.chatInfo is ChatInfo.Direct || it.chatInfo is ChatInfo.Group }
-      if (userAddress != null && !hasRealChats) {
-        Column(
-          Modifier.align(Alignment.Center).offset(y = (-260).dp).padding(horizontal = DEFAULT_PADDING),
-          horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-          Text(
-            "Your Inqalaab QR Code",
-            style = MaterialTheme.typography.h6,
-            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-            color = MaterialTheme.colors.primary
-          )
-          Spacer(Modifier.height(8.dp))
-          Text(
-            "Show this to connect",
-            color = MaterialTheme.colors.secondary
-          )
-          SimpleXCreatedLinkQRCode(
-            connLink = userAddress.connLinkContact,
-            short = true
-          )
-        }
-      } else if (!hasRealChats && userAddress == null) {
+      if (!hasRealChats && chatModel.userAddress.value == null) {
         Column(
           Modifier.align(Alignment.Center).padding(horizontal = DEFAULT_PADDING * 2),
           horizontalAlignment = Alignment.CenterHorizontally
@@ -528,7 +506,7 @@ private fun ChatListToolbar(userPickerState: MutableStateFlow<AnimatedViewState>
     title = {
       Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(DEFAULT_SPACE_AFTER_ICON)) {
         Text(
-          if (appPlatform.isAndroid) "Inqalaab" else stringResource(MR.strings.your_chats),
+          if (appPlatform.isAndroid) "ChatFort" else stringResource(MR.strings.your_chats),
           color = if (appPlatform.isAndroid) MaterialTheme.colors.primary else MaterialTheme.colors.onBackground,
           fontWeight = FontWeight.SemiBold,
         )
@@ -905,6 +883,35 @@ private fun BoxScope.ChatList(searchText: MutableState<TextFieldValue>, listStat
         chatModel.chatId.value != null && chats.getOrNull(index + 1)?.id == chatModel.chatId.value
       } }
       ChatListNavLinkView(chat, nextChatSelected)
+    }
+    // QR code as a list item (not overlay) — shows when no real chats exist
+    val hasRealChats = chats.any { it.chatInfo is ChatInfo.Direct || it.chatInfo is ChatInfo.Group }
+    if (!hasRealChats) {
+      item {
+        val userAddress = remember { chatModel.userAddress }.value
+        if (userAddress != null) {
+          Column(
+            Modifier.fillMaxWidth().padding(horizontal = DEFAULT_PADDING, vertical = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+          ) {
+            Text(
+              "Your ChatFort QR Code",
+              style = MaterialTheme.typography.h6,
+              fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+              color = MaterialTheme.colors.primary
+            )
+            Spacer(Modifier.height(8.dp))
+            Text(
+              "Show this to connect",
+              color = MaterialTheme.colors.secondary
+            )
+            SimpleXCreatedLinkQRCode(
+              connLink = userAddress.connLinkContact,
+              short = true
+            )
+          }
+        }
+      }
     }
     if (!oneHandUICardShown.value || !addressCreationCardShown.value) {
       item {

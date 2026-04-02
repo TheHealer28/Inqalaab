@@ -393,7 +393,7 @@ private fun ActiveCallOverlayLayout(
         DisabledBackgroundCallsButton()
       }
 
-      BoxWithConstraints(Modifier.padding(start = 6.dp, end = 6.dp, bottom = DEFAULT_PADDING).align(Alignment.CenterHorizontally)) {
+      BoxWithConstraints(Modifier.padding(start = 6.dp, end = 6.dp, bottom = DEFAULT_PADDING).navigationBarsPadding().align(Alignment.CenterHorizontally)) {
         val size = ((maxWidth - DEFAULT_PADDING_HALF * 4) / 5).coerceIn(0.dp, 60.dp)
         // limiting max width for tablets/wide screens, will be displayed in the center
         val padding = ((min(420.dp, maxWidth) - size * 5) / 4).coerceAtLeast(0.dp)

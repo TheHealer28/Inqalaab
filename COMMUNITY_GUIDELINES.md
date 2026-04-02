@@ -1,8 +1,8 @@
-# Inqalaab — Community Guidelines
+# ChatFort — Community Guidelines
 
 **Effective Date:** March 6, 2026
 
-Inqalaab is a secure messaging app built for activists, organizers, journalists, and communities who need private communication. These guidelines exist to ensure the platform remains safe and respectful for everyone.
+ChatFort is a secure messaging app built for activists, organizers, journalists, and communities who need private communication. These guidelines exist to ensure the platform remains safe and respectful for everyone.
 
 ---
 
@@ -27,7 +27,7 @@ Inqalaab is a secure messaging app built for activists, organizers, journalists,
 
 ## Prohibited Content and Behavior
 
-The following are strictly prohibited on Inqalaab:
+The following are strictly prohibited on ChatFort:
 
 ### Exploitation and Abuse
 - Child sexual abuse material (CSAM) or any content exploiting minors.
@@ -58,7 +58,7 @@ The following are strictly prohibited on Inqalaab:
 
 ## Moderation and Enforcement
 
-Inqalaab uses end-to-end encryption. This means:
+ChatFort uses end-to-end encryption. This means:
 
 - **We cannot read your messages.** Content moderation relies entirely on user-driven tools.
 - **We do not monitor conversations.** There is no automated content scanning.
@@ -78,9 +78,9 @@ Inqalaab uses end-to-end encryption. This means:
 
 ### What Happens When You Report
 
-- Reports are visible to **group administrators only** (not to Inqalaab developers or server operators).
+- Reports are visible to **group administrators only** (not to ChatFort developers or server operators).
 - Group administrators can take action including blocking or removing the reported member from the group.
-- Inqalaab does not receive, store, or process report data on any server.
+- ChatFort does not receive, store, or process report data on any server.
 - Reporting is currently available in group conversations. For unwanted 1:1 contacts, use the delete contact feature.
 
 ---
@@ -124,4 +124,4 @@ We may update these Community Guidelines as needed. Changes will be reflected in
 If you have questions about these guidelines:
 
 - **Email:** [chat@inqalaab.chat](mailto:chat@inqalaab.chat)
-- **GitHub:** [https://github.com/TheHealer28/Inqalaab](https://github.com/TheHealer28/Inqalaab)
+- **GitHub:** [https://github.com/TheHealer28/ChatFort](https://github.com/TheHealer28/ChatFort)

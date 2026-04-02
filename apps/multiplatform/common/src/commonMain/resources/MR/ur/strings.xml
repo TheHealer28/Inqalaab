@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">انقلاب</string>
+    <string name="app_name">چیٹ فورٹ</string>
     <string name="thousand_abbreviation">ہزار</string>
     <string name="connect_via_contact_link">رابطے کے پتے سے جوڑیں؟</string>
     <string name="connect_via_invitation_link">ایک بار کے لنک سے جوڑیں؟</string>
@@ -17,7 +17,7 @@
     <string name="connect_plan_open_group">گروپ کھولیں</string>
     <string name="connect_plan_open_new_group">نیا گروپ کھولیں</string>
     <string name="error_parsing_uri_title">غلط لنک</string>
-    <string name="error_parsing_uri_desc">براہ کرم تصدیق کریں کہ انقلاب لنک درست ہے۔</string>
+    <string name="error_parsing_uri_desc">براہ کرم تصدیق کریں کہ چیٹ فورٹ لنک درست ہے۔</string>
     <string name="opening_database">ڈیٹابیس کھل رہا ہے…</string>
     <string name="database_migration_in_progress">ڈیٹابیس منتقلی جاری ہے۔\nاس میں چند منٹ لگ سکتے ہیں۔</string>
     <string name="non_content_uri_alert_title">غلط فائل کا راستہ</string>
@@ -78,17 +78,17 @@
     <string name="description_via_contact_address_link_incognito">رابطے کے پتے سے گمنام</string>
     <string name="description_via_one_time_link">ایک بار کے لنک سے</string>
     <string name="description_via_one_time_link_incognito">ایک بار کے لنک سے گمنام</string>
-    <string name="simplex_link_contact">انقلاب رابطے کا پتہ</string>
-    <string name="simplex_link_invitation">انقلاب ایک بار کی دعوت</string>
-    <string name="simplex_link_group">انقلاب گروپ لنک</string>
-    <string name="simplex_link_channel">انقلاب چینل لنک</string>
-    <string name="simplex_link_relay">انقلاب ریلے لنک</string>
+    <string name="simplex_link_contact">چیٹ فورٹ رابطے کا پتہ</string>
+    <string name="simplex_link_invitation">چیٹ فورٹ ایک بار کی دعوت</string>
+    <string name="simplex_link_group">چیٹ فورٹ گروپ لنک</string>
+    <string name="simplex_link_channel">چیٹ فورٹ چینل لنک</string>
+    <string name="simplex_link_relay">چیٹ فورٹ ریلے لنک</string>
     <string name="simplex_link_connection">%1$s کے ذریعے</string>
-    <string name="simplex_link_mode">انقلاب لنکس</string>
+    <string name="simplex_link_mode">چیٹ فورٹ لنکس</string>
     <string name="simplex_link_mode_description">تفصیل</string>
     <string name="simplex_link_mode_full">مکمل لنک</string>
     <string name="simplex_link_mode_browser">براؤزر کے ذریعے</string>
-    <string name="simplex_link_mode_browser_warning">لنک براؤزر میں کھولنے سے کنکشن کی رازداری اور سیکیورٹی کم ہو سکتی ہے۔ غیر بھروسہ مند انقلاب لنکس سرخ ہوں گے۔</string>
+    <string name="simplex_link_mode_browser_warning">لنک براؤزر میں کھولنے سے کنکشن کی رازداری اور سیکیورٹی کم ہو سکتی ہے۔ غیر بھروسہ مند چیٹ فورٹ لنکس سرخ ہوں گے۔</string>
     <string name="report_reason_spam">سپیم</string>
     <string name="report_reason_illegal">نامناسب مواد</string>
     <string name="report_reason_community">کمیونٹی رہنما اصولوں کی خلاف ورزی</string>
@@ -210,7 +210,7 @@
     <string name="icon_descr_instant_notifications">فوری اطلاعات</string>
     <string name="service_notifications">فوری اطلاعات!</string>
     <string name="service_notifications_disabled">فوری اطلاعات غیر فعال ہیں!</string>
-    <string name="to_preserve_privacy_simplex_has_background_service_instead_of_push_notifications_it_uses_a_few_pc_battery"><![CDATA[رازداری بہتر بنانے کے لیے، <b>انقلاب پس منظر میں چلتا ہے</b> پُش اطلاعات استعمال کرنے کی بجائے۔]]></string>
+    <string name="to_preserve_privacy_simplex_has_background_service_instead_of_push_notifications_it_uses_a_few_pc_battery"><![CDATA[رازداری بہتر بنانے کے لیے، <b>چیٹ فورٹ پس منظر میں چلتا ہے</b> پُش اطلاعات استعمال کرنے کی بجائے۔]]></string>
     <string name="it_can_disabled_via_settings_notifications_still_shown"><![CDATA[<b>اسے سیٹنگز سے غیر فعال کیا جا سکتا ہے</b> – ایپ چلنے کے دوران اطلاعات آتی رہیں گی۔]]></string>
     <string name="turn_off_battery_optimization"><![CDATA[فوری اطلاعات موصول کرنے کے لیے اگلے ڈائیلاگ میں <b>اجازت دیں</b>۔]]></string>
     <string name="turning_off_service_and_periodic">بیٹری کی اصلاح فعال ہے، پس منظر سروس اور وقفے وقفے کی درخواستیں بند ہو رہی ہیں۔ آپ سیٹنگز سے دوبارہ فعال کر سکتے ہیں۔</string>
@@ -220,7 +220,7 @@
     <string name="turn_off_battery_optimization_button">اجازت دیں</string>
     <string name="turn_off_system_restriction_button">ایپ سیٹنگز کھولیں</string>
     <string name="disable_notifications_button">اطلاعات بند کریں</string>
-    <string name="system_restricted_background_desc">انقلاب پس منظر میں نہیں چل سکتا۔ آپ کو صرف ایپ چلنے کے دوران اطلاعات ملیں گی۔</string>
+    <string name="system_restricted_background_desc">چیٹ فورٹ پس منظر میں نہیں چل سکتا۔ آپ کو صرف ایپ چلنے کے دوران اطلاعات ملیں گی۔</string>
     <string name="system_restricted_background_warn"><![CDATA[اطلاعات فعال کرنے کے لیے، ایپ سیٹنگز میں <b>ایپ بیٹری استعمال</b> / <b>بلا پابندی</b> منتخب کریں۔]]></string>
     <string name="system_restricted_background_in_call_title">پس منظر میں کالز نہیں</string>
     <string name="system_restricted_background_in_call_desc">ایپ پس منظر میں 1 منٹ بعد بند ہو سکتی ہے۔</string>
@@ -230,7 +230,7 @@
     <string name="database_initialization_error_title">ڈیٹابیس شروع نہیں ہو سکا</string>
     <string name="database_initialization_error_desc">ڈیٹابیس صحیح طور پر کام نہیں کر رہا۔ مزید جاننے کے لیے ٹیپ کریں</string>
     <string name="xiaomi_ignore_battery_optimization"><![CDATA[<b>Xiaomi آلات</b>: اطلاعات کے لیے سسٹم سیٹنگز میں آٹو اسٹارٹ فعال کریں۔]]></string>
-    <string name="simplex_service_notification_title">انقلاب سروس</string>
+    <string name="simplex_service_notification_title">چیٹ فورٹ سروس</string>
     <string name="simplex_service_notification_text">پیغامات وصول ہو رہے ہیں…</string>
     <string name="call_service_notification_audio_call">آڈیو کال</string>
     <string name="call_service_notification_video_call">ویڈیو کال</string>
@@ -258,10 +258,10 @@
     <string name="notification_new_contact_request">نئی رابطے کی درخواست</string>
     <string name="notification_contact_connected">رابطہ جُڑ گیا</string>
     <string name="error_showing_desktop_notification">اطلاع دکھانے میں خرابی، ڈویلپرز سے رابطہ کریں۔</string>
-    <string name="la_notice_title_simplex_lock">انقلاب لاک</string>
-    <string name="la_notice_to_protect_your_information_turn_on_simplex_lock_you_will_be_prompted_to_complete_authentication_before_this_feature_is_enabled">اپنی معلومات کی حفاظت کے لیے انقلاب لاک فعال کریں۔\nاس فیچر کو فعال کرنے سے پہلے تصدیق مکمل کرنے کو کہا جائے گا۔</string>
+    <string name="la_notice_title_simplex_lock">چیٹ فورٹ لاک</string>
+    <string name="la_notice_to_protect_your_information_turn_on_simplex_lock_you_will_be_prompted_to_complete_authentication_before_this_feature_is_enabled">اپنی معلومات کی حفاظت کے لیے چیٹ فورٹ لاک فعال کریں۔\nاس فیچر کو فعال کرنے سے پہلے تصدیق مکمل کرنے کو کہا جائے گا۔</string>
     <string name="la_notice_turn_on">فعال کریں</string>
-    <string name="la_lock_mode">انقلاب لاک موڈ</string>
+    <string name="la_lock_mode">چیٹ فورٹ لاک موڈ</string>
     <string name="la_lock_mode_system">سسٹم تصدیق</string>
     <string name="la_lock_mode_passcode">پاس کوڈ</string>
     <string name="la_auth_failed">تصدیق ناکام</string>
@@ -275,22 +275,22 @@
     <string name="la_seconds">%d سیکنڈ</string>
     <string name="la_minutes">%d منٹ</string>
     <string name="la_please_remember_to_store_password">براہ کرم یاد رکھیں یا محفوظ طریقے سے رکھیں – کھویا ہوا پاسورڈ واپس نہیں آ سکتا!</string>
-    <string name="auth_simplex_lock_turned_on">انقلاب لاک فعال ہو گیا</string>
+    <string name="auth_simplex_lock_turned_on">چیٹ فورٹ لاک فعال ہو گیا</string>
     <string name="auth_you_will_be_required_to_authenticate_when_you_start_or_resume">ایپ شروع کرتے یا 30 سیکنڈ پس منظر کے بعد دوبارہ آتے وقت تصدیق درکار ہوگی۔</string>
     <string name="auth_unlock">ان لاک</string>
     <string name="auth_log_in_using_credential">اپنی اسناد سے لاگ ان کریں</string>
-    <string name="auth_enable_simplex_lock">انقلاب لاک فعال کریں</string>
-    <string name="auth_disable_simplex_lock">انقلاب لاک غیر فعال کریں</string>
+    <string name="auth_enable_simplex_lock">چیٹ فورٹ لاک فعال کریں</string>
+    <string name="auth_disable_simplex_lock">چیٹ فورٹ لاک غیر فعال کریں</string>
     <string name="auth_confirm_credential">اپنی اسناد کی تصدیق کریں</string>
     <string name="auth_unavailable">تصدیق دستیاب نہیں</string>
-    <string name="auth_device_authentication_is_not_enabled_you_can_turn_on_in_settings_once_enabled">آلے کی تصدیق فعال نہیں ہے۔ آلے کی تصدیق فعال کرنے کے بعد سیٹنگز سے انقلاب لاک فعال کر سکتے ہیں۔</string>
-    <string name="auth_device_authentication_is_disabled_turning_off">آلے کی تصدیق غیر فعال ہے۔ انقلاب لاک بند ہو رہا ہے۔</string>
+    <string name="auth_device_authentication_is_not_enabled_you_can_turn_on_in_settings_once_enabled">آلے کی تصدیق فعال نہیں ہے۔ آلے کی تصدیق فعال کرنے کے بعد سیٹنگز سے چیٹ فورٹ لاک فعال کر سکتے ہیں۔</string>
+    <string name="auth_device_authentication_is_disabled_turning_off">آلے کی تصدیق غیر فعال ہے۔ چیٹ فورٹ لاک بند ہو رہا ہے۔</string>
     <string name="auth_stop_chat">چیٹ روکیں</string>
     <string name="auth_open_chat_console">چیٹ کنسول کھولیں</string>
     <string name="auth_open_chat_profiles">چیٹ پروفائلز تبدیل کریں</string>
     <string name="auth_open_migration_to_another_device">منتقلی اسکرین کھولیں</string>
-    <string name="lock_not_enabled">انقلاب لاک فعال نہیں!</string>
-    <string name="you_can_turn_on_lock">سیٹنگز سے انقلاب لاک فعال کر سکتے ہیں۔</string>
+    <string name="lock_not_enabled">چیٹ فورٹ لاک فعال نہیں!</string>
+    <string name="you_can_turn_on_lock">سیٹنگز سے چیٹ فورٹ لاک فعال کر سکتے ہیں۔</string>
     <string name="message_delivery_error_title">پیغام پہنچانے میں خرابی</string>
     <string name="message_delivery_warning_title">پیغام پہنچانے میں انتباہ</string>
     <string name="message_delivery_error_desc">غالباً اس رابطے نے آپ کے ساتھ کنکشن حذف کر دیا ہے۔</string>
@@ -411,7 +411,7 @@
     <string name="open_to_accept">قبول کرنے کے لیے کھولیں</string>
     <string name="contact_should_accept">رابطے کو قبول کرنا چاہیے…</string>
     <string name="connect_with_contact_name_question">%1$s سے جوڑیں؟</string>
-    <string name="search_or_paste_simplex_link">تلاش کریں یا انقلاب لنک چسپاں کریں</string>
+    <string name="search_or_paste_simplex_link">تلاش کریں یا چیٹ فورٹ لنک چسپاں کریں</string>
     <string name="address_creation_instruction">بعد میں پتہ بنائیں</string>
     <string name="no_selected_chat">کوئی منتخب چیٹ نہیں</string>
     <string name="selected_chat_items_nothing_selected">کچھ منتخب نہیں</string>
@@ -476,7 +476,7 @@
     <string name="compose_send_direct_message_to_connect">جوڑنے کے لیے براہ راست پیغام بھیجیں</string>
     <string name="compose_forward_messages_n">%1$s پیغامات آگے بھیج رہا ہے</string>
     <string name="compose_save_messages_n">%1$s پیغامات محفوظ کر رہا ہے</string>
-    <string name="simplex_links_not_allowed">انقلاب لنکس کی اجازت نہیں</string>
+    <string name="simplex_links_not_allowed">چیٹ فورٹ لنکس کی اجازت نہیں</string>
     <string name="files_and_media_not_allowed">فائلیں اور میڈیا کی اجازت نہیں</string>
     <string name="voice_messages_not_allowed">صوتی پیغامات کی اجازت نہیں</string>
     <string name="compose_message_placeholder">پیغام</string>
@@ -639,15 +639,15 @@
     <string name="choose_file_title">فائل منتخب کریں</string>
     <string name="gallery_image_button">تصویر</string>
     <string name="gallery_video_button">ویڈیو</string>
-    <string name="thank_you_for_installing_simplex">انقلاب انسٹال کرنے کا شکریہ!</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[آپ <font color="#1E8E3E">سوالات پوچھنے اور اپ ڈیٹس حاصل کرنے کے لیے انقلاب ڈویلپرز سے جُڑ سکتے ہیں</font>۔]]></string>
+    <string name="thank_you_for_installing_simplex">چیٹ فورٹ انسٹال کرنے کا شکریہ!</string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[آپ <font color="#1E8E3E">سوالات پوچھنے اور اپ ڈیٹس حاصل کرنے کے لیے چیٹ فورٹ ڈویلپرز سے جُڑ سکتے ہیں</font>۔]]></string>
     <string name="to_start_a_new_chat_help_header">نئی چیٹ شروع کرنے کے لیے</string>
     <string name="chat_help_tap_button">بٹن ٹیپ کریں</string>
     <string name="above_then_preposition_continuation">اوپر، پھر:</string>
     <string name="add_contact_button_to_create_link_or_connect_via_link"><![CDATA[<b>رابطہ شامل کریں</b>: نیا دعوت نامہ لنک بنانے، یا موصول لنک سے جوڑنے کے لیے۔]]></string>
     <string name="create_group_button_to_create_new_group"><![CDATA[<b>گروپ بنائیں</b>: نیا گروپ بنانے کے لیے۔]]></string>
     <string name="to_connect_via_link_title">لنک سے جوڑنے کے لیے</string>
-    <string name="if_you_received_simplex_invitation_link_you_can_open_in_browser">اگر آپ کو انقلاب دعوت نامہ لنک ملا ہے، آپ اسے اپنے براؤزر میں کھول سکتے ہیں:</string>
+    <string name="if_you_received_simplex_invitation_link_you_can_open_in_browser">اگر آپ کو چیٹ فورٹ دعوت نامہ لنک ملا ہے، آپ اسے اپنے براؤزر میں کھول سکتے ہیں:</string>
     <string name="desktop_scan_QR_code_from_app_via_scan_QR_code"><![CDATA[💻 ڈیسک ٹاپ: ایپ سے دکھایا گیا QR کوڈ اسکین کریں، <b>QR کوڈ اسکین</b> سے۔]]></string>
     <string name="mobile_tap_open_in_mobile_app_then_tap_connect_in_app"><![CDATA[📱 موبائل: <b>موبائل ایپ میں کھولیں</b> ٹیپ کریں، پھر ایپ میں <b>جوڑیں</b> ٹیپ کریں۔]]></string>
     <string name="accept_connection_request__question">رابطے کی درخواست قبول کریں؟</string>
@@ -703,10 +703,10 @@
     <string name="icon_descr_cancel_link_preview">لنک پیش نظارہ منسوخ</string>
     <string name="icon_descr_settings">سیٹنگز</string>
     <string name="image_descr_qr_code">QR کوڈ</string>
-    <string name="icon_descr_address">انقلاب پتہ</string>
+    <string name="icon_descr_address">چیٹ فورٹ پتہ</string>
     <string name="icon_descr_help">مدد</string>
-    <string name="icon_descr_simplex_team">انقلاب ٹیم</string>
-    <string name="image_descr_simplex_logo">انقلاب لوگو</string>
+    <string name="icon_descr_simplex_team">چیٹ فورٹ ٹیم</string>
+    <string name="image_descr_simplex_logo">چیٹ فورٹ لوگو</string>
     <string name="icon_descr_email">ای میل</string>
     <string name="icon_descr_more_button">مزید</string>
     <string name="show_QR_code">QR کوڈ دکھائیں</string>
@@ -724,20 +724,20 @@
     <string name="share_invitation_link">ایک بار کا لنک شیئر کریں</string>
     <string name="paste_the_link_you_received_to_connect_with_your_contact">رابطے سے جوڑنے کے لیے موصول لنک چسپاں کریں…</string>
     <string name="learn_more">مزید جانیں</string>
-    <string name="learn_more_about_address">انقلاب پتے کے بارے میں</string>
+    <string name="learn_more_about_address">چیٹ فورٹ پتے کے بارے میں</string>
     <string name="connect__a_new_random_profile_will_be_shared">ایک نیا بے ترتیب پروفائل شیئر ہوگا۔</string>
     <string name="connect__your_profile_will_be_shared">آپ کا پروفائل %1$s شیئر ہوگا۔</string>
     <string name="scan_qr_to_connect_to_contact">جوڑنے کے لیے، رابطہ ایپ میں QR کوڈ اسکین کر سکتا ہے یا لنک استعمال کر سکتا ہے۔</string>
     <string name="if_you_cant_meet_in_person">اگر ذاتی ملاقات ممکن نہیں، ویڈیو کال میں QR کوڈ دکھائیں یا لنک شیئر کریں۔</string>
     <string name="share_address_publicly">پتہ عوامی طور پر شیئر کریں</string>
-    <string name="share_simplex_address_on_social_media">سوشل میڈیا پر انقلاب پتہ شیئر کریں۔</string>
+    <string name="share_simplex_address_on_social_media">سوشل میڈیا پر چیٹ فورٹ پتہ شیئر کریں۔</string>
     <string name="you_can_share_your_address">آپ اپنا پتہ لنک یا QR کوڈ کے طور پر شیئر کر سکتے ہیں - کوئی بھی آپ سے جُڑ سکتا ہے۔</string>
     <string name="you_wont_lose_your_contacts_if_delete_address">بعد میں پتہ حذف کرنے سے آپ کے رابطے نہیں جائیں گے۔</string>
     <string name="share_1_time_link_with_a_friend">دوست کے ساتھ ایک بار کا لنک شیئر کریں</string>
     <string name="one_time_link_can_be_used_with_one_contact_only"><![CDATA[ایک بار کا لنک <i>صرف ایک رابطے</i> کے ساتھ استعمال ہو سکتا ہے - ذاتی طور پر یا کسی میسنجر سے شیئر کریں۔]]></string>
     <string name="you_can_set_connection_name_to_remember">آپ کنکشن کا نام سیٹ کر سکتے ہیں تاکہ یاد رہے لنک کس کو شیئر کیا۔</string>
     <string name="connection_security">کنکشن سیکیورٹی</string>
-    <string name="simplex_address_and_1_time_links_are_safe_to_share">انقلاب پتہ اور ایک بار کے لنکس کسی بھی میسنجر سے شیئر کرنا محفوظ ہے۔</string>
+    <string name="simplex_address_and_1_time_links_are_safe_to_share">چیٹ فورٹ پتہ اور ایک بار کے لنکس کسی بھی میسنجر سے شیئر کرنا محفوظ ہے۔</string>
     <string name="to_protect_against_your_link_replaced_compare_codes">اپنے لنک کی تبدیلی سے بچاؤ کے لیے، رابطے کے سیکیورٹی کوڈز موازنہ کریں۔</string>
     <string name="you_can_accept_or_reject_connection">لوگ جب جُڑنے کی درخواست کریں، آپ قبول یا مسترد کر سکتے ہیں۔</string>
     <string name="read_more_in_user_guide_with_link"><![CDATA[<font color="#1E8E3E">صارف گائیڈ</font> میں مزید پڑھیں۔]]></string>
@@ -754,7 +754,7 @@
     <string name="paste_link">لنک چسپاں کریں</string>
     <string name="one_time_link">ایک بار کا دعوت نامہ لنک</string>
     <string name="one_time_link_short">ایک بار کا لنک</string>
-    <string name="simplex_address">انقلاب پتہ</string>
+    <string name="simplex_address">چیٹ فورٹ پتہ</string>
     <string name="or_show_this_qr_code">یا یہ کوڈ دکھائیں</string>
     <string name="full_link_button_text">مکمل لنک</string>
     <string name="short_link_button_text">مختصر لنک</string>
@@ -770,11 +770,11 @@
     <string name="retry_verb">دوبارہ کوشش</string>
     <string name="share_this_1_time_link">یہ ایک بار کا دعوت لنک شیئر کریں</string>
     <string name="paste_the_link_you_received">موصول لنک چسپاں کریں</string>
-    <string name="the_text_you_pasted_is_not_a_link">آپ نے جو متن چسپاں کیا وہ انقلاب لنک نہیں۔</string>
+    <string name="the_text_you_pasted_is_not_a_link">آپ نے جو متن چسپاں کیا وہ چیٹ فورٹ لنک نہیں۔</string>
     <string name="tap_to_paste_link">لنک چسپاں کرنے کے لیے ٹیپ کریں</string>
     <string name="loading_profile">پروفائل لوڈ ہو رہا ہے…</string>
     <string name="invalid_qr_code">غلط QR کوڈ</string>
-    <string name="code_you_scanned_is_not_simplex_link_qr_code">آپ نے جو کوڈ اسکین کیا وہ انقلاب لنک QR کوڈ نہیں۔</string>
+    <string name="code_you_scanned_is_not_simplex_link_qr_code">آپ نے جو کوڈ اسکین کیا وہ چیٹ فورٹ لنک QR کوڈ نہیں۔</string>
     <string name="deleted_chats">آرکائیو رابطے</string>
     <string name="no_filtered_contacts">کوئی فلٹر شدہ رابطے نہیں</string>
     <string name="contact_list_header_title">آپ کے رابطے</string>
@@ -791,18 +791,18 @@
     <string name="is_verified">%s تصدیق شدہ ہے</string>
     <string name="is_not_verified">%s تصدیق شدہ نہیں</string>
     <string name="your_settings">آپ کی سیٹنگز</string>
-    <string name="your_simplex_contact_address">آپ کا انقلاب پتہ</string>
+    <string name="your_simplex_contact_address">آپ کا چیٹ فورٹ پتہ</string>
     <string name="your_chat_profiles">آپ کے چیٹ پروفائلز</string>
     <string name="create_chat_profile">چیٹ پروفائل بنائیں</string>
     <string name="database_passphrase_and_export">ڈیٹابیس پاسفریز اور برآمد</string>
-    <string name="about_simplex_chat">انقلاب چیٹ کے بارے میں</string>
+    <string name="about_simplex_chat">چیٹ فورٹ چیٹ کے بارے میں</string>
     <string name="privacy_policy">رازداری کی پالیسی</string>
     <string name="how_to_use_simplex_chat">کیسے استعمال کریں</string>
     <string name="markdown_help">مارک ڈاؤن مدد</string>
     <string name="markdown_in_messages">پیغامات میں مارک ڈاؤن</string>
     <string name="chat_with_the_founder">سوالات اور تجاویز بھیجیں</string>
     <string name="send_us_an_email">ہمیں ای میل بھیجیں</string>
-    <string name="chat_lock">انقلاب لاک</string>
+    <string name="chat_lock">چیٹ فورٹ لاک</string>
     <string name="chat_console">چیٹ کنسول</string>
     <string name="message_servers">پیغام سرورز</string>
     <string name="smp_servers">SMP سرورز</string>
@@ -835,15 +835,15 @@
     <string name="xftp_servers_configured">ترتیب شدہ XFTP سرورز</string>
     <string name="xftp_servers_other">دیگر XFTP سرورز</string>
     <string name="subscription_percentage">فیصد دکھائیں</string>
-    <string name="install_simplex_chat_for_terminal">ٹرمینل کے لیے انقلاب انسٹال کریں</string>
+    <string name="install_simplex_chat_for_terminal">ٹرمینل کے لیے چیٹ فورٹ انسٹال کریں</string>
     <string name="reset_all_hints">تمام اشارے ری سیٹ</string>
     <string name="star_on_github">GitHub پر ستارہ</string>
     <string name="contribute">تعاون کریں</string>
     <string name="rate_the_app">ایپ کی درجہ بندی</string>
-    <string name="use_simplex_chat_servers__question">انقلاب سرورز استعمال کریں؟</string>
+    <string name="use_simplex_chat_servers__question">چیٹ فورٹ سرورز استعمال کریں؟</string>
     <string name="your_SMP_servers">آپ کے SMP سرورز</string>
     <string name="your_XFTP_servers">آپ کے XFTP سرورز</string>
-    <string name="using_simplex_chat_servers">انقلاب سرورز استعمال ہو رہے ہیں۔</string>
+    <string name="using_simplex_chat_servers">چیٹ فورٹ سرورز استعمال ہو رہے ہیں۔</string>
     <string name="how_to">کیسے</string>
     <string name="how_to_use_your_servers">اپنے سرورز کیسے استعمال کریں</string>
     <string name="saved_ICE_servers_will_be_removed">محفوظ WebRTC ICE سرورز ہٹا دیے جائیں گے۔</string>
@@ -968,7 +968,7 @@
     <string name="share_link">لنک شیئر کریں</string>
     <string name="add_address_to_your_profile">پروفائل میں پتہ شامل کریں، تاکہ آپ کے رابطے اسے دوسروں کے ساتھ شیئر کر سکیں۔ پروفائل اپ ڈیٹ آپ کے رابطوں کو بھیجی جائے گی۔</string>
     <string name="create_address_and_let_people_connect">لوگوں کو آپ سے جوڑنے کے لیے پتہ بنائیں۔</string>
-    <string name="create_simplex_address">انقلاب پتہ بنائیں</string>
+    <string name="create_simplex_address">چیٹ فورٹ پتہ بنائیں</string>
     <string name="share_with_contacts">رابطوں کے ساتھ شیئر کریں</string>
     <string name="share_address_with_contacts_question">رابطوں کے ساتھ پتہ شیئر کریں؟</string>
     <string name="profile_update_will_be_sent_to_contacts">پروفائل اپ ڈیٹ رابطوں کو بھیجی جائے گی۔</string>
@@ -979,14 +979,14 @@
     <string name="address_welcome_message">خوش آمدید پیغام</string>
     <string name="enter_welcome_message_optional">خوش آمدید پیغام درج کریں… (اختیاری)</string>
     <string name="save_settings_question">سیٹنگز محفوظ کریں؟</string>
-    <string name="save_auto_accept_settings">انقلاب پتے کی سیٹنگز محفوظ کریں</string>
+    <string name="save_auto_accept_settings">چیٹ فورٹ پتے کی سیٹنگز محفوظ کریں</string>
     <string name="delete_address">پتہ حذف کریں</string>
     <string name="invite_friends">دوستوں کو مدعو کریں</string>
-    <string name="email_invite_subject">آئیں انقلاب میں بات کریں</string>
-    <string name="email_invite_body">ہیلو!\nانقلاب پر مجھ سے جُڑیں: %s</string>
+    <string name="email_invite_subject">آئیں چیٹ فورٹ میں بات کریں</string>
+    <string name="email_invite_body">ہیلو!\nچیٹ فورٹ پر مجھ سے جُڑیں: %s</string>
     <string name="for_social_media">سوشل میڈیا کے لیے</string>
     <string name="or_to_share_privately">یا نجی طور پر شیئر کریں</string>
-    <string name="simplex_address_or_1_time_link">انقلاب پتہ یا ایک بار کا لنک؟</string>
+    <string name="simplex_address_or_1_time_link">چیٹ فورٹ پتہ یا ایک بار کا لنک؟</string>
     <string name="create_1_time_link">ایک بار کا لنک بنائیں</string>
     <string name="address_settings">پتے کی سیٹنگز</string>
     <string name="business_address">کاروباری پتہ</string>
@@ -1003,14 +1003,14 @@
     <string name="continue_to_next_step">جاری رکھیں</string>
     <string name="dont_create_address">پتہ نہ بنائیں</string>
     <string name="you_can_create_it_later">آپ بعد میں بنا سکتے ہیں</string>
-    <string name="you_can_make_address_visible_via_settings">آپ سیٹنگز کے ذریعے اپنے انقلاب رابطوں کو یہ دکھا سکتے ہیں۔</string>
+    <string name="you_can_make_address_visible_via_settings">آپ سیٹنگز کے ذریعے اپنے چیٹ فورٹ رابطوں کو یہ دکھا سکتے ہیں۔</string>
     <string name="invite_friends_short">مدعو کریں</string>
     <string name="display_name__field">پروفائل نام:</string>
     <string name="full_name__field">پورا نام:</string>
     <string name="short_descr__field">تعارف:</string>
     <string name="bio_too_large">تعارف بہت بڑا ہے</string>
     <string name="your_current_profile">آپ کا موجودہ پروفائل</string>
-    <string name="your_profile_is_stored_on_device_and_shared_only_with_contacts_simplex_cannot_see_it">آپ کا پروفائل آپ کے آلے پر محفوظ ہے اور صرف آپ کے رابطوں کے ساتھ شیئر ہوتا ہے۔ انقلاب سرورز آپ کا پروفائل نہیں دیکھ سکتے۔</string>
+    <string name="your_profile_is_stored_on_device_and_shared_only_with_contacts_simplex_cannot_see_it">آپ کا پروفائل آپ کے آلے پر محفوظ ہے اور صرف آپ کے رابطوں کے ساتھ شیئر ہوتا ہے۔ چیٹ فورٹ سرورز آپ کا پروفائل نہیں دیکھ سکتے۔</string>
     <string name="edit_image">تصویر میں ترمیم</string>
     <string name="delete_image">تصویر حذف کریں</string>
     <string name="save_admission_question">داخلے کی سیٹنگز محفوظ کریں؟</string>
@@ -1040,7 +1040,7 @@
     <string name="create_address_button">بنائیں</string>
     <string name="invalid_name">غلط نام!</string>
     <string name="correct_name_to">نام درست کریں %s؟</string>
-    <string name="about_simplex">انقلاب کے بارے میں</string>
+    <string name="about_simplex">چیٹ فورٹ کے بارے میں</string>
     <string name="how_to_use_markdown">مارک ڈاؤن کیسے استعمال کریں</string>
     <string name="you_can_use_markdown_to_format_messages__prompt">آپ پیغامات کی شکل بنانے کے لیے مارک ڈاؤن استعمال کر سکتے ہیں:</string>
     <string name="bold_text">موٹا</string>
@@ -1103,8 +1103,8 @@
     <string name="emergency_wipe_title">ایپ ری سیٹ کریں</string>
     <string name="emergency_wipe_message">یہ تمام پیغامات، رابطے اور فائلیں مستقل طور پر حذف کر دے گا۔ ایک نیا خالی پروفائل بنایا جائے گا۔ یہ واپس نہیں ہو سکتا۔</string>
     <string name="emergency_wipe_confirm">ری سیٹ</string>
-    <string name="how_simplex_works">انقلاب کیسے کام کرتا ہے</string>
-    <string name="to_protect_privacy_simplex_has_ids_for_queues">آپ کی رازداری کی حفاظت کے لیے، انقلاب آپ کے ہر رابطے کے لیے الگ IDs استعمال کرتا ہے۔</string>
+    <string name="how_simplex_works">چیٹ فورٹ کیسے کام کرتا ہے</string>
+    <string name="to_protect_privacy_simplex_has_ids_for_queues">آپ کی رازداری کی حفاظت کے لیے، چیٹ فورٹ آپ کے ہر رابطے کے لیے الگ IDs استعمال کرتا ہے۔</string>
     <string name="only_client_devices_store_contacts_groups_e2e_encrypted_messages">صرف کلائنٹ آلات صارف پروفائلز، رابطے، گروپس اور پیغامات محفوظ کرتے ہیں۔</string>
     <string name="all_message_and_files_e2e_encrypted"><![CDATA[تمام پیغامات اور فائلیں <b>اینڈ ٹو اینڈ انکرپٹڈ</b> بھیجی جاتی ہیں، براہ راست پیغامات میں پوسٹ کوانٹم سیکیورٹی کے ساتھ۔]]></string>
     <string name="read_more_in_github_with_link"><![CDATA[ہماری <font color="#1E8E3E">GitHub ریپوزٹری</font> میں مزید پڑھیں۔]]></string>
@@ -1125,16 +1125,16 @@
     <string name="you_can_change_it_later">بے ترتیب پاسفریز سیٹنگز میں سادہ متن میں محفوظ ہے۔\nآپ بعد میں تبدیل کر سکتے ہیں۔</string>
     <string name="use_random_passphrase">بے ترتیب پاسفریز استعمال کریں</string>
     <string name="onboarding_conditions_private_chats_not_accessible">نجی چیٹس، گروپس اور آپ کے رابطے سرور آپریٹرز کے لیے قابل رسائی نہیں۔</string>
-    <string name="onboarding_conditions_by_using_you_agree">انقلاب استعمال کر کے آپ اتفاق کرتے ہیں:\n- صرف قانونی مواد عوامی گروپس میں بھیجیں۔\n- دوسرے صارفین کا احترام کریں – کوئی سپیم نہیں۔</string>
+    <string name="onboarding_conditions_by_using_you_agree">چیٹ فورٹ استعمال کر کے آپ اتفاق کرتے ہیں:\n- صرف قانونی مواد عوامی گروپس میں بھیجیں۔\n- دوسرے صارفین کا احترام کریں – کوئی سپیم نہیں۔</string>
     <string name="onboarding_conditions_privacy_policy_and_conditions_of_use">رازداری کی پالیسی اور استعمال کی شرائط۔</string>
     <string name="onboarding_conditions_accept">قبول کریں</string>
     <string name="onboarding_conditions_configure_server_operators">سرور آپریٹرز ترتیب دیں</string>
     <string name="onboarding_choose_server_operators">سرور آپریٹرز</string>
     <string name="onboarding_network_operators">نیٹ ورک آپریٹرز</string>
-    <string name="onboarding_network_operators_simplex_flux_agreement">انقلاب اور Flux نے ایپ میں Flux کے زیر انتظام سرورز شامل کرنے کا معاہدہ کیا ہے۔</string>
+    <string name="onboarding_network_operators_simplex_flux_agreement">چیٹ فورٹ اور Flux نے ایپ میں Flux کے زیر انتظام سرورز شامل کرنے کا معاہدہ کیا ہے۔</string>
     <string name="onboarding_network_operators_app_will_use_different_operators">ایپ ہر بات چیت میں مختلف آپریٹرز استعمال کر کے آپ کی رازداری کی حفاظت کرتی ہے۔</string>
     <string name="onboarding_network_operators_cant_see_who_talks_to_whom">جب ایک سے زیادہ آپریٹر فعال ہوں، ان میں سے کسی کے پاس یہ جاننے کا میٹا ڈیٹا نہیں ہوتا کہ کون کس سے بات کر رہا ہے۔</string>
-    <string name="onboarding_network_operators_app_will_use_for_routing">مثال کے طور پر، اگر آپ کا رابطہ انقلاب سرور کے ذریعے پیغامات وصول کرتا ہے، تو آپ کی ایپ انہیں Flux سرور کے ذریعے پہنچائے گی۔</string>
+    <string name="onboarding_network_operators_app_will_use_for_routing">مثال کے طور پر، اگر آپ کا رابطہ چیٹ فورٹ سرور کے ذریعے پیغامات وصول کرتا ہے، تو آپ کی ایپ انہیں Flux سرور کے ذریعے پہنچائے گی۔</string>
     <string name="onboarding_network_about_operators">آپریٹرز کے بارے میں</string>
     <string name="onboarding_select_network_operators_to_use">استعمال کرنے کے لیے نیٹ ورک آپریٹرز منتخب کریں۔</string>
     <string name="how_it_helps_privacy">یہ رازداری میں کیسے مدد کرتا ہے</string>
@@ -1171,7 +1171,7 @@
     <string name="webrtc_ice_servers">WebRTC ICE سرورز</string>
     <string name="relay_server_protects_ip">ریلے سرور آپ کا IP پتہ چھپاتا ہے، لیکن یہ کال کی مدت دیکھ سکتا ہے۔</string>
     <string name="relay_server_if_necessary">ریلے سرور صرف ضرورت پڑنے پر استعمال ہوتا ہے۔ دوسرا فریق آپ کا IP پتہ دیکھ سکتا ہے۔</string>
-    <string name="open_simplex_chat_to_accept_call">کال قبول کرنے کے لیے انقلاب کھولیں</string>
+    <string name="open_simplex_chat_to_accept_call">کال قبول کرنے کے لیے چیٹ فورٹ کھولیں</string>
     <string name="allow_accepting_calls_from_lock_screen">سیٹنگز سے لاک اسکرین پر کالز فعال کریں۔</string>
     <string name="open_verb">کھولیں</string>
     <string name="status_e2e_encrypted">اینڈ ٹو اینڈ انکرپٹڈ</string>
@@ -1853,7 +1853,7 @@
     <string name="theme_system">سسٹم</string>
     <string name="theme_light">ہلکا</string>
     <string name="theme_dark">گہرا</string>
-    <string name="theme_simplex">انقلاب</string>
+    <string name="theme_simplex">چیٹ فورٹ</string>
     <string name="theme_black">سیاہ</string>
     <string name="language_system">سسٹم زبان</string>
     <string name="theme">تھیم</string>
@@ -1922,7 +1922,7 @@
     <string name="message_reactions">پیغام پر ردعمل</string>
     <string name="voice_messages">صوتی پیغامات</string>
     <string name="files_and_media">فائلیں اور میڈیا</string>
-    <string name="simplex_links">انقلاب لنکس</string>
+    <string name="simplex_links">چیٹ فورٹ لنکس</string>
     <string name="recent_history">نظر آنے والی تاریخ</string>
     <string name="audio_video_calls">آڈیو/ویڈیو کالز</string>
     <string name="available_in_v51">\nv5.1 میں دستیاب</string>
@@ -1988,8 +1988,8 @@
     <string name="prohibit_message_reactions_group">پیغام پر ردعمل ممنوع کریں۔</string>
     <string name="allow_to_send_files">فائلیں اور میڈیا بھیجنے کی اجازت دیں۔</string>
     <string name="prohibit_sending_files">فائلیں اور میڈیا بھیجنا ممنوع کریں۔</string>
-    <string name="allow_to_send_simplex_links">انقلاب لنکس بھیجنے کی اجازت دیں۔</string>
-    <string name="prohibit_sending_simplex_links">انقلاب لنکس بھیجنا ممنوع کریں</string>
+    <string name="allow_to_send_simplex_links">چیٹ فورٹ لنکس بھیجنے کی اجازت دیں۔</string>
+    <string name="prohibit_sending_simplex_links">چیٹ فورٹ لنکس بھیجنا ممنوع کریں</string>
     <string name="enable_sending_recent_history">نئے ممبران کو آخری 100 پیغامات بھیجیں۔</string>
     <string name="disable_sending_recent_history">نئے ممبران کو تاریخ نہ بھیجیں۔</string>
     <string name="enable_sending_member_reports">ماڈریٹرز کو پیغامات کی رپورٹ کرنے کی اجازت دیں۔</string>
@@ -2008,8 +2008,8 @@
     <string name="message_reactions_are_prohibited">ردعمل ممنوع ہیں</string>
     <string name="group_members_can_send_files">ممبران فائلیں اور میڈیا بھیج سکتے ہیں۔</string>
     <string name="files_are_prohibited_in_group">اس گروپ میں فائلیں ممنوع ہیں</string>
-    <string name="group_members_can_send_simplex_links">ممبران انقلاب لنکس بھیج سکتے ہیں۔</string>
-    <string name="simplex_links_are_prohibited_in_group">انقلاب لنکس ممنوع ہیں۔</string>
+    <string name="group_members_can_send_simplex_links">ممبران چیٹ فورٹ لنکس بھیج سکتے ہیں۔</string>
+    <string name="simplex_links_are_prohibited_in_group">چیٹ فورٹ لنکس ممنوع ہیں۔</string>
     <string name="recent_history_is_sent_to_new_members">نئے ممبران کو آخری 100 پیغامات بھیجے جاتے ہیں۔</string>
     <string name="recent_history_is_not_sent_to_new_members">نئے ممبران کو تاریخ نہیں بھیجی جاتی۔</string>
     <string name="group_members_can_send_reports">ممبران ماڈریٹرز کو پیغامات کی رپورٹ کر سکتے ہیں۔</string>
@@ -2060,7 +2060,7 @@
     <string name="new_in_version">%s میں نیا</string>
     <string name="whats_new_read_more">مزید پڑھیں</string>
     <string name="v4_2_security_assessment">سیکیورٹی جائزہ</string>
-    <string name="v4_2_security_assessment_desc">انقلاب کی سیکیورٹی کا Trail of Bits نے آڈٹ کیا۔</string>
+    <string name="v4_2_security_assessment_desc">چیٹ فورٹ کی سیکیورٹی کا Trail of Bits نے آڈٹ کیا۔</string>
     <string name="v4_2_group_links">گروپ لنکس</string>
     <string name="v4_2_group_links_desc">ایڈمنز گروپس میں شامل ہونے کے لنکس بنا سکتے ہیں۔</string>
     <string name="v4_2_auto_accept_contact_requests">رابطے کی درخواستیں خودکار قبول</string>
@@ -2202,7 +2202,7 @@
     <string name="v6_0_connection_servers_status">اپنا نیٹ ورک کنٹرول کریں</string>
     <string name="v6_0_connection_servers_status_descr">کنکشن اور سرورز کی حالت۔</string>
     <string name="v6_1_better_security">بہتر سیکیورٹی ✅</string>
-    <string name="v6_1_better_security_descr">انقلاب پروٹوکولز کا Trail of Bits نے جائزہ لیا۔</string>
+    <string name="v6_1_better_security_descr">چیٹ فورٹ پروٹوکولز کا Trail of Bits نے جائزہ لیا۔</string>
     <string name="v6_1_better_calls">بہتر کالز</string>
     <string name="v6_1_better_calls_descr">کال کے دوران آڈیو اور ویڈیو تبدیل کریں۔</string>
     <string name="v6_1_better_user_experience">بہتر صارف تجربہ</string>
@@ -2244,7 +2244,7 @@
     <string name="v6_4_1_welcome_contacts_descr">پروفائل تعارف اور خوش آمدید پیغام مقرر کریں۔</string>
     <string name="v6_4_1_keep_chats_clean">اپنی چیٹس صاف رکھیں</string>
     <string name="v6_4_1_keep_chats_clean_descr">پہلے سے غائب ہونے والے پیغامات فعال کریں۔</string>
-    <string name="v6_4_1_short_address">مختصر انقلاب پتہ</string>
+    <string name="v6_4_1_short_address">مختصر چیٹ فورٹ پتہ</string>
     <string name="v6_4_1_short_address_create">اپنا پتہ بنائیں</string>
     <string name="v6_4_1_short_address_update">اپنا پتہ اپ ڈیٹ کریں</string>
     <string name="v6_4_1_short_address_share">اپنا پتہ شیئر کریں</string>
@@ -2350,7 +2350,7 @@
     <string name="connect_plan_you_are_already_connecting_to_vName"><![CDATA[آپ پہلے سے <b>%1$s</b> سے جُڑ رہے ہیں۔]]></string>
     <string name="connect_plan_already_connecting">پہلے سے جُڑ رہے ہیں!</string>
     <string name="connect_plan_you_are_already_connecting_via_this_one_time_link">آپ پہلے سے اس ایک بار کے لنک سے جُڑ رہے ہیں!</string>
-    <string name="connect_plan_this_is_your_own_simplex_address">یہ آپ کا اپنا انقلاب پتہ ہے!</string>
+    <string name="connect_plan_this_is_your_own_simplex_address">یہ آپ کا اپنا چیٹ فورٹ پتہ ہے!</string>
     <string name="connect_plan_repeat_connection_request">کنکشن کی درخواست دہرائیں؟</string>
     <string name="connect_plan_you_have_already_requested_connection_via_this_address">آپ پہلے سے اس پتے کے ذریعے کنکشن کی درخواست کر چکے ہیں!</string>
     <string name="connect_plan_join_your_group">اپنے گروپ میں شامل ہوں؟</string>
@@ -2541,15 +2541,15 @@
     <string name="nearby_feature_description">انٹرنیٹ کے بغیر قریبی لوگوں سے چیٹ کریں</string>
     <string name="nearby_find_people">قریبی لوگ تلاش کریں</string>
     <string name="nearby_looking_for_someone">کسی کو ڈھونڈ رہے ہیں؟</string>
-    <string name="nearby_searching">قریبی انقلاب صارفین تلاش کر رہے ہیں…</string>
+    <string name="nearby_searching">قریبی چیٹ فورٹ صارفین تلاش کر رہے ہیں…</string>
     <string name="nearby_no_one_found">ابھی تک کوئی نہیں ملا…</string>
-    <string name="nearby_ensure_other_open">یقینی بنائیں کہ دوسرے شخص نے بھی انقلاب میں قریبی کھولا ہے</string>
+    <string name="nearby_ensure_other_open">یقینی بنائیں کہ دوسرے شخص نے بھی چیٹ فورٹ میں قریبی کھولا ہے</string>
     <string name="nearby_tap_to_connect">جوڑنے کے لیے ٹیپ کریں</string>
     <string name="nearby_wants_to_connect">%s جُڑنا چاہتا ہے</string>
     <string name="nearby_waiting_accept">%s کی قبولیت کا انتظار…</string>
     <string name="nearby_connected_with">%s سے جُڑ گئے</string>
 
-    <!-- انقلاب ٹیب بار -->
+    <!-- چیٹ فورٹ ٹیب بار -->
     <string name="inq_tab_safety">حفاظت</string>
     <string name="inq_tab_nearby">قریبی</string>
     <string name="inq_tab_chats">چیٹس</string>
@@ -2604,27 +2604,27 @@
     <string name="inq_secure_comm_tips">محفوظ مواصلات کی تجاویز</string>
     <string name="inq_report_surveillance">نگرانی کی رپورٹ کریں</string>
 
-    <!-- انقلاب ترتیبات سیکشنز -->
+    <!-- چیٹ فورٹ ترتیبات سیکشنز -->
     <string name="inq_settings">ترتیبات</string>
     <string name="inq_safety_emergency">حفاظت اور ایمرجنسی</string>
     <string name="inq_privacy_metadata">رازداری اور میٹا ڈیٹا</string>
     <string name="inq_relay_network">ریلے نیٹ ورک</string>
     <string name="inq_appearance">ظاہری شکل</string>
-    <string name="inq_about_section">انقلاب کے بارے میں</string>
-    <string name="inq_about_title">انقلاب کے بارے میں</string>
+    <string name="inq_about_section">چیٹ فورٹ کے بارے میں</string>
+    <string name="inq_about_title">چیٹ فورٹ کے بارے میں</string>
     <string name="inq_terms_of_use">استعمال کی شرائط</string>
     <string name="inq_community_guidelines">کمیونٹی رہنما اصول</string>
     <string name="inq_block_and_delete">بلاک کریں اور حذف کریں</string>
     <string name="inq_block_contact_question">اس رابطے کو بلاک کریں؟</string>
     <string name="inq_block_contact_desc">یہ اس رابطے کو مستقل طور پر بلاک کر دے گا اور تمام پیغامات حذف کر دے گا۔ انہیں مطلع نہیں کیا جائے گا اور وہ آپ کو دوبارہ پیغام نہیں بھیج سکیں گے۔</string>
 
-    <!-- انقلاب آن بورڈنگ -->
-    <string name="inq_why_exists">انقلاب کیوں موجود ہے</string>
+    <!-- چیٹ فورٹ آن بورڈنگ -->
+    <string name="inq_why_exists">چیٹ فورٹ کیوں موجود ہے</string>
     <string name="inq_built_for_danger">حقیقی خطرے کا سامنا کرنے والوں کے لیے بنایا گیا</string>
     <string name="inq_shutdowns_rising">انٹرنیٹ بندش بڑھ رہی ہے</string>
     <string name="inq_shutdowns_desc">حکومتیں احتجاج، انتخابات اور بحرانوں کے دوران رسائی بند کر دیتی ہیں۔ آپ کو ایسے وقت میں بات چیت کا طریقہ چاہیے۔</string>
     <string name="inq_surveillance">کارکنان کی نگرانی ہوتی ہے</string>
-    <string name="inq_surveillance_desc">عام میسجنگ ایپس میٹا ڈیٹا لیک کرتی ہیں — آپ کس سے بات کرتے ہیں، کب، اور کتنی بار۔ انقلاب یہ سب محفوظ رکھتا ہے۔</string>
+    <string name="inq_surveillance_desc">عام میسجنگ ایپس میٹا ڈیٹا لیک کرتی ہیں — آپ کس سے بات کرتے ہیں، کب، اور کتنی بار۔ چیٹ فورٹ یہ سب محفوظ رکھتا ہے۔</string>
     <string name="inq_offline_first">آف لائن پہلے مواصلات</string>
     <string name="inq_offline_first_desc">قریبی چیٹ بلوٹوتھ اور وائی فائی ڈائریکٹ استعمال کرتی ہے — نہ انٹرنیٹ، نہ سیل ٹاور، نہ بلاک کرنے کا کوئی طریقہ۔</string>
     <string name="inq_no_identity">کوئی شناخت ضروری نہیں</string>
@@ -2651,21 +2651,21 @@
     <string name="inq_panic_decoy_desc">آپ یہ اپنا پروفائل بنانے کے بعد ترتیب دیں گے۔ پینک کوڈ فوری طور پر تمام ڈیٹا مٹا دیتا ہے۔</string>
     <string name="inq_nearby_mode">قریبی موڈ</string>
     <string name="inq_comm_without_internet">بغیر کسی انٹرنیٹ کنکشن کے بات چیت کریں</string>
-    <string name="inq_ble_desc">بلوٹوتھ لو انرجی رینج میں موجود دوسرے انقلاب صارفین کو تلاش کرتا ہے — نہ انٹرنیٹ، نہ سیل سگنل۔</string>
+    <string name="inq_ble_desc">بلوٹوتھ لو انرجی رینج میں موجود دوسرے چیٹ فورٹ صارفین کو تلاش کرتا ہے — نہ انٹرنیٹ، نہ سیل سگنل۔</string>
     <string name="inq_create_local_room">مقامی چیٹ روم بنائیں</string>
     <string name="inq_wifi_direct_desc">وائی فائی ڈائریکٹ ڈیوائسز کے درمیان ایک نجی نیٹ ورک بناتا ہے۔ روم کوڈ زبانی شیئر کریں اور چیٹ شروع کریں۔</string>
     <string name="inq_nothing_leaves">کچھ بھی آپ کے ڈیوائس سے باہر نہیں جاتا</string>
     <string name="inq_nothing_leaves_desc">پیغامات جُڑے ہوئے ڈیوائسز کے درمیان رہتے ہیں۔ کوئی سرور نہیں، کوئی کلاؤڈ نہیں، کوئی ریکارڈ نہیں۔</string>
     <string name="inq_when_internet_down">جب انٹرنیٹ بند ہو جائے</string>
-    <string name="inq_when_internet_desc">بندش کے دوران قریبی ٹیب پر جائیں۔ آپ کے ارد گرد انقلاب والے سب ابھی بھی بات چیت کر سکتے ہیں۔</string>
+    <string name="inq_when_internet_desc">بندش کے دوران قریبی ٹیب پر جائیں۔ آپ کے ارد گرد چیٹ فورٹ والے سب ابھی بھی بات چیت کر سکتے ہیں۔</string>
     <string name="inq_create_profile">میرا پروفائل بنائیں</string>
     <string name="inq_accept_terms">میں استعمال کی شرائط اور کمیونٹی رہنما اصول سے اتفاق کرتا/کرتی ہوں</string>
     <string name="inq_read_terms">پڑھیں:</string>
 
-    <!-- انقلاب کے بارے میں -->
+    <!-- چیٹ فورٹ کے بارے میں -->
     <string name="inq_server_infrastructure">سرور انفراسٹرکچر</string>
     <string name="inq_community_relay">کمیونٹی کے زیر انتظام ریلے سرورز</string>
-    <string name="inq_community_relay_desc">آپ کے پیغامات انقلاب کمیونٹی کے زیر انتظام آزاد ریلے سرورز سے گزرتے ہیں۔ کوئی ایک ادارہ تمام سرورز کو کنٹرول نہیں کرتا۔ سرورز پیغام کا مواد کبھی نہیں دیکھتے — وہ صرف ڈیوائسز کے درمیان انکرپٹڈ ڈیٹا ریلے کرتے ہیں۔</string>
+    <string name="inq_community_relay_desc">آپ کے پیغامات چیٹ فورٹ کمیونٹی کے زیر انتظام آزاد ریلے سرورز سے گزرتے ہیں۔ کوئی ایک ادارہ تمام سرورز کو کنٹرول نہیں کرتا۔ سرورز پیغام کا مواد کبھی نہیں دیکھتے — وہ صرف ڈیوائسز کے درمیان انکرپٹڈ ڈیٹا ریلے کرتے ہیں۔</string>
     <string name="inq_server_locations">سرور مقامات</string>
     <string name="inq_server_locations_desc">ریلے سرورز متعدد دائرہ اختیار میں تقسیم ہیں تاکہ کوئی ایک حکومت نیٹ ورک کو روک یا بند نہ کر سکے۔</string>
     <string name="inq_data_stored">آپ کے ڈیوائس پر محفوظ ڈیٹا</string>
@@ -2687,7 +2687,7 @@
     <string name="inq_file_encryption_desc">ڈاؤن لوڈ شدہ فائلیں اور میڈیا ڈیوائس پر انکرپٹ ہو سکتے ہیں۔ انکرپٹ شدہ فائلوں تک دوسری ایپس یا فائل مینیجرز رسائی نہیں کر سکتے۔</string>
     <string name="inq_open_source_section">اوپن سورس</string>
     <string name="inq_full_transparency">مکمل شفافیت</string>
-    <string name="inq_full_transparency_desc">انقلاب مکمل طور پر اوپن سورس ہے۔ کوڈ کی ہر سطر — کلائنٹ، سرور اور کرپٹوگرافک پروٹوکولز — عوامی طور پر قابل تصدیق ہے۔ ہمارا ماننا ہے کہ خفیہ طریقے سے سیکیورٹی کوئی سیکیورٹی نہیں ہے۔</string>
+    <string name="inq_full_transparency_desc">چیٹ فورٹ مکمل طور پر اوپن سورس ہے۔ کوڈ کی ہر سطر — کلائنٹ، سرور اور کرپٹوگرافک پروٹوکولز — عوامی طور پر قابل تصدیق ہے۔ ہمارا ماننا ہے کہ خفیہ طریقے سے سیکیورٹی کوئی سیکیورٹی نہیں ہے۔</string>
 
     <!-- وسائل ٹیب -->
     <string name="inq_resources_title">وسائل</string>
@@ -2695,7 +2695,7 @@
     <string name="inq_step1_title">1. قریبی موڈ فعال کریں</string>
     <string name="inq_step1_desc">قریبی ٹیب پر جائیں اور ڈیوائس دریافت فعال کریں۔ آپ کا فون بلوٹوتھ اور وائی فائی ڈائریکٹ استعمال کرتا ہے — انٹرنیٹ کی ضرورت نہیں۔</string>
     <string name="inq_step2_title">2. ارد گرد لوگ تلاش کریں</string>
-    <string name="inq_step2_desc">رینج میں دوسرے انقلاب صارفین تلاش کرنے کے لیے \'قریبی لوگ تلاش کریں\' استعمال کریں۔ دونوں ڈیوائسز پر ایپ کھلی ہونی چاہیے۔</string>
+    <string name="inq_step2_desc">رینج میں دوسرے چیٹ فورٹ صارفین تلاش کرنے کے لیے \'قریبی لوگ تلاش کریں\' استعمال کریں۔ دونوں ڈیوائسز پر ایپ کھلی ہونی چاہیے۔</string>
     <string name="inq_step3_title">3. کمرہ بنائیں یا شامل ہوں</string>
     <string name="inq_step3_desc">کوڈ کے ساتھ گروپ چیٹ روم شروع کریں۔ قریبی لوگوں کے ساتھ کوڈ زبانی شیئر کریں تاکہ وہ شامل ہو سکیں۔</string>
     <string name="inq_step4_title">4. پیغامات ریلے کریں</string>
@@ -2722,7 +2722,7 @@
     <string name="inq_device_taken">اگر آپ کا ڈیوائس لے لیا جائے</string>
     <string name="inq_device_taken_desc">اسکرین پروٹیکشن فعال ہونے سے کوئی اسکرین شاٹس یا ریکارڈنگز موجود نہیں ہیں۔ ڈیٹابیس انکرپشن ڈیٹا کو محفوظ رکھتا ہے۔</string>
     <string name="inq_after_release">رہائی کے بعد</string>
-    <string name="inq_after_release_desc">انقلاب دوبارہ انسٹال کریں اور QR کوڈز کے ذریعے قابل اعتماد رابطوں سے دوبارہ جُڑیں۔ آپ کا پچھلا ڈیٹا بحال نہیں ہو سکتا — جان بوجھ کر۔</string>
+    <string name="inq_after_release_desc">چیٹ فورٹ دوبارہ انسٹال کریں اور QR کوڈز کے ذریعے قابل اعتماد رابطوں سے دوبارہ جُڑیں۔ آپ کا پچھلا ڈیٹا بحال نہیں ہو سکتا — جان بوجھ کر۔</string>
 
     <!-- قریبی چیٹ UI (اضافی) -->
     <string name="inq_nearby_chat">قریبی چیٹ</string>
@@ -2746,7 +2746,7 @@
     <string name="inq_leave">چھوڑیں</string>
     <string name="inq_send">بھیجیں</string>
     <string name="inq_back">↑ واپس</string>
-    <string name="inq_searching_nearby">قریبی انقلاب صارفین تلاش کر رہے ہیں…</string>
+    <string name="inq_searching_nearby">قریبی چیٹ فورٹ صارفین تلاش کر رہے ہیں…</string>
     <string name="inq_wants_to_connect">%s جُڑنا چاہتا ہے</string>
     <string name="inq_decline">انکار</string>
     <string name="inq_accept">قبول</string>

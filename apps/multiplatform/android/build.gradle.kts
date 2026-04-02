@@ -220,9 +220,9 @@ tasks {
             }
 
             if (project.properties["android.injected.signing.key.alias"] != null && buildType == "release") {
-                File(outputDir, "android-release.apk").renameTo(File(outputDir, "inqalaab.apk"))
-                File(outputDir, "android-armeabi-v7a-release.apk").renameTo(File(outputDir, "inqalaab-armv7a.apk"))
-                File(outputDir, "android-arm64-v8a-release.apk").renameTo(File(outputDir, "inqalaab.apk"))
+                File(outputDir, "android-release.apk").renameTo(File(outputDir, "chatfort.apk"))
+                File(outputDir, "android-armeabi-v7a-release.apk").renameTo(File(outputDir, "chatfort-armv7a.apk"))
+                File(outputDir, "android-arm64-v8a-release.apk").renameTo(File(outputDir, "chatfort.apk"))
             }
             // View all gradle properties set
             // project.properties.each { k, v -> println "$k -> $v" }

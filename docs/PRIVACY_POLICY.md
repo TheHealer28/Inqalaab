@@ -1,21 +1,21 @@
-# Inqalaab Privacy Policy
+# ChatFort Privacy Policy
 
 **Effective Date:** March 6, 2026
 **Last Updated:** March 6, 2026
 
 ## Overview
 
-Inqalaab is a private, end-to-end encrypted messaging application designed for activists and organizers. Your privacy is our highest priority. Inqalaab is designed so that we have **no access to your data** — we cannot read your messages, see your contacts, or identify you in any way.
+ChatFort is a private, end-to-end encrypted messaging application designed for activists and organizers. Your privacy is our highest priority. ChatFort is designed so that we have **no access to your data** — we cannot read your messages, see your contacts, or identify you in any way.
 
 ## Data Collection
 
-**Inqalaab collects no user data.** Specifically:
+**ChatFort collects no user data.** Specifically:
 
-- **No account creation** — Inqalaab does not require an email address, phone number, username, or any identifier to use the app.
+- **No account creation** — ChatFort does not require an email address, phone number, username, or any identifier to use the app.
 - **No user identifiers** — There are no user IDs assigned by the app or shared with any server.
-- **No analytics or telemetry** — Inqalaab does not collect usage statistics, crash reports, or behavioral data.
-- **No tracking** — Inqalaab contains no advertising SDKs, tracking pixels, or third-party analytics tools.
-- **No cookies** — Inqalaab does not use cookies or similar tracking technologies.
+- **No analytics or telemetry** — ChatFort does not collect usage statistics, crash reports, or behavioral data.
+- **No tracking** — ChatFort contains no advertising SDKs, tracking pixels, or third-party analytics tools.
+- **No cookies** — ChatFort does not use cookies or similar tracking technologies.
 
 ## Data Storage
 
@@ -23,12 +23,12 @@ All data is stored **locally on your device only**:
 
 - **Messages** — All messages are end-to-end encrypted. Messages are stored only on your device and the recipient's device. No server retains message content after delivery.
 - **Contacts and groups** — Your contact list and group memberships are stored exclusively on your device.
-- **Media and files** — Photos, videos, voice messages, and files shared through Inqalaab are encrypted and stored on your device.
+- **Media and files** — Photos, videos, voice messages, and files shared through ChatFort are encrypted and stored on your device.
 - **Preferences and settings** — App settings (including language preference, appearance, and Safety Hub configuration) are stored locally on your device.
 
 ## Encryption
 
-Inqalaab uses end-to-end encryption for all communications:
+ChatFort uses end-to-end encryption for all communications:
 
 - All messages are encrypted before leaving your device.
 - Encryption keys are negotiated directly between communicating devices.
@@ -37,7 +37,7 @@ Inqalaab uses end-to-end encryption for all communications:
 
 ## Device Permissions
 
-Inqalaab requests the following device permissions, each used only for the stated purpose:
+ChatFort requests the following device permissions, each used only for the stated purpose:
 
 | Permission | Purpose |
 |---|---|
@@ -57,7 +57,7 @@ These permissions are never used to collect, transmit, or store data beyond thei
 
 ## Nearby Peer-to-Peer Communication
 
-Inqalaab includes an optional Nearby feature for local communication when internet is unavailable:
+ChatFort includes an optional Nearby feature for local communication when internet is unavailable:
 
 - Uses Bluetooth Low Energy (BLE) for device discovery and Wi-Fi Direct for data transfer.
 - **No data leaves your local network** — all P2P communication stays between nearby devices.
@@ -67,7 +67,7 @@ Inqalaab includes an optional Nearby feature for local communication when intern
 
 ## Third-Party Services
 
-Inqalaab does not integrate any third-party services, SDKs, or analytics platforms. The app communicates only with messaging relay servers for message delivery, and these servers:
+ChatFort does not integrate any third-party services, SDKs, or analytics platforms. The app communicates only with messaging relay servers for message delivery, and these servers:
 
 - Cannot identify users
 - Cannot read message content
@@ -76,7 +76,7 @@ Inqalaab does not integrate any third-party services, SDKs, or analytics platfor
 
 ## Safety Hub & Emergency Wipe
 
-Inqalaab includes a Safety Hub with emergency data wipe features:
+ChatFort includes a Safety Hub with emergency data wipe features:
 
 - **Emergency code:** An optional self-destruct code that permanently deletes all local data.
 - **Quick Settings tile:** An optional "Reset App" tile that can wipe all data from the notification shade.
@@ -86,19 +86,19 @@ Inqalaab includes a Safety Hub with emergency data wipe features:
 
 ## Children's Privacy
 
-Inqalaab is not directed at children under 13. We do not knowingly collect any data from anyone, including children. Since the app collects no personal data from any user, no special provisions for children's data are necessary.
+ChatFort is not directed at children under 13. We do not knowingly collect any data from anyone, including children. Since the app collects no personal data from any user, no special provisions for children's data are necessary.
 
 ## Changes to This Policy
 
-We may update this privacy policy from time to time. Any changes will be reflected in the "Last Updated" date above and in updated versions of the app. As Inqalaab collects no user data, changes will primarily reflect new features or clarifications.
+We may update this privacy policy from time to time. Any changes will be reflected in the "Last Updated" date above and in updated versions of the app. As ChatFort collects no user data, changes will primarily reflect new features or clarifications.
 
 ## Contact
 
 If you have questions or concerns about this privacy policy:
 
 - **Email:** [chat@inqalaab.chat](mailto:chat@inqalaab.chat)
-- **GitHub:** [https://github.com/TheHealer28/Inqalaab](https://github.com/TheHealer28/Inqalaab)
+- **GitHub:** [https://github.com/TheHealer28/ChatFort](https://github.com/TheHealer28/ChatFort)
 
 ## Open Source
 
-Inqalaab is open source under the AGPLv3 license. You can review the complete source code to verify our privacy practices at the GitHub link above.
+ChatFort is open source under the AGPLv3 license. You can review the complete source code to verify our privacy practices at the GitHub link above.

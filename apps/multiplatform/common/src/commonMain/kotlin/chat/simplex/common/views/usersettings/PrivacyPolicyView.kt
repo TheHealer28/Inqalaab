@@ -19,7 +19,7 @@ fun PrivacyPolicyView() {
     AppBarTitle(stringResource(MR.strings.privacy_policy), withPadding = false)
 
     PolicySection("What data we collect")
-    PolicyText("None. Inqalaab does not collect any personal data. There are no user accounts, no registration, no phone number or email requirements, and no user identifiers of any kind.")
+    PolicyText("None. ChatFort does not collect any personal data. There are no user accounts, no registration, no phone number or email requirements, and no user identifiers of any kind.")
 
     PolicySection("Messages and files")
     PolicyText("All messages and files are end-to-end encrypted. Messages are stored only on your device. The server relays encrypted messages and cannot read their content. Message metadata (who talks to whom) is not accessible to the server due to the protocol design.")
@@ -28,7 +28,7 @@ fun PrivacyPolicyView() {
     PolicyText("Your profile (display name) is stored only on your device and shared only with contacts you choose to connect with. There is no central directory of users.")
 
     PolicySection("Server infrastructure")
-    PolicyText("Inqalaab uses its own messaging relay server. The server does not store messages after delivery, does not log IP addresses or connection metadata. Server code is open source and auditable.")
+    PolicyText("ChatFort uses its own messaging relay server. The server does not store messages after delivery, does not log IP addresses or connection metadata. Server code is open source and auditable.")
 
     PolicySection("Device permissions")
     PolicyText("Camera: Scanning QR codes, taking photos, and video calls. Microphone: Voice messages and calls. Notifications: Alerting you to new messages and incoming calls. Storage: Sending, receiving, and saving files. Bluetooth & Wi-Fi: Nearby peer-to-peer communication (optional). Location: Required by Android for Bluetooth/Wi-Fi Direct scanning \u2014 no location data is collected, stored, or transmitted. Battery optimization: Background messaging service for reliable delivery. Full-screen intent: Incoming call notifications. Biometrics: Optional app lock. All permissions are optional and used only for their stated purpose.")
@@ -37,7 +37,7 @@ fun PrivacyPolicyView() {
     PolicyText("Communication happens directly between devices over Bluetooth LE and Wi-Fi Direct. No data passes through any external server. All nearby messages are encrypted (AES-256-GCM). No location data is collected \u2014 the Location permission is only required by Android for Bluetooth and Wi-Fi Direct scanning.")
 
     PolicySection("Analytics and tracking")
-    PolicyText("Inqalaab contains no analytics, no tracking, no advertising, and no third-party SDKs that collect data.")
+    PolicyText("ChatFort contains no analytics, no tracking, no advertising, and no third-party SDKs that collect data.")
 
     PolicySection("Security features")
     PolicyText("App lock: Optionally lock the app with a passcode or biometrics. Emergency code: A self-destruct code that wipes all data when entered. Quick Settings tile: A \"Reset App\" tile that can wipe all data from the notification shade. Screen protection: Prevents app content from appearing in screenshots and recent apps.")

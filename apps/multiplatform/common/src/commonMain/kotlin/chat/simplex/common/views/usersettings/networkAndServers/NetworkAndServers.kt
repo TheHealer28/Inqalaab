@@ -267,6 +267,109 @@ fun ModalData.NetworkAndServersView(closeNetworkAndServers: () -> Unit) {
             }
           }
         }
+
+      }
+
+      val addSmpAddress = remember { mutableStateOf("") }
+      val addXftpAddress = remember { mutableStateOf("") }
+
+      SectionView("ADD YOUR OWN SERVERS") {
+        SettingsActionItem(
+          painterResource(MR.images.ic_add),
+          "Add message server",
+          click = {
+            addSmpAddress.value = ""
+            AlertManager.shared.showAlertDialogButtonsColumn(
+              title = "Add message server",
+              text = "Paste your SMP server address",
+              buttons = {
+                Column {
+                  androidx.compose.material.OutlinedTextField(
+                    value = addSmpAddress.value,
+                    onValueChange = { addSmpAddress.value = it },
+                    placeholder = { Text("smp://...", color = MaterialTheme.colors.secondary) },
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+                    colors = androidx.compose.material.TextFieldDefaults.outlinedTextFieldColors(
+                      focusedBorderColor = MaterialTheme.colors.primary,
+                      cursorColor = MaterialTheme.colors.primary
+                    ),
+                    singleLine = true
+                  )
+                  Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+                    androidx.compose.material.TextButton(onClick = { AlertManager.shared.hideAlert() }) {
+                      Text("Cancel", color = MaterialTheme.colors.primary)
+                    }
+                    androidx.compose.material.TextButton(onClick = {
+                      val address = addSmpAddress.value.trim()
+                      if (address.startsWith("smp://")) {
+                        val server = UserServer(remoteHostId = currentRemoteHost?.remoteHostId, serverId = null, server = address, preset = false, tested = null, enabled = true, deleted = false)
+                        val nullIdx = userServers.value.indexOfFirst { it.operator == null }
+                        if (nullIdx != -1) {
+                          userServers.value = userServers.value.toMutableList().apply {
+                            this[nullIdx] = this[nullIdx].copy(smpServers = this[nullIdx].smpServers + server)
+                          }
+                        }
+                        AlertManager.shared.hideAlert()
+                      }
+                    }) {
+                      Text("Add", color = MaterialTheme.colors.primary)
+                    }
+                  }
+                }
+              }
+            )
+          },
+          textColor = MaterialTheme.colors.primary,
+          iconColor = MaterialTheme.colors.primary
+        )
+        SettingsActionItem(
+          painterResource(MR.images.ic_add),
+          "Add media server",
+          click = {
+            addXftpAddress.value = ""
+            AlertManager.shared.showAlertDialogButtonsColumn(
+              title = "Add media server",
+              text = "Paste your XFTP server address",
+              buttons = {
+                Column {
+                  androidx.compose.material.OutlinedTextField(
+                    value = addXftpAddress.value,
+                    onValueChange = { addXftpAddress.value = it },
+                    placeholder = { Text("xftp://...", color = MaterialTheme.colors.secondary) },
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+                    colors = androidx.compose.material.TextFieldDefaults.outlinedTextFieldColors(
+                      focusedBorderColor = MaterialTheme.colors.primary,
+                      cursorColor = MaterialTheme.colors.primary
+                    ),
+                    singleLine = true
+                  )
+                  Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+                    androidx.compose.material.TextButton(onClick = { AlertManager.shared.hideAlert() }) {
+                      Text("Cancel", color = MaterialTheme.colors.primary)
+                    }
+                    androidx.compose.material.TextButton(onClick = {
+                      val address = addXftpAddress.value.trim()
+                      if (address.startsWith("xftp://")) {
+                        val server = UserServer(remoteHostId = currentRemoteHost?.remoteHostId, serverId = null, server = address, preset = false, tested = null, enabled = true, deleted = false)
+                        val nullIdx = userServers.value.indexOfFirst { it.operator == null }
+                        if (nullIdx != -1) {
+                          userServers.value = userServers.value.toMutableList().apply {
+                            this[nullIdx] = this[nullIdx].copy(xftpServers = this[nullIdx].xftpServers + server)
+                          }
+                        }
+                        AlertManager.shared.hideAlert()
+                      }
+                    }) {
+                      Text("Add", color = MaterialTheme.colors.primary)
+                    }
+                  }
+                }
+              }
+            )
+          },
+          textColor = MaterialTheme.colors.primary,
+          iconColor = MaterialTheme.colors.primary
+        )
       }
 
       if (currentRemoteHost == null) {
